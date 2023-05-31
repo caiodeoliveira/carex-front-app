@@ -1,0 +1,25 @@
+    <div 
+    class="slider-container"
+    >
+
+        <h1>{{warningValue}}</h1>
+
+        <p-slider 
+         pTooltip="{{sliderWarning ? warningActivated : inputNumberValue}}"
+         tooltipPosition="top" 
+         [min]="0" 
+         [max]="130" 
+         [step]="1" 
+         [(ngModel)]="inputNumberValue"
+        [style]="{
+            backgroundColor: (sliderWarning ? 'rgb(255, 0, 0)' : 'rgb(0, 0, 255)'),
+            }"
+         >
+        </p-slider>
+    </div>
+        
+    <!-- 
+        The only way to style conditionally the p-slider handle (Line 14).
+        [style]="{backgroundColor: (sliderWarning ? 'rgb(255, 0, 0)' : 'rgb(0, 0, 255)')}"
+    -->
+    
