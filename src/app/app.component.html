@@ -1,5 +1,5 @@
 <header id="header">
-    <nav>
+    <nav [ngClass]="{'is-phone-portrait': isPhonePortrait, 'is-large-device': isLargeDevice}">
         <a>Navigation Link 1</a>
         <a>Navigation Link 2</a>
         <a>Navigation Link 3</a>
