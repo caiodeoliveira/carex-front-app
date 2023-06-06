@@ -8,49 +8,40 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 })
 export class AppComponent {
 
-  isPhonePortrait: boolean = false;
-  isLargeDevice: boolean = false;
-  
-  // pt-BR O Array breakPointList será usado para verificar o tipo de dispositivo na responsividade
-  breakpointsList: string[] = []; 
-  arrWithoutDuplicate: string[] = [];
+  breakpointActive: string = ""; 
 
+  protected getActiveBreakpoint(): string {
+    switch(this.breakpointActive) {
+      case "isPhonePortrait":
+        return "is-phone-portrait";
+        case "isLargeDevice":
+          return "is-large-device";
+          case "isXLarge":
+            return "is-x-large";
+            default: return "is-large-device";
+    }
+  }
   constructor(private responsive: BreakpointObserver) {}
   
   ngOnInit() {
-
     this.responsive.observe(Breakpoints.XSmall).subscribe(result => {
-      this.isPhonePortrait = false;
-
       if(result.matches) {
-        this.isPhonePortrait = true;
-        this.breakpointsList.push('isPhonePortrait')
-        
-        this.arrWithoutDuplicate = this.breakpointsList.filter((element, index) => {
-          return element.indexOf(element) === index;
-        })
-         console.log(`Screens matches ${Breakpoints.XSmall}`);
+         this.breakpointActive = 'isPhonePortrait';
       }
-
-
-
     })
 
     this.responsive.observe(Breakpoints.Large).subscribe(result => {
-      this.isLargeDevice = false;
-
       if(result.matches) {
-        this.isLargeDevice = true;
-        this.breakpointsList.push('isLargeDevice');
-
-        this.arrWithoutDuplicate = this.breakpointsList.filter((element, index) => {
-          return element.indexOf(element) === index;
-        })
-        console.log(`Screens matches ${Breakpoints.Large}`)
-        console.log(this.arrWithoutDuplicate)
+        this.breakpointActive = 'isLargeDevice';
       }
     }) 
+
+    this.responsive.observe(Breakpoints.XLarge).subscribe(result => {
+      if(result.matches) {
+        this.breakpointActive = "isXLarge"
+      }
+    })
+    this.getActiveBreakpoint();
   }
- // pt-BR Corrigir função de novo array com filtragem. Não está permitindo adicionar um novo item, mesmo que ele seja diferente.
 }
 
