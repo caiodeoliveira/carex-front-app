@@ -1,9 +1,15 @@
 <header id="header">
-    <nav [ngClass]="{'is-phone-portrait': isPhonePortrait, 'is-large-device': isLargeDevice}">
-        <a>Navigation Link 1</a>
-        <a>Navigation Link 2</a>
-        <a>Navigation Link 3</a>
-        <a>Navigation Link 4</a>
+    <nav [class]="getHeaderBreakpoint()">
+        <a>Contato</a>
+        <a>Serviços</a>
+        <a>Sobre Mim</a>
+        <a>Biografia</a>
     </nav>
 </header>
+
+<section>
+
+    
+</section>
+
 <app-home/>
