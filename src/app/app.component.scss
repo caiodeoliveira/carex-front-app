@@ -1,13 +1,13 @@
-.is-phone-portrait,
-.is-large-device,
-.is-x-large {
+.phone-portrait-header,
+.large-device-header,
+.x-large-header {
     cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.is-phone-portrait {
+.phone-portrait-header {
     align-items: baseline;
     max-width: 127.9rem;
     max-height: 4rem;
@@ -19,7 +19,7 @@
     }
 }
 
-.is-large-device {
+.large-device-header {
     align-items: center;
     max-width: 191rem;
     height: 4rem;
@@ -31,7 +31,7 @@
     }
 }
 
-.is-x-large {
+.x-large-header {
     align-items: center;
     max-width: 288rem;
     height: 4rem;
