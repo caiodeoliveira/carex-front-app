@@ -10,17 +10,6 @@ export class AppComponent {
 
   breakpointActive: string = ""; 
 
-  protected getActiveBreakpoint(): string {
-    switch(this.breakpointActive) {
-      case "isPhonePortrait":
-        return "is-phone-portrait";
-        case "isLargeDevice":
-          return "is-large-device";
-          case "isXLarge":
-            return "is-x-large";
-            default: return "is-large-device";
-    }
-  }
   constructor(private responsive: BreakpointObserver) {}
   
   ngOnInit() {
@@ -41,7 +30,30 @@ export class AppComponent {
         this.breakpointActive = "isXLarge"
       }
     })
-    this.getActiveBreakpoint();
   }
-}
+  
+   getHeaderBreakpoint(): string {
+    switch(this.breakpointActive) {
+      case "isPhonePortrait":
+        return "phone-portrait-header";
+        case "isLargeDevice":
+          return "large-device-header";
+          case "isXLarge":
+            return "x-large-header";
+            default: return "is-large-device";
+    }
+  }
 
+  getHomeBreakpoints(): string {
+    switch(this.breakpointActive) {
+      case "isPhonePortrait":
+        return "phone-portrait-home";
+        case "isLargeDevice":
+          return "large-device-home";
+          case "isXLarge":
+            return "x-large-home";
+            default: return "large-device-home";
+    }
+  }
+
+}
