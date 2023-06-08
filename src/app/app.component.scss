@@ -1,24 +1,40 @@
-.is-phone-portrait {
+.is-phone-portrait,
+.is-large-device,
+.is-x-large {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-around;
-    max-width: 59.9rem;
-    height: 4rem;
-    font-size: 1.6rem;
+}
+
+.is-phone-portrait {
+    align-items: baseline;
+    max-width: 127.9rem;
+    max-height: 4rem;
+    font-size: 1.8rem;
     background-color: blue;
+
+    a {
+        max-width: 12.5rem;
+    }
 }
 
 .is-large-device {
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
-    max-width: 128rem;
+    max-width: 191rem;
     height: 4rem;
-    font-size: 1.6rem;
-    font-size: 2rem;
+    font-size: 3rem;
     background-color: greenyellow;
+
+    a {
+        max-width: 30rem;
+    }
 }
 
-// Cor de fundo padrão será: background-color: rgb(241, 167, 241);
+.is-x-large {
+    align-items: center;
+    max-width: 288rem;
+    height: 4rem;
+    font-size: 4rem;
+    background-color: rgb(241, 167, 241);
+}
