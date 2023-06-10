@@ -1,5 +1,5 @@
 <header id="header">
-    <nav [class]="getHeaderBreakpoint()">
+    <nav class="header-nav" [class]="getBreakpoints()">
         <a>Contato</a>
         <a>Serviços</a>
         <a>Sobre Mim</a>
@@ -7,9 +7,20 @@
     </nav>
 </header>
 
-<section>
-
+<section class="home" [class]="getBreakpoints()">
     
-</section>
+    <div class="home-profile-descriptions" [class]="getBreakpoints()">
+        
+        <span>
+            <p>Dra. Ana Beatriz Das neves Callado - Crefito</p>
+            <p>995599</p>
+        </span>
 
-<app-home/>
+        <p>Médica Fisioterapeuta</p>
+    </div>
+    
+
+    <div>
+        <h1>AAAAAAAAAAAAAAAAAAAAAAAAAA</h1>
+    </div>
+</section>
