@@ -1,6 +1,6 @@
-.header.phone-portrait,
-.header.large-device,
-.header.x-large {
+.header-nav.phone-portrait,
+.header-nav.large-device,
+.header-nav.x-large {
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -8,7 +8,7 @@
     width: 100vw;
 }
 
-.header.phone-portrait {
+.header-nav.phone-portrait {
     align-items: baseline;
     max-height: 4rem;
     font-size: 1.8rem;
@@ -19,7 +19,7 @@
     }
 }
 
-.header.large-device {
+.header-nav.large-device {
     align-items: center;
     height: 4rem;
     font-size: 3rem;
@@ -30,7 +30,7 @@
     }
 }
 
-.header.x-large {
+.header-nav.x-large {
     align-items: center;
     height: 4rem;
     font-size: 4rem;
