@@ -32,28 +32,15 @@ export class AppComponent {
     })
   }
   
-   getHeaderBreakpoint(): string {
+   getBreakpoints(): string {
     switch(this.breakpointActive) {
       case "isPhonePortrait":
-        return "phone-portrait-header";
+        return "phone-portrait";
         case "isLargeDevice":
-          return "large-device-header";
+          return "large-device";
           case "isXLarge":
-            return "x-large-header";
+            return "x-large";
             default: return "is-large-device";
     }
   }
-
-  getHomeBreakpoints(): string {
-    switch(this.breakpointActive) {
-      case "isPhonePortrait":
-        return "phone-portrait-home";
-        case "isLargeDevice":
-          return "large-device-home";
-          case "isXLarge":
-            return "x-large-home";
-            default: return "large-device-home";
-    }
-  }
-
 }
