@@ -1,58 +1,113 @@
-.header-nav.phone-portrait,
-.header-nav.large-device,
-.header-nav.x-large {
+.header-nav {
     cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     width: 100vw;
-}
 
-.header-nav.phone-portrait {
-    align-items: baseline;
-    max-height: 4rem;
-    font-size: 1.8rem;
-    background-color: blue;
+    &.phone-portrait {
+        align-items: baseline;
+        max-height: 4rem;
+        font-size: 1.8rem;
+        background-color: blue;
 
-    a {
-        max-width: 12.5rem;
+        a {
+            max-width: 12.5rem;
+        }
     }
-}
 
-.header-nav.large-device {
-    align-items: center;
-    height: 4rem;
-    font-size: 3rem;
-    background-color: greenyellow;
+    &.large-device {
+        align-items: center;
+        height: 4rem;
+        font-size: 3rem;
+        background-color: greenyellow;
 
-    a {
-        max-width: 30rem;
+        a {
+            max-width: 30rem;
+        }
     }
+
+    &.x-large {
+        align-items: center;
+        height: 4rem;
+        font-size: 3.5rem;
+        background-color: rgb(241, 167, 241);
+
+        a {
+            max-width: 30rem;
+        }
+    }
+
 }
 
-.header-nav.x-large {
-    align-items: center;
-    height: 4rem;
-    font-size: 4rem;
-    background-color: rgb(241, 167, 241);
-}
-
-.home.phone-portrait,
-.home.large-device,
-.home.x-large {
+.home {
     max-width: 100vw;
-    display: flex;
-    flex-direction: row;
-}
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
 
-.home.phone-portrait {
-    background-color: red;
-}
+    .profile-descriptions {
+        display: flex;
+        flex-direction: column;
 
-.home.large-device {
-    background-color: rebeccapurple
-}
+        .profile-identification {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 56rem 2rem 12rem 12rem;
+            justify-items: center;
 
-.home.x-large {
-    background-color: peru
+            &.phone-portrait {
+                font-size: 1.8rem;
+            }
+
+            &.large-device {
+                font-size: 3rem;
+
+            }
+
+            &.x-large {
+                font-size: 3.5rem;
+
+                .profile-name {
+                    max-width: 96rem;
+                }
+
+                .profile-registry {
+                    max-width: 13rem;
+                }
+
+                .profile-id {
+                    max-width: 12rem;
+                    color: green;
+                }
+            }
+        }
+
+        .medical-specialty {
+            max-width: 35rem;
+
+            &.phone-portrait {
+                font-size: 1.8rem;
+            }
+
+            &.large-device {
+                font-size: 2.5rem;
+            }
+
+            &.x-large {
+                font-size: 3rem;
+            }
+
+        }
+
+    }
+
+    .profile-photo-container {
+        img {
+            border: 2px solid black;
+            border-radius: 50%;
+            max-height: 50rem;
+        }
+    }
+
 }
