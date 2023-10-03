@@ -9,6 +9,9 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 export class AppComponent {
 
   breakpointActive: string = ""; 
+  inputTextValue: string = "empty";
+  dateTimeValue: any;
+
 
   constructor(private responsive: BreakpointObserver) {}
   
@@ -36,11 +39,38 @@ export class AppComponent {
     switch(this.breakpointActive) {
       case "isPhonePortrait":
         return "phone-portrait";
-        case "isLargeDevice":
+      case "isLargeDevice":
           return "large-device";
           case "isXLarge":
             return "x-large";
             default: return "is-large-device";
     }
   }
+
+  getProfileImageByScreenSize(): string {
+    if(this.breakpointActive == "isPhonePortrait") {
+      return "../assets/imgs/profile_photo_small.jpg";
+    }
+    else if(this.breakpointActive == "isLargeDevice") {
+      return "../assets/imgs/profile_photo_average.jpg"
+    }
+      else if (this.breakpointActive == "isXLarge") {
+        return "../assets/imgs/profile_photo_xlarge.jpg";
+      }
+      return "null";
+  }
+
+  getMedicineImageByScreenSize(): string {
+    if(this.breakpointActive == "isPhonePortrait") {
+      return "../assets/imgs/medicine-small-image.jpg";
+    }
+    else if(this.breakpointActive == "isLargeDevice") {
+      return "../assets/imgs/medicine-average-image.jpg"
+    }
+      else if (this.breakpointActive == "isXLarge") {
+        return "../assets/imgs/medicine-large-image.jpg";
+      }
+      return "null";
+  }
+  
 }

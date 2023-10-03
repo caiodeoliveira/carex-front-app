@@ -1,4 +1,4 @@
-    <div 
+    <!-- <div 
     class="slider-container"
     >
 
@@ -16,10 +16,11 @@
             }"
          >
         </p-slider>
-    </div>
+    </div> -->
         
     <!-- 
         The only way to style conditionally the p-slider handle (Line 14).
         [style]="{backgroundColor: (sliderWarning ? 'rgb(255, 0, 0)' : 'rgb(0, 0, 255)')}"
     -->
     
+    <input type="text" [(ngModel)]="inputData" (ngModelChange)="sendInputValue()"/>

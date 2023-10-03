@@ -9,21 +9,21 @@
 
 <section class="home" [class]="getBreakpoints()">
     
-    <div class="profile-descriptions" [class]="getBreakpoints()">
+    <div class="profile-descriptions">
         <span class="profile-identification" [class]="getBreakpoints()">
-            <p class="profile-name">Dra. Ana Beatriz Das neves Callado</p>
-            <p class="profile-name"> - </p>
-            <p class="profile-registry">Crefito</p>
-            <p class="profile-id">995599</p>
+            <p class="profile-name">Dra. Ana Beatriz - </p>
+            <p class="medical-specialty" [class]="getBreakpoints()">Médica Fisioterapeuta</p>
         </span>
 
-        <p class="medical-specialty" [class]="getBreakpoints()">Médica Fisioterapeuta</p>
-        <img src="../assets/medicine.png" alt="ícone de medicina" style="width: 4%"/>
+        <span class="medical-specialty-container">
+            <!-- TODO: adicionar diretiva condicional para 3 tags img, cada uma vai renderizar a imagem da cobra com um tamanho diferente -->
+            <img src="{{getMedicineImageByScreenSize()}}" alt="ícone de medicina cobra"/>
+        </span>
     </div>
     
 
-    <div class="profile-photo-container">
-        <img src="https://pps.whatsapp.net/v/t61.24694-24/351723714_239337835396440_7201475714266989855_n.jpg?ccb=11-4&oh=01_AdQmBu-ipFJYNExpqnUHInfEJxxzHL5DYe2LKtP6y5wZTg&oe=648F8832" alt="Foto de Ana Beatriz">
+    <div class="profile-photo-container" [class]="getBreakpoints()">
+        <img class="profile-medical-photo" src="{{getProfileImageByScreenSize()}}" alt="Foto de Ana Beatriz">
     </div>
 
 </section>
