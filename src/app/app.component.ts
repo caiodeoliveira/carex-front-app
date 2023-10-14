@@ -10,7 +10,6 @@ export class AppComponent {
 
   breakpointActive: string = ""; 
   inputTextValue: string = "empty";
-  dateTimeValue: any;
 
 
   constructor(private responsive: BreakpointObserver) {}
@@ -49,7 +48,7 @@ export class AppComponent {
 
   getProfileImageByScreenSize(): string {
     if(this.breakpointActive == "isPhonePortrait") {
-      return "../assets/imgs/profile_photo_small.jpg";
+     return "../assets/imgs/profile_photo_small.jpg";
     }
     else if(this.breakpointActive == "isLargeDevice") {
       return "../assets/imgs/profile_photo_average.jpg"
