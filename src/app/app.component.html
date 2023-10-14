@@ -11,12 +11,11 @@
     
     <div class="profile-descriptions">
         <span class="profile-identification" [class]="getBreakpoints()">
-            <p class="profile-name">Dra. Ana Beatriz - </p>
-            <p class="medical-specialty" [class]="getBreakpoints()">Médica Fisioterapeuta</p>
+            <p class="profile-name">Dra. Ana Beatriz - <b> CREFITO: 00000</b></p>
+            <p class="medical-specialty" [class]="getBreakpoints()">Médica Fisioterapeuta com especialidade em obstetrícia</p>
         </span>
 
         <span class="medical-specialty-container">
-            <!-- TODO: adicionar diretiva condicional para 3 tags img, cada uma vai renderizar a imagem da cobra com um tamanho diferente -->
             <img src="{{getMedicineImageByScreenSize()}}" alt="ícone de medicina cobra"/>
         </span>
     </div>
