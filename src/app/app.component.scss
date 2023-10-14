@@ -47,7 +47,7 @@
     justify-items: center;
 
     &.phone-portrait {
-        max-width: 38.4rem;
+        max-width: 59.9rem;
     }
 
     &.large-device {
@@ -63,34 +63,81 @@
         flex-direction: column;
         align-items: center;
 
+        ::ng-deep img {}
 
-
-        .profile-photo-container {
+        .profile-identification {
 
             &.phone-portrait {
-                .profile-medical-photo {
-                    border: 2px solid black;
-                    border-radius: 50%;
-                    max-width: 11rem;
+                max-width: 15rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .profile-name {
+                    font-size: 0.8rem;
                 }
             }
 
             &.large-device {
-                .profile-medical-photo {
-                    border: 2px solid black;
-                    border-radius: 50%;
-                    max-width: 33rem;
+                max-width: 31rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .profile-name {
+                    font-size: 2.5rem;
                 }
             }
 
-            &.large-device {
-                .profile-medical-photo {
-                    border: 2px solid black;
-                    border-radius: 50%;
-                    max-width: 33rem;
+            &.x-large {
+                max-width: 54rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .profile-name {
+                    font-size: 3rem;
+                }
+            }
+
+
+            .medical-specialty {
+                &.phone-portrait {
+                    font-size: 1rem;
+                }
+
+                &.large-device {
+                    font-size: 2.5rem;
+                }
+
+                &.x-large {
+                    font-size: 3rem;
                 }
             }
         }
+    }
+}
 
+.profile-photo-container {
+
+    &.phone-portrait {
+        ::ng-deep img {
+            border: 2px solid black;
+            border-radius: 15px;
+            max-width: 13rem;
+        }
+    }
+
+    &.large-device {
+        ::ng-deep img {
+            border: 2px solid black;
+            border-radius: 15px;
+            max-width: 40rem;
+        }
+    }
+
+    &.x-large {
+        ::ng-deep img {
+            border: 2px solid black;
+            border-radius: 15px;
+            max-width: 50rem;
+        }
     }
 }
