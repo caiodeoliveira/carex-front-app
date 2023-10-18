@@ -45,6 +45,7 @@
     grid-template-columns: 1fr 1fr;
     align-items: center;
     justify-items: center;
+    color: white;
 
     &.phone-portrait {
         max-width: 59.9rem;
@@ -91,6 +92,7 @@
                 max-width: 54rem;
                 display: grid;
                 grid-template-columns: 1fr;
+                justify-items: center;
 
                 .profile-name {
                     font-size: 3rem;
@@ -109,7 +111,28 @@
 
                 &.x-large {
                     font-size: 3rem;
+                    text-align: center;
                 }
+            }
+        }
+
+        .medical-specialty-grid {
+            height: 530px;
+            width: 545px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-items: center;
+
+            // .medical-specialty-container-child-grid {
+            //     display: grid;
+            //     grid-template-columns: 1fr;
+            // }
+
+            ::ng-deep img {
+                border: 2px solid white;
+                border-radius: 15px;
+                filter: brightness(80%);
             }
         }
     }
