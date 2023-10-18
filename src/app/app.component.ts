@@ -10,7 +10,8 @@ export class AppComponent {
 
   breakpointActive: string = ""; 
   inputTextValue: string = "empty";
-
+  imagesBasePath: string = "../assets/imgs";
+  medicineServicesImages: string[];
 
   constructor(private responsive: BreakpointObserver) {}
   
@@ -32,6 +33,8 @@ export class AppComponent {
         this.breakpointActive = "isXLarge"
       }
     })
+    this.medicineServicesImages = [];
+    this.getMedicineServicesImagesByScreenSize();
   }
   
    getBreakpoints(): string {
@@ -59,17 +62,20 @@ export class AppComponent {
       return "null";
   }
 
-  getMedicineImageByScreenSize(): string {
+  getMedicineServicesImagesByScreenSize(): void {
     if(this.breakpointActive == "isPhonePortrait") {
-      return "../assets/imgs/medicine-small-image.jpg";
+       this.medicineServicesImages.push(`${this.imagesBasePath}/suction_cup_tp.png`);
+       console.log('medicine Services array -> ' + this.medicineServicesImages)
     }
-    else if(this.breakpointActive == "isLargeDevice") {
-      return "../assets/imgs/medicine-average-image.jpg"
-    }
-      else if (this.breakpointActive == "isXLarge") {
-        return "../assets/imgs/medicine-large-image.jpg";
+    // else if(this.breakpointActive == "isLargeDevice") {
+    //   return "../assets/imgs/medicine-average-image.jpg"
+    // }
+      if (this.breakpointActive == "isXLarge") {
+        this.medicineServicesImages.push(`${this.imagesBasePath}/suction_cup_tp_small.png`)
+        this.medicineServicesImages.push(`${this.imagesBasePath}/myofacial_release_tp_small.png`)
+        this.medicineServicesImages.push(`${this.imagesBasePath}/dry_nedling_tp_small.png`)
+        this.medicineServicesImages.push(`${this.imagesBasePath}/ear_acupunture_tp_small.png`)
       }
-      return "null";
   }
   
 }
