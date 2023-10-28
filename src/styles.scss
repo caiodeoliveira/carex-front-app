@@ -7,16 +7,13 @@ html {
 
 html,
 body {
+    height: 100%;
+    background-color: black;
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100%;
-    background-color: black;
+    overflow-x: hidden;
 }
 
 body {
