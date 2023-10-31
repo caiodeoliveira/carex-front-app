@@ -11,8 +11,6 @@
     
     <div class="profile-descriptions">
         <span class="profile-identification" [class]="getBreakpoints()">
-            <p class="profile-name">Dra. Ana Beatriz - <b> CREFITO: 00000</b></p>
-            
             <p class="medical-specialty" [class]="getBreakpoints()">Médica Fisioterapeuta com especialidade em obstetrícia</p>
         </span>
 
@@ -29,20 +27,22 @@
                     </ng-template>
 
                     <ng-template [ngIf]="getBreakpoints() == 'x-large'">
-                        <h3>{{serviceImage.name}}</h3>
+                        <h2>{{serviceImage.name}}</h2>
                         <img src="{{imagesBasePath}}{{serviceImage.x_large_img}}" alt="Imagens de serviços fisioterapeuticos">
                     </ng-template>
 
                 </span>
             </span>
-            <!-- <hr size="50" noshade> -->
+            
+            <!-- TODO: Pesquisar como adicionar num hover uma borda de 0 - 100% ou seja, com transição tipo keyframe(efeito): https://codepen.io/giana/pen/yYBpVY -->
             <!-- TODO: Tentar organizar o grid de imagens com 2 colunas e com o nome de cada terapia acima das imagens -->
-            <!-- TODO: Descobrir como colocar a barra vertical entre cada imagem. -->
+            <!-- TODO: Descobrir como colocar a barra na vertical (elemento HTML "hr") entre cada imagem. -->
             <!-- https://br.pinterest.com/search/pins/?q=Myofacial%20release&rs=typed -->
     </div>
     
-
     <div class="profile-photo-container" [class]="getBreakpoints()">
+        <p class="profile-name">Dra. Ana Beatriz</p>
+        <p> CREFITO: 00000</p>
         <img src="{{getProfileImageByScreenSize()}}" alt="Foto de Ana Beatriz">
     </div>
 
