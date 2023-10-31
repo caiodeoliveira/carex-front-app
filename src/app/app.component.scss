@@ -124,10 +124,10 @@
             align-items: center;
             justify-items: center;
 
-            // .medical-specialty-container-child-grid {
-            //     display: grid;
-            //     grid-template-columns: 1fr;
-            // }
+            .medical-specialty-container-grid-element {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
 
             ::ng-deep img {
                 border: 2px solid white;
