@@ -17,7 +17,7 @@
         </span>
 
             <span class="medical-specialty-grid">
-                <span class="medical-specialty-container-grid-element">
+                <span class="medical-specialty-container-grid-element" *ngFor="let serviceImage of medicineServices">
                     <ng-template [ngIf]="getBreakpoints() == 'phone-portrait'">
                         <h3 *ngFor="let imageText of medicineServices">{{imageText.name}}</h3>
                         <img *ngFor="let serviceImage of medicineServices" src="{{imagesBasePath}}{{serviceImage.x_large_img}}" alt="Imagens de serviços fisioterapeuticos">
@@ -29,8 +29,8 @@
                     </ng-template>
 
                     <ng-template [ngIf]="getBreakpoints() == 'x-large'">
-                        <h3 *ngFor="let imageText of medicineServices">{{imageText.name}}</h3>
-                        <img *ngFor="let serviceImage of medicineServices" src="{{imagesBasePath}}{{serviceImage.x_large_img}}" alt="Imagens de serviços fisioterapeuticos">
+                        <h3>{{serviceImage.name}}</h3>
+                        <img src="{{imagesBasePath}}{{serviceImage.x_large_img}}" alt="Imagens de serviços fisioterapeuticos">
                     </ng-template>
 
                 </span>
