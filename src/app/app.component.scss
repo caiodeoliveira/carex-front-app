@@ -117,8 +117,8 @@
         }
 
         .medical-specialty-grid {
-            height: 530px;
-            width: 545px;
+            height: 50rem;
+            width: 54.5rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
@@ -139,6 +139,10 @@
 }
 
 .profile-photo-container {
+    height: 66.3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &.phone-portrait {
         ::ng-deep img {
@@ -157,6 +161,11 @@
     }
 
     &.x-large {
+
+        p {
+            font-size: 3rem;
+        }
+
         ::ng-deep img {
             border: 2px solid black;
             border-radius: 15px;
