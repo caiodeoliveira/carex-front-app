@@ -7,14 +7,14 @@
     </nav>
 </header>
 
-<section class="home" [class]="getBreakpoints()">
+<section id="home" [class]="getBreakpoints()">
     
     <div class="profile-descriptions">
         <span class="profile-identification" [class]="getBreakpoints()">
             <p class="medical-specialty" [class]="getBreakpoints()">Médica Fisioterapeuta com especialidade em obstetrícia</p>
         </span>
 
-            <span class="medical-specialty-grid">
+            <span class="medical-specialty-grid" [class]="getBreakpoints()">
                 <span class="medical-specialty-container-grid-element" *ngFor="let serviceImage of medicineServices">
                     <ng-template [ngIf]="getBreakpoints() == 'phone-portrait'">
                         <h3 *ngFor="let imageText of medicineServices">{{imageText.name}}</h3>
@@ -27,23 +27,36 @@
                     </ng-template>
 
                     <ng-template [ngIf]="getBreakpoints() == 'x-large'">
-                        <h2>{{serviceImage.name}}</h2>
+                        <p class="terapy-image-title">{{serviceImage.name}}</p>
                         <img src="{{imagesBasePath}}{{serviceImage.x_large_img}}" alt="Imagens de serviços fisioterapeuticos">
                     </ng-template>
-
                 </span>
             </span>
+            <button pButton pRipple type="button" label="Marque uma Consulta" class="schedule-consult-button"></button>
             
+        </div>
+            <!-- TODO: Pesquisar como usar scrollTo' Y' no Angular. -->
             <!-- TODO: Pesquisar como adicionar num hover uma borda de 0 - 100% ou seja, com transição tipo keyframe(efeito): https://codepen.io/giana/pen/yYBpVY -->
             <!-- TODO: Tentar organizar o grid de imagens com 2 colunas e com o nome de cada terapia acima das imagens -->
             <!-- TODO: Descobrir como colocar a barra na vertical (elemento HTML "hr") entre cada imagem. -->
             <!-- https://br.pinterest.com/search/pins/?q=Myofacial%20release&rs=typed -->
-    </div>
     
     <div class="profile-photo-container" [class]="getBreakpoints()">
-        <p class="profile-name">Dra. Ana Beatriz</p>
-        <p> CREFITO: 00000</p>
-        <img src="{{getProfileImageByScreenSize()}}" alt="Foto de Ana Beatriz">
+        <span>
+            <p class="profile-name">Dra. Ana Beatriz</p>
+            <p> CREFITO: 00000</p>
+            <img src="{{getProfileImageByScreenSize()}}" alt="Foto de Ana Beatriz">
+        </span>
+        <button pButton pRipple type="button" label="Conheça nossas terapias" class="know-our-therapies-button"></button>
     </div>
+
+</section>
+
+<section id="scheduling-consultation">
+    <span class="scheduling-background-container" *ngFor="let image of schedulingBackgroundImages">
+        <ng-template [ngIf]="getBreakpoints() == 'x-large'">
+            <img src="{{imagesBasePath}}{{image.large}}" alt="">
+        </ng-template>
+    </span>
 
 </section>
