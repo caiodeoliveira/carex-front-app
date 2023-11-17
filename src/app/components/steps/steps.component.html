@@ -1,0 +1,21 @@
+<mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form>
+        <ng-template matStepLabel>Escolha a terapia desejada</ng-template>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+      <form>
+        <ng-template matStepLabel>Escolha uma data</ng-template>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" [optional]="isOptional">
+      <form>
+        <ng-template matStepLabel>Pagamento</ng-template>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <p>Concluído!</p>
+    </mat-step>
+  </mat-stepper>
