@@ -1,0 +1,14 @@
+::ng-deep .mat-horizontal-stepper-header-container {
+    max-width: 97vw;
+    background-color: midnightblue;
+    border: 2px solid white;
+    border-radius: 5px;
+
+    ::ng-deep .mat-stepper-horizontal-line {
+        background-color: black;
+    }
+}
+
+::ng-deep .mat-horizontal-content-container {
+    background-color: black;
+}
