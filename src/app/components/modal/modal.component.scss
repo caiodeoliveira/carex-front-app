@@ -1,28 +1,51 @@
-::ng-deep .p-dialog {
+.background-overlay {
+    margin: 50px auto;
+    width: 50vw;
+    height: 30vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: black;
+    border: 2.5px solid white;
+    border-radius: 5px;
+
     ::ng-deep img {
         border: 2px solid white;
-        border-radius: 3px;
+        border-radius: 5px;
+        max-width: 185px;
+        max-height: 185px;
+        margin-top: 20px;
     }
 
     .service-description {
-        max-width: 55rem;
+        height: 12rem;
+        max-width: 70rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: white;
+        margin-top: 20px;
     }
-}
 
-:host ::ng-deep .p-dialog-header {
-    display: none;
-}
+    .info-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
 
-:host ::ng-deep .p-dialog-content {
-    font-size: 1.5rem;
-    color: white;
-    font-weight: 600;
-    background-color: black;
-    border: 1.5px solid white;
-    border-radius: 3px;
-    width: 50vw;
-    height: 50vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    .control-container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .select-button {
+            height: 40px;
+            font-size: 2.5rem;
+            background-color: rgb(215 97 215);
+            border: 3px solid blueviolet;
+
+            &:hover {
+                transition: 300ms;
+                background-color: rgb(237, 130, 237);
+            }
+        }
+    }
 }
