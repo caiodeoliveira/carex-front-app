@@ -1,0 +1,28 @@
+::ng-deep .p-dialog {
+    ::ng-deep img {
+        border: 2px solid white;
+        border-radius: 3px;
+    }
+
+    .service-description {
+        max-width: 55rem;
+    }
+}
+
+:host ::ng-deep .p-dialog-header {
+    display: none;
+}
+
+:host ::ng-deep .p-dialog-content {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 600;
+    background-color: black;
+    border: 1.5px solid white;
+    border-radius: 3px;
+    width: 50vw;
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
