@@ -1,21 +1,44 @@
 <mat-stepper linear #stepper>
-    <mat-step [stepControl]="firstFormGroup">
+
+    <mat-step label="Escolha a terapia desejada" state="phone">
       <form>
-        <ng-template matStepLabel>Escolha a terapia desejada</ng-template>
+      <div>
+        <div class="background-overlay">
+
+            <div class="info-container">
+                <img src="../assets/imgs/suction_cup_tp_small.png" alt="Imagem de terapia fisioterapêutica"/>
+                <p class="service-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+
+            <div class="control-container">
+                <span style="font-size: 3em; color: white;"><fa-icon [icon]="backIcon"></fa-icon></span>
+                <button  type="button" mat-button matStepperNext class="select-button">Selecionar</button>
+                <span style="font-size: 3em; color: white;"><fa-icon [icon]="nextIcon"></fa-icon></span>
+            </div>
+
+          </div>
+    </div>
+  </form>
+</mat-step>
+
+    <mat-step label="Escolha uma data" state="chat">
+      <form>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
+    
+    <mat-step label="Pagamento">
       <form>
-        <ng-template matStepLabel>Escolha uma data</ng-template>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup" [optional]="isOptional">
-      <form>
-        <ng-template matStepLabel>Pagamento</ng-template>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>Concluído!</p>
-    </mat-step>
-  </mat-stepper>
+    
+
+    <ng-template matStepperIcon="phone">
+      <mat-icon>call_end</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="chat">
+      <mat-icon>forum</mat-icon>
+    </ng-template>
+</mat-stepper>
