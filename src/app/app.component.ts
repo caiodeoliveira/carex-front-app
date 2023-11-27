@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-root',
@@ -29,8 +31,20 @@ export class AppComponent {
       x_large_img: "/ear_acupunture_tp_small.png"
     },
 ]
-  
+  schedulingBackgroundImages: any[] = [
+    // {
+    //   small: "scheduling-background-small.png",
+    // },
+    // {
+    //   average: "scheduling-background-average.png",
+    // },
+    {
+      large: "/scheduling-background-large.png",
+    },
+  ];  
 
+  backIcon = faChevronLeft;
+  nextIcon = faChevronRight
 
   constructor(private responsive: BreakpointObserver) {}
   
@@ -79,4 +93,10 @@ export class AppComponent {
       return "null";
   }
   
+  // scrollToScheduleScreen(el: HTMLElement) {
+  //  scrollTo({
+  //   top: 1000,
+  //   behavior: "s"
+  //  })
+  // }
 }

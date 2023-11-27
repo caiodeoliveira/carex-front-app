@@ -11,10 +11,16 @@ import { ButtonComponentModule } from './components/button-component/button-comp
 import { InputComponentModule } from './components/input-component/input-component.module';
 import { CalendarModule } from 'primeng/calendar';
 import { DateTimeModule } from './components/date-time/date-time.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ScheduleTimeLineComponent } from './components/schedule-time-line/schedule-time-line.component'
+import { TimelineModule } from 'primeng/timeline';
+import { CardModule } from 'primeng/card';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    ScheduleTimeLineComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,6 +32,9 @@ import { DateTimeModule } from './components/date-time/date-time.module';
     InputComponentModule,
     DateTimeModule,
     CalendarModule,
+    FontAwesomeModule,
+    TimelineModule,
+    CardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
