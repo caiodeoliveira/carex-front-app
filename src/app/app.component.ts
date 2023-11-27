@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -42,9 +41,6 @@ export class AppComponent {
       large: "/scheduling-background-large.png",
     },
   ];  
-
-  backIcon = faChevronLeft;
-  nextIcon = faChevronRight
 
   constructor(private responsive: BreakpointObserver) {}
   
