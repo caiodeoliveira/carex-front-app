@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-schedule-time-line',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./schedule-time-line.component.scss']
 })
 export class ScheduleTimeLineComponent {
-  public events: any[];
+  events: any[];
+  backIcon = faChevronLeft;
+  nextIcon = faChevronRight;
 
     constructor() {
         this.events = [
