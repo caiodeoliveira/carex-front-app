@@ -31,7 +31,7 @@ export class ScheduleTimeLineComponent implements OnInit, OnChanges{
   serviceInfosIndex: number = 0;
     constructor() {
         this.events = [
-            { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', },
+            { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', teraphy_choices: true },
             { passo: 'Escolha uma data', icon: 'pi pi-cog', color: '#673AB7' },
             { passo: 'Pagamento', icon: 'pi pi-check', color: '#FF9800' },
             { passo: 'Concluído', icon: 'pi pi-check', color: '#607D8B' }
