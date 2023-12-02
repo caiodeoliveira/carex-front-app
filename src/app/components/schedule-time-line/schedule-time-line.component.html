@@ -5,22 +5,23 @@
                 <i [ngClass]="event.icon"></i>
             </span>
         </ng-template>
-        <ng-template pTemplate="content" let-event>
 
+        <ng-template pTemplate="content" let-event>
                 <p-card [header]="event.passo">
 
-                    <div class="info-container" *ngIf="serviceInfos[serviceInfosIndex]">
+                    <div class="info-container" *ngIf="event.teraphy_choices">
                             <img src="../assets{{serviceInfos[serviceInfosIndex].img}}" alt="Imagem de terapia fisioterapêutica"/>
                             <p class="service-description">
                             {{serviceInfos[serviceInfosIndex].description}}    
                             </p>
                     </div>
-                    <!-- TODO: Ver como fazer para iniciar o HTML apenas com os itens do array na posição "0" -->
-                    <div class="control-container">
+
+                    <div class="control-container" *ngIf="event.teraphy_choices">
                         <span *ngIf="serviceInfosIndex >= 1" (click)="previousTeraphy()" style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="backIcon"></fa-icon></span>
                         <button class="select-button">Selecionar</button>
                         <span *ngIf="serviceInfosIndex < 3" (click)="nextTeraphy()" style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="nextIcon"></fa-icon></span>
                     </div>
+
                 </p-card>
         </ng-template>
     </p-timeline>
