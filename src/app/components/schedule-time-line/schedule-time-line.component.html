@@ -8,18 +8,18 @@
         <ng-template pTemplate="content" let-event>
 
                 <p-card [header]="event.passo">
-                    <div class="info-container">
-                        <img src="../assets/imgs/suction_cup_tp_small.png" alt="Imagem de terapia fisioterapêutica"/>
-                        <p class="service-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
 
+                    <div class="info-container" *ngIf="serviceInfos[serviceInfosIndex]">
+                            <img src="../assets{{serviceInfos[serviceInfosIndex].img}}" alt="Imagem de terapia fisioterapêutica"/>
+                            <p class="service-description">
+                            {{serviceInfos[serviceInfosIndex].description}}    
+                            </p>
+                    </div>
+                    <!-- TODO: Ver como fazer para iniciar o HTML apenas com os itens do array na posição "0" -->
                     <div class="control-container">
-                        <span style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="backIcon"></fa-icon></span>
+                        <span *ngIf="serviceInfosIndex >= 1" (click)="previousTeraphy()" style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="backIcon"></fa-icon></span>
                         <button class="select-button">Selecionar</button>
-                        <span style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="nextIcon"></fa-icon></span>
+                        <span *ngIf="serviceInfosIndex < 3" (click)="nextTeraphy()" style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="nextIcon"></fa-icon></span>
                     </div>
                 </p-card>
         </ng-template>
