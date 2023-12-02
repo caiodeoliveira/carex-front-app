@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,17 +6,50 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
   templateUrl: './schedule-time-line.component.html',
   styleUrls: ['./schedule-time-line.component.scss']
 })
-export class ScheduleTimeLineComponent {
+export class ScheduleTimeLineComponent implements OnInit, OnChanges{
   events: any[];
   backIcon = faChevronLeft;
   nextIcon = faChevronRight;
-
+  serviceInfos: any[] = [
+    {
+      img: '/imgs/suction_cup_tp_small.png', 
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      img: '/imgs/myofacial_release_tp_small.png', 
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      img: '/imgs/dry_nedling_tp_small.png',
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    {
+      img:  '/imgs/ear_acupunture_tp_small.png',
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+  ];
+  serviceInfosIndex: number = 0;
     constructor() {
         this.events = [
-            { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', image: '../assets/imgs/suction_cup_tp_small.png' },
+            { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', },
             { passo: 'Escolha uma data', icon: 'pi pi-cog', color: '#673AB7' },
             { passo: 'Pagamento', icon: 'pi pi-check', color: '#FF9800' },
             { passo: 'Concluído', icon: 'pi pi-check', color: '#607D8B' }
-        ];
-    }
+          ];
+        }
+          
+      ngOnInit(): void {
+      }
+
+      ngOnChanges(changes: SimpleChanges): void {
+        
+      }
+
+      previousTeraphy(): void {
+        this.serviceInfosIndex -= 1;
+      }
+
+      nextTeraphy(): void {
+        this.serviceInfosIndex += 1;
+      }
 }
