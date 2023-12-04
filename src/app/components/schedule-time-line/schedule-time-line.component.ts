@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -6,7 +6,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
   templateUrl: './schedule-time-line.component.html',
   styleUrls: ['./schedule-time-line.component.scss']
 })
-export class ScheduleTimeLineComponent implements OnInit, OnChanges{
+export class ScheduleTimeLineComponent implements OnInit{
   events: any[];
   backIcon = faChevronLeft;
   nextIcon = faChevronRight;
@@ -29,20 +29,20 @@ export class ScheduleTimeLineComponent implements OnInit, OnChanges{
     },
   ];
   serviceInfosIndex: number = 0;
+  date: Date;
+  daysDisabled: number[];
     constructor() {
         this.events = [
             { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', teraphy_choices: true },
-            { passo: 'Escolha uma data', icon: 'pi pi-cog', color: '#673AB7' },
+            { passo: 'Escolha uma data', icon: 'pi pi-cog', color: '#673AB7', scheduling: true },
             { passo: 'Pagamento', icon: 'pi pi-check', color: '#FF9800' },
             { passo: 'Concluído', icon: 'pi pi-check', color: '#607D8B' }
           ];
         }
           
       ngOnInit(): void {
-      }
-
-      ngOnChanges(changes: SimpleChanges): void {
-        
+        this.daysDisabled = [];
+        this.daysDisabled.push(5, 10, 15, 20, 25)
       }
 
       previousTeraphy(): void {
