@@ -17,8 +17,8 @@
                     </div>
 
                     <div class="scheduling-container" *ngIf="event.scheduling">
-                        <h3>Inline</h3>
                         <p-calendar [(ngModel)]="date" [inline]="true" [showWeek]="false" [disabledDays]="daysDisabled"></p-calendar>
+                        <button class="select-button">Confirmar</button>
                     </div>
 
                     <div class="control-container" *ngIf="event.teraphy_choices">
