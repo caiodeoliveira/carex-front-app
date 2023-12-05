@@ -46,3 +46,54 @@
         }
     }
 }
+
+
+.scheduling-container {
+    height: 42rem;
+    background-color: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+
+    .select-button {
+        height: 4rem;
+        width: 40rem;
+        font-size: 2.5rem;
+        background-color: rgb(215 97 215);
+        border: 3px solid blueviolet;
+        cursor: pointer;
+        margin-top: 2.5rem;
+
+        &:hover {
+            transition: 300ms;
+            background-color: rgb(237, 130, 237);
+        }
+    }
+
+    ::ng-deep .p-calendar .p-datepicker {
+        max-height: 40rem;
+        min-width: 65rem;
+
+
+        ::ng-deep .p-datepicker-header {
+            .p-datepicker-title button {
+                font-size: 2rem;
+            }
+
+            .p-datepicker-prev {
+                border: 2px solid red;
+            }
+
+            .p-datepicker-next {
+                border: 2px solid red;
+            }
+        }
+
+        ::ng-deep table td>span {
+            font-size: 2rem;
+            width: 3.5rem;
+            height: 3.5rem;
+        }
+    }
+}
