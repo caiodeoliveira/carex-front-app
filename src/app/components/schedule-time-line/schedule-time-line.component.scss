@@ -48,6 +48,46 @@
 }
 
 
+.fields-filling {
+    width: 92.5rem;
+
+    .fields-container-up {
+        width: 85.5rem;
+        display: grid;
+        grid-template-columns: 20rem 15rem 8rem 20rem;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            height: 3rem;
+            border: 2px solid #495057;
+            border-radius: 3px;
+            text-align: center;
+        }
+    }
+
+    .fields-container-down {
+        margin-top: 30px;
+        width: 85.5rem;
+        display: grid;
+        grid-template-columns: 15rem 25rem 13rem;
+        justify-content: space-between;
+        align-items: center;
+
+        input {
+            height: 3rem;
+            border: 2px solid #495057;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+    }
+
+
+}
+
+
+
 .scheduling-container {
     height: 42rem;
     background-color: none;
@@ -82,11 +122,11 @@
             }
 
             .p-datepicker-prev {
-                border: 2px solid red;
+                border: 2px solid greenyellow;
             }
 
             .p-datepicker-next {
-                border: 2px solid red;
+                border: 2px solid greenyellow;
             }
         }
 
