@@ -31,12 +31,20 @@ export class ScheduleTimeLineComponent implements OnInit{
   serviceInfosIndex: number = 0;
   date: Date;
   daysDisabled: number[];
+  name: string = "";
+  sex: string = "";
+  age: number;
+  identificationNumber: number;
+  isHomeCare: string = "";
+  address: string = "";
+  isFirstConsult: string = "";
+  
     constructor() {
         this.events = [
-            { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', teraphy_choices: true },
-            { passo: 'Escolha uma data', icon: 'pi pi-cog', color: '#673AB7', scheduling: true },
-            { passo: 'Pagamento', icon: 'pi pi-check', color: '#FF9800' },
-            { passo: 'Concluído', icon: 'pi pi-check', color: '#607D8B' }
+          { passo: 'Preenchimento de Dados', icon: 'pi pi-check', color: '#FF9800', data_fill: true },
+          { passo: 'Escolha uma terapia', icon: 'pi pi-shopping-cart', color: '#9C27B0', teraphy_choices: true },
+          { passo: 'Escolha uma data', icon: 'pi pi-cog', color: '#673AB7', scheduling: true },
+            { passo: 'Pagamento', icon: 'pi pi-check', color: '#607D8B', payment: true }
           ];
         }
           
