@@ -1,15 +1,44 @@
 
 
 .home-container {
-    background-color: rgb(255,237,231);
+    display: flex;
+    justify-content: space-around;
+    background-color: #DBDADA;
+    height: 66rem;
+
+    .left-side {
+        margin-top: 4rem;
+
+        .profile-photo {
+            border-radius: 100%;
+            border: 3px solid #8A2BE2;
+        }
+        .profile-registry {
+            text-align: center;
+            color: #827A7A;
+            font-weight: 500;
+        }
+    }
+
+    .right-side {
+        width: 56rem;
+        margin-top: 12rem;
+
+        .description-title {
+            font-size: 3.5rem;
+            color: #3E3A3A;
+            margin-bottom: 4rem;
+        }
+
+        .description-text {
+            font-weight: bold;
+            color: #3E3A3A;
+            font-size: 2.5rem;
+        }
+    }
+
 }
 
 h3 {
     font-size: 2rem;
-}
-
-.slider-container {
-    width: 300px;
-    height: 30px;
-    background-color: greenyellow;
 }

@@ -1,0 +1,21 @@
+
+.button-container {
+    margin-top: 8rem;
+    display: grid;
+    grid-template-columns: 1;
+    justify-items: center;
+}
+
+
+::ng-deep .p-button-contact {
+    background-color: #69cf99;
+    color: white;
+    font-size: 2rem;
+    height: 5rem;
+    border: none;
+    border-radius: 1.5rem;
+}
+
+::ng-deep .p-button-contact:enabled:hover {
+    background-color: #3cc97d;
+}

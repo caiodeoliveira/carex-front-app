@@ -1,0 +1,29 @@
+.terapies-page {
+    height: 45rem;
+    display: grid;
+    grid-template-columns: 1;
+    justify-content: center;
+    background-color: #E5E5E5;
+
+    h1 {
+        font-size: 3.5rem;
+        color: #555454;
+        text-align: center;
+    }
+
+    .terapies-container {
+        display: flex;
+        justify-content: space-around;
+
+        .terapies-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            justify-content: space-around;
+
+            .terapies-grid-data {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}

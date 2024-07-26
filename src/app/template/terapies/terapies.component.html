@@ -1,0 +1,11 @@
+<div class="terapies-page">
+    <h1 class="terapies-head">Conheça algumas terapias que podem ajudar você!</h1>
+
+    <main class="terapies-container">
+        <div class="terapies-grid-container" *ngFor="let terapy of terapiesData;">
+            <span class="terapies-grid-data">
+                <img src="{{terapy.img}}" alt="{{terapy.altText}}">
+            </span>
+        </div>
+    </main>
+</div>
