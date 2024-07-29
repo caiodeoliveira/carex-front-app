@@ -1,29 +1,54 @@
 .terapies-page {
-    height: 45rem;
+    // height: 45rem;
     display: grid;
     grid-template-columns: 1;
-    justify-content: center;
+    justify-items: center;
     background-color: #E5E5E5;
 
     h1 {
-        font-size: 3.5rem;
+        font-size: 5.5rem;
+        color: #555454;
+        text-align: center;
+        margin-top: 10rem;
+    }
+
+    h2 {
+        font-size: 3rem;
         color: #555454;
         text-align: center;
     }
 
     .terapies-container {
+        width: 90%;
         display: flex;
         justify-content: space-around;
 
         .terapies-grid-container {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
             justify-content: space-around;
 
             .terapies-grid-data {
                 display: grid;
                 grid-template-columns: 1fr;
+
+                
+
+                .terapy-image {
+                    border-radius: 11.9rem;
+                    cursor: pointer;
+
+                    &:hover {
+                        border: 5px solid #69cf99;
+                    }
+
+                }
             }
         }
     }
+}
+ ::ng-deep .p-tooltip .p-tooltip-text	 {
+    width: 25rem;
+    font-size: 2rem;
+    color: #FFF;
 }
