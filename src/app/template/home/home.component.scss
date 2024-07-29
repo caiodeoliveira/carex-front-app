@@ -11,21 +11,30 @@
 
         .profile-photo {
             border-radius: 100%;
-            border: 3px solid #8A2BE2;
+            border: 3px solid #69cf99;
         }
-        .profile-registry {
-            text-align: center;
-            color: #827A7A;
-            font-weight: 500;
+
+        .photo-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            align-items: center;
+
+            .profile-registry {
+                font-size: 4rem;
+                text-align: center;
+                color: #827A7A;
+                font-weight: 500;
+            }
         }
     }
 
     .right-side {
-        width: 56rem;
-        margin-top: 12rem;
+        width: 84rem;
+        margin-top: 9rem;
 
         .description-title {
-            font-size: 3.5rem;
+            font-size: 10.5rem;
             color: #3E3A3A;
             margin-bottom: 4rem;
         }
@@ -33,7 +42,7 @@
         .description-text {
             font-weight: bold;
             color: #3E3A3A;
-            font-size: 2.5rem;
+            font-size: 3.5rem;
         }
     }
 
