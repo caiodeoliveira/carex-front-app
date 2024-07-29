@@ -1,11 +1,23 @@
 <div class="terapies-page">
-    <h1 class="terapies-head">Conheça algumas terapias que podem ajudar você!</h1>
+    <h1>{{headerOne}}</h1>
 
-    <main class="terapies-container">
-        <div class="terapies-grid-container" *ngFor="let terapy of terapiesData;">
+    <section class="terapies-container">
+        <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData;">
             <span class="terapies-grid-data">
-                <img src="{{terapy.img}}" alt="{{terapy.altText}}">
+                <img class="terapy-image" src="{{terapy.img}}" alt="{{terapy.altText}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+                <h2>{{terapy.name}}</h2>
             </span>
         </div>
-    </main>
+    </section>
+
+    <h1>{{headerTwo}}</h1>
+    <section class="terapies-container">
+        <div class="terapies-grid-container" *ngFor="let terapy of physioTerapiesData;">
+
+            <span class="terapies-grid-data">
+                <img class="terapy-image" src="{{terapy.img}}" alt="{{terapy.altText}}">
+                <h2>{{terapy.name}}</h2>
+            </span>
+        </div>
+    </section>
 </div>
