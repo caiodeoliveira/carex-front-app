@@ -1,24 +1,230 @@
-.is-phone-portrait {
+.header-nav {
+    cursor: pointer;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-around;
-    max-width: 59.9rem;
-    height: 4rem;
-    font-size: 1.6rem;
-    background-color: blue;
+    width: 100vw;
+    border-top: 3px solid blueviolet;
+    border-bottom: 3px solid blueviolet;
+
+    &.phone-portrait {
+        align-items: baseline;
+        max-height: 4rem;
+        font-size: 1.8rem;
+        background-color: blue;
+
+        a {
+            max-width: 12.5rem;
+        }
+    }
+
+    &.large-device {
+        align-items: center;
+        height: 4rem;
+        font-size: 3rem;
+        background-color: greenyellow;
+
+        a {
+            max-width: 30rem;
+        }
+    }
+
+    &.x-large {
+        align-items: center;
+        height: 4rem;
+        font-size: 3.5rem;
+        color: white;
+        background-color: rgb(215 97 215);
+
+        a {
+            max-width: 30rem;
+        }
+    }
+
 }
 
-.is-large-device {
+#home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    color: white;
+
+    &.phone-portrait {
+        max-width: 59.9rem;
+    }
+
+    &.large-device {
+        max-width: 178rem;
+    }
+
+    &.x-large {
+        max-width: 192rem;
+    }
+
+    .profile-descriptions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        ::ng-deep img {}
+
+        .profile-identification {
+
+            &.phone-portrait {
+                max-width: 15rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .profile-name {
+                    font-size: 0.8rem;
+                }
+            }
+
+            &.large-device {
+                max-width: 31rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .profile-name {
+                    font-size: 2.5rem;
+                }
+            }
+
+            &.x-large {
+                max-width: 54rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-items: center;
+
+                .profile-name {
+                    font-size: 3rem;
+                }
+            }
+
+
+            .medical-specialty {
+                &.phone-portrait {
+                    font-size: 1rem;
+                }
+
+                &.large-device {
+                    font-size: 2.5rem;
+                }
+
+                &.x-large {
+                    font-size: 3rem;
+                    text-align: center;
+                }
+            }
+        }
+
+        .medical-specialty-grid {
+            height: 50rem;
+            width: 54.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-items: center;
+
+            .medical-specialty-container-grid-element {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            &.x-large {
+                height: 65rem;
+
+                .terapy-image-title {
+                    font-size: 2.3rem;
+                    font-weight: 500;
+                }
+            }
+
+            ::ng-deep img {
+                border: 3px solid blueviolet;
+                border-radius: 15px;
+                filter: brightness(80%);
+            }
+
+        }
+
+        .schedule-consult-button {
+            width: 95%;
+            height: 60px;
+            font-size: 2.5rem;
+            background-color: rgb(215 97 215);
+            border: 3px solid blueviolet;
+
+            &:hover {
+                transition: 300ms;
+                background-color: rgb(237, 130, 237);
+            }
+        }
+    }
+
+    .profile-photo-container {
+        height: 77rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+
+        &.phone-portrait {
+            ::ng-deep img {
+                border: 2px solid black;
+                border-radius: 15px;
+                max-width: 13rem;
+            }
+        }
+
+        &.large-device {
+            ::ng-deep img {
+                border: 2px solid black;
+                border-radius: 15px;
+                max-width: 40rem;
+            }
+        }
+
+        &.x-large {
+
+            p {
+                font-size: 3rem;
+            }
+
+            ::ng-deep img {
+                border: 3px solid blueviolet;
+                border-radius: 15px;
+                max-width: 56rem;
+            }
+
+            .know-our-therapies-button {
+                width: 100%;
+                min-height: 60px;
+                font-size: 2.5rem;
+                background-color: rgb(215 97 215);
+                border: 3px solid blueviolet;
+                margin-top: 6px;
+
+                &:hover {
+                    transition: 300ms;
+                    background-color: rgb(237, 130, 237);
+                }
+            }
+        }
+    }
+}
+
+#scheduling-consultation {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 128rem;
-    height: 4rem;
-    font-size: 1.6rem;
-    font-size: 2rem;
-    background-color: greenyellow;
-}
+    margin-top: 200px;
 
-// Cor de fundo padrão será: background-color: rgb(241, 167, 241);
+    .scheduling-background-container {
+        background: url("../assets/imgs/scheduling-background-large.png") no-repeat;
+        width: 99vw;
+        height: 65.7vh;
+
+        &.x-large {}
+
+    }
+}

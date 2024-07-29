@@ -1,0 +1,48 @@
+<div class="card">
+    <p-timeline [value]="events" align="alternate" styleClass="customized-timeline">
+        <ng-template pTemplate="marker" let-event>
+            <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                <i [ngClass]="event.icon"></i>
+            </span>
+        </ng-template>
+
+        <ng-template pTemplate="content" let-event>
+                <p-card [header]="event.passo">
+                    
+                    <div class="fields-filling" *ngIf="event.data_fill">
+                        <div class="fields-container-up">
+                            <input type="text" pInputText [(ngModel)]="name"/>
+                            <input type="text" pInputText [(ngModel)]="sex"/>
+                            <input type="number" pInputText [(ngModel)]="age"/>
+                            <input type="number" pInputText [(ngModel)]="identificationNumber"/>
+                        </div>
+                        
+                        <div class="fields-container-down">
+                            <input type="text" pInputText [(ngModel)]="isHomeCare"/>
+                            <input type="text" pInputText [(ngModel)]="address"/>
+                            <input type="text" pInputText [(ngModel)]="isFirstConsult"/>
+                        </div>
+
+                    </div>
+
+                    <div class="scheduling-container" *ngIf="event.scheduling">
+                        <p-calendar [(ngModel)]="date" [inline]="true" [showWeek]="false" [disabledDays]="daysDisabled"></p-calendar>
+                        <button class="select-button">Confirmar</button>
+                    </div>
+
+                    <div class="info-container" *ngIf="event.teraphy_choices">
+                            <img src="../assets{{serviceInfos[serviceInfosIndex].img}}" alt="Imagem de terapia fisioterapêutica"/>
+                            <p class="service-description">
+                            {{serviceInfos[serviceInfosIndex].description}}    
+                            </p>
+                            <div class="control-container" *ngIf="event.teraphy_choices">
+                                <span *ngIf="serviceInfosIndex >= 1" (click)="previousTeraphy()" style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="backIcon"></fa-icon></span>
+                                <button class="select-button">Selecionar</button>
+                                <span *ngIf="serviceInfosIndex < 3" (click)="nextTeraphy()" style="font-size: 3em; color: black; cursor: pointer"><fa-icon [icon]="nextIcon"></fa-icon></span>
+                            </div>
+                    </div>
+
+
+                </p-card>
+        </ng-template>
+    </p-timeline>

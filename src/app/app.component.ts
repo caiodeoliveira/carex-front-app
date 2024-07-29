@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,18 +10,38 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 export class AppComponent {
 
   breakpointActive: string = ""; 
+  inputTextValue: string = "empty";
+  imagesBasePath: string = "../assets/imgs";
+  medicineServices: any[] = [
+    {
+      name: "Ventosaterapia",
+      x_large_img: "/suction_cup_tp_small.png"
+    },
+    {
+      name: "Liberação Miofacial",
+      x_large_img: "/myofacial_release_tp_small.png"
+    },
+    {
+      name: "Acupuntura",
+      x_large_img: "/dry_nedling_tp_small.png"
+    },
+    {
+      name: "Auriculoterapia",
+      x_large_img: "/ear_acupunture_tp_small.png"
+    },
+]
+  schedulingBackgroundImages: any[] = [
+    // {
+    //   small: "scheduling-background-small.png",
+    // },
+    // {
+    //   average: "scheduling-background-average.png",
+    // },
+    {
+      large: "/scheduling-background-large.png",
+    },
+  ];  
 
-  protected getActiveBreakpoint(): string {
-    switch(this.breakpointActive) {
-      case "isPhonePortrait":
-        return "is-phone-portrait";
-        case "isLargeDevice":
-          return "is-large-device";
-          case "isXLarge":
-            return "is-x-large";
-            default: return "is-large-device";
-    }
-  }
   constructor(private responsive: BreakpointObserver) {}
   
   ngOnInit() {
@@ -41,7 +62,37 @@ export class AppComponent {
         this.breakpointActive = "isXLarge"
       }
     })
-    this.getActiveBreakpoint();
   }
-}
+  
+   getBreakpoints(): string {
+    switch(this.breakpointActive) {
+      case "isPhonePortrait":
+        return "phone-portrait";
+      case "isLargeDevice":
+          return "large-device";
+          case "isXLarge":
+            return "x-large";
+            default: return "is-large-device";
+    }
+  }
 
+  getProfileImageByScreenSize(): string {
+    if(this.breakpointActive == "isPhonePortrait") {
+     return "../assets/imgs/profile_photo_small.jpg";
+    }
+    else if(this.breakpointActive == "isLargeDevice") {
+      return "../assets/imgs/profile_photo_average.jpg"
+    }
+      else if (this.breakpointActive == "isXLarge") {
+        return "../assets/imgs/profile_photo_xlarge.jpg";
+      }
+      return "null";
+  }
+  
+  // scrollToScheduleScreen(el: HTMLElement) {
+  //  scrollTo({
+  //   top: 1000,
+  //   behavior: "s"
+  //  })
+  // }
+}
