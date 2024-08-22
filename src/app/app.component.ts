@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 
@@ -7,11 +7,12 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent{
 
   breakpointActive: string = ""; 
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
+
   medicineServices: any[] = [
     {
       name: "Ventosaterapia",
@@ -42,8 +43,16 @@ export class AppComponent {
     },
   ];  
 
-  constructor(private responsive: BreakpointObserver) {}
+  displaySchedullingPage: boolean;
+
+  constructor(private responsive: BreakpointObserver, private elementRef: ElementRef) {};
   
+
+scrollSuave() {
+  const elementToExecuteScroll = this.elementRef.nativeElement.querySelector('schedulling');
+  elementToExecuteScroll.scrollIntoView({behavior : 'smooth'})
+}
+
   ngOnInit() {
     this.responsive.observe(Breakpoints.XSmall).subscribe(result => {
       if(result.matches) {
@@ -89,10 +98,25 @@ export class AppComponent {
       return "null";
   }
   
-  // scrollToScheduleScreen(el: HTMLElement) {
-  //  scrollTo({
-  //   top: 1000,
-  //   behavior: "s"
-  //  })
-  // }
+  showSchedullingPage($event: boolean) {
+    this.displaySchedullingPage = $event;
+    this.scrollToSchedullingPage();
+  }
+
+  hideSchedullingPage($event: boolean) {
+    const element = document.getElementById('terapies');
+    element?.scrollIntoView({ behavior: 'smooth'});
+
+    setTimeout(() => {
+      this.displaySchedullingPage = $event;
+      }, 800)
+  }
+  
+  scrollToSchedullingPage() {
+    setTimeout(() => {
+    const element = document.getElementById('schedulling');
+    element?.scrollIntoView({ behavior: 'smooth'});
+    }, 300)
+  }
+
 }

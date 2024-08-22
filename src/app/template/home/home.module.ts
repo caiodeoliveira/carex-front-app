@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponentModule } from 'src/app/components/button/button.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputComponentModule } from 'src/app/components/input-component/input-component.module';
+import { ModalModule } from 'src/app/components/modal/modal.module';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -15,6 +16,7 @@ import { InputComponentModule } from 'src/app/components/input-component/input-c
     BrowserAnimationsModule,
     InputComponentModule,
     ButtonComponentModule,
+    ModalModule,
   ],
   exports: [HomeComponent]
 })

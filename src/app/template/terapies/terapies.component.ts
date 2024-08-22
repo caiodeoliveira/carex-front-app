@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {global} from '../../../global';
 @Component({
   selector: 'app-terapies',
@@ -7,14 +7,20 @@ import {global} from '../../../global';
 })
 export class TerapiesComponent {
 
+  @Output() onTerapyConfirmed: EventEmitter<boolean> = new EventEmitter();
+
   headerOne: string = global.terapies.headers.alternativeTerapies;
   headerTwo: string = global.terapies.headers.physioteraphyTerapies;
 
+  displayModal: boolean = false;
+
+  isTerapyConfirmed: boolean;
+
   alternativeTerapiesData: any = [
     {
-      img: global.terapies.path.alternatives.dryNedling,
+      img: global.terapies.path.alternatives.acupunture,
       altText: "imagem de uma Auriculoterapia",
-      name: global.terapies.names.dryNedling
+      name: global.terapies.names.acupunture
     },
     {
       img: global.terapies.path.alternatives.earAcupunture,
@@ -37,19 +43,36 @@ export class TerapiesComponent {
     {
       img: global.terapies.path.pelvicPhysioterapy,
       altText: "imagem de uma Fiosioterapia Pélvica",
-      name: global.terapies.names.dryNedling
+      name: global.terapies.names.pelvicPhysioterapy
     },
     {
       img: global.terapies.path.obstetricPhysioterapy,
       altText: "imagem de uma Fisioterapia Obstétrica",
-      name: global.terapies.names.earAcupunture
+      name: global.terapies.names.obstetricPhysioterapy
     },
     {
       img: global.terapies.path.doulage,
       altText: "imagem de uma Doulagem",
-      name: global.terapies.names.myofacialRelease
+      name: global.terapies.names.doulage
     },
   ]
 
+  modalType: string = "terapy"
+
+  imageToShowOnModalOpen: string;
+
+  showModalAndGetImage(imageToShow: string) {
+    this.displayModal = true;
+    this.imageToShowOnModalOpen = imageToShow;
+  }
+
+  hideModal() {
+    this.displayModal = false;
+  }
+
+  setModalConfirmationData($event: boolean) {
+    this.isTerapyConfirmed = $event;
+    this.onTerapyConfirmed.emit(true);
+  }
 
 }

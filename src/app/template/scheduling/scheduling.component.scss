@@ -1,0 +1,214 @@
+.scheduling-page {
+    height: 95rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    background-color: #E5E5E5;
+    
+    h1 {
+        font-size: 5.5rem;
+        color: #555454;
+        text-align: center;
+        margin-top: 15rem;
+    }
+
+    h2 {
+        font-size: 3rem;
+        color: #555454;
+        text-align: center;
+    }
+
+
+    .form-container {
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        margin: 0rem 0 5rem 0;
+        
+        .client-data-container {
+            width: 90%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            justify-items: center;
+                
+            span {
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-content: center;
+                gap: 0.3rem;
+                
+                &.with-margin {
+                    margin-top: 8rem;
+                }
+            }
+
+                .field-label {
+                    font-size: 3rem;
+                    color: #69cf99;
+                }
+
+                #name-input {
+                    width: 30rem;
+                    height: 5rem;
+                    border: 4px solid #69cf99;
+                    font-size: 2rem;
+                    text-align: center;
+
+                    &::placeholder {
+                        color: rgb(164, 160, 160);
+                        font-size: 1.8rem;
+                        }
+                    }
+
+
+                    ::ng-deep .p-calendar .p-inputtext{
+                        width: 30rem;
+                        height: 5rem;
+                        border: 4px solid #69cf99;
+                        font-size: 2rem;
+                        text-align: center;
+                    }
+
+                    ::ng-deep .p-calendar .p-datepicker-prev {
+                        width: 3rem;
+                        height: 3rem;
+
+                        .p-datepicker-prev-icon {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+
+                    ::ng-deep .p-calendar .p-datepicker-next {
+                        width: 3rem;
+                        height: 3rem;
+
+                        .p-datepicker-next-icon {
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+
+                    ::ng-deep .p-calendar .p-datepicker-title {
+                        
+                        button {
+                            font-size: 2rem;
+                        
+                        }
+                    }
+
+                    ::ng-deep .p-calendar .p-datepicker-calendar {
+                        width: 20rem;
+                        height: 30rem;
+                        font-size: 2rem;
+                        margin: 0 auto
+                    }
+                
+                   ::ng-deep .p-dropdown {
+                    width: 30rem;
+                    height: 5rem;
+                    border: 4px solid #69cf99;
+                    
+                    ::ng-deep .p-dropdown-label {
+                        font-size: 2.5rem;
+                        text-align: center;
+                        letter-spacing: 0.5rem;                        
+                    }
+
+                    .p-dropdown-trigger {
+                     width: 3rem;
+                     height: 3rem;
+                     margin: 1rem 0.5rem 0 0;
+ 
+                    .p-dropdown-trigger-icon {
+                        width: 3rem;
+                        height: 3rem;
+                        }
+                     }
+
+                      .p-dropdown-item {
+                        font-size: 2.5rem;
+                        text-align: center;
+                        letter-spacing: 0.5rem;
+                    }
+                }
+
+                ::ng-deep #location-attendance-dropdown {
+                    ::ng-deep .p-dropdown-label {
+                        letter-spacing: 0;
+                    }
+
+                    .p-dropdown-item {
+                        font-size: 2rem;
+                        text-align: center;
+                        letter-spacing: 0;
+                    }
+                }
+
+                ::ng-deep #gender-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0;
+                    }
+                }
+
+                ::ng-deep #payment-type-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0;
+                    }
+                }
+
+                ::ng-deep #hour-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0.5rem;
+                    }
+                }
+
+                #phone-input ::ng-deep .p-inputtext {
+                        width: 30rem;
+                        height: 5rem;
+                        border: 4px solid #69cf99;
+                        font-size: 2rem;
+                        text-align: center;
+
+                        &::placeholder {
+                            color: rgb(164, 160, 160);
+                            }
+                        }
+
+                        ::ng-deep #insurance-dropdown {
+                            .p-dropdown-label {
+                                letter-spacing: 0;
+                            }
+                        }
+
+                        #address-input {
+                            width: 30rem;
+                            height: 5rem;
+                            border: 4px solid #69cf99;
+                            font-size: 2rem;
+                            text-align: center;
+
+                            &::placeholder {
+                                color: rgb(164, 160, 160);
+                                font-size: 1.3rem;
+                                }
+                        }
+
+                    }
+                }
+                
+    .buttons-container {
+        height: 1.5rem;
+        width: 50vw;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    ::ng-deep .p-tooltip .p-tooltip-text	 {
+        width: 30rem;
+        font-size: 2rem;
+        color: #FFF;
+        }
+}

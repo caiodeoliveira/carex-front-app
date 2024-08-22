@@ -19,3 +19,128 @@
 ::ng-deep .p-button-contact:enabled:hover {
     background-color: #3cc97d;
 }
+
+
+::ng-deep .p-button-back-default {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 4rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-button-back-default:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}
+
+::ng-deep .p-button-confirm-default {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 4rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-button-confirm-default:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}
+
+::ng-deep .p-button-back-modal {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 4rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-button-back-modal:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}
+
+::ng-deep .p-button-confirm-modal {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 4rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-button-confirm-modal:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}
+
+::ng-deep .p-back-to-initial-page-button {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 5rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-back-to-initial-page-button:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}
+
+::ng-deep .p-button-go-to-schedule-page-button {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 5rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-button-go-to-schedule-page-button:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}
+
+.previous-button {
+    font-size: 6rem;
+    color: #3cc97d;
+}
+
+.next-button {
+    font-size: 6rem;
+    color: #3cc97d;
+}

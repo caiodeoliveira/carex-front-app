@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-button-component',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class ButtonComponent {
 
+@Input() buttonType: string;
+backIcon = faChevronLeft;
+nextIcon = faChevronRight
+
+@Input() buttonLabel: string;
 }

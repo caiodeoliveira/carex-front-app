@@ -1,52 +1,250 @@
-.background-overlay {
-    margin: 50px auto;
-    width: 50vw;
-    height: 30vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    background-color: black;
-    border: 2.5px solid white;
-    border-radius: 5px;
+:host ::ng-deep {
+    .p-dialog {
+       width: 105rem;
+       height: 60rem;
+       border: 4px solid #3cc97d;
 
-    ::ng-deep img {
-        border: 2px solid white;
-        border-radius: 5px;
-        max-width: 185px;
-        max-height: 185px;
-        margin-top: 20px;
-    }
+       
+       &.advance-payment-modal {
+           width: 108rem;
+           height: 70rem;
+           border: 4px solid #3cc97d;
+        //    Confirmar se esse estilo se aplica para aumentar dimensões do modal de adiantamento.
+        }
 
-    .service-description {
-        height: 12rem;
-        max-width: 70rem;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: white;
-        margin-top: 20px;
-    }
+        .p-dialog-title {
+           color: black;
+           margin: 0 auto;
+           font-size: 4.5rem;
 
-    .info-container {
+        }
+        
+        .p-dialog-header-close-icon {
+            width: 4rem;
+            height: 4rem;
+            color: red;
+        }
+
+       .p-dialog-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: initial;
+
+            .image-container {
+                margin: auto 0;
+                width: 25rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-items: center;
+
+                .terapy-image {
+                    border-radius: 11.9rem;
+                    border: 5px solid #69cf99;
+                }
+            }
+
+            .terapy-text-container {
+                width: 55rem;
+                height: 40rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .terapy-description {
+                    color: #555454;
+                    font-weight: 600;
+                    font-size: 2.5rem;
+                }
+
+                .terapy-question {
+                    font-weight: bold;
+                    color: black;
+                    font-size: 3rem;
+                }
+
+            }
+            
+            .advance-payment-text-container {
+                width: 84rem;
+                height: 40rem;
+                display: grid;
+                grid-template-columns: 1fr;
+
+                .payment-container {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+
+                    .payment-dropdown-container {
+                        width: 50%;
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        justify-items: center;
+                        margin-right: 2rem;
+                        
+                        .payment-field-label {
+                            font-size: 3rem;
+                            color: #69cf99;
+                            white-space: nowrap;
+                        }
+                        
+                        ::ng-deep .p-dropdown {
+                            width: 30rem;
+                            height: 5rem;
+                            border: 4px solid #69cf99;
+                            
+                            ::ng-deep .p-dropdown-label {
+                                font-size: 2.5rem;
+                                text-align: center;
+                                letter-spacing: 0.5rem;                        
+                            }
+        
+                            .p-dropdown-trigger {
+                             width: 3rem;
+                             height: 3rem;
+                             margin: 1rem 0.5rem 0 0;
+         
+                            .p-dropdown-trigger-icon {
+                                width: 3rem;
+                                height: 3rem;
+                                }
+                             }
+        
+                              .p-dropdown-item {
+                                font-size: 2.5rem;
+                                text-align: center;
+                                letter-spacing: 0.5rem;
+                            }
+                        }
+
+                    }
+
+                    .payment-type-selected-container {
+                        display: grid;
+                        grid-template-columns: 1fr;
+
+                        .credit-payment-container {
+                            width: 50%;
+
+                            .credit-payment-text {
+                                font-size: 4rem;
+                                font-weight: bold;
+                            }
+                        }
+
+                        .pix-payment-container {
+                            width: 50%;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: center;
+
+                            .pix-payment-text {
+                                font-size: 3rem;
+                            }
+
+                            .pix-payment-qr-code-text {
+                                font-size: 2.5rem;
+                                margin: 0 1rem 0 1rem;
+                                white-space: nowrap;
+                            }
+                        }
+
+
+                    }
+                }
+
+                .advance-description {
+                    font-size: 3.5rem;
+                }
+
+                .payment-key {
+                    font-size: 2.7rem;
+                }
+    
+                .advance-question {
+                    font-weight: bold;
+                    color: black;
+                    font-size: 3rem;
+                }
+
+            }  
+            
+            .sucess-terapy-scheduled-text-container {
+                width: 84rem;
+                height: 40rem;
+
+                .confirmation-description-first {
+                    font-size: 8rem;
+                    text-align: center;
+                    margin: 8rem 0 0 0;
+                    font-weight: bold;
+                }
+                .confirmation-description-second {
+                    font-size: 5rem;
+                    text-align: center;
+                }
+            }
+       }
+       .p-dialog-footer {
         display: flex;
         justify-content: space-around;
-        align-items: flex-start;
-    }
-
-    .control-container {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-
-        .select-button {
-            height: 4rem;
-            width: 40rem;
-            font-size: 2.5rem;
-            background-color: rgb(215 97 215);
-            border: 3px solid blueviolet;
-
-            &:hover {
-                transition: 300ms;
-                background-color: rgb(237, 130, 237);
-            }
-        }
+       }
     }
 }
+
+
+
+
+
+
+// .background-overlay {
+//     margin: 50px auto;
+//     width: 50vw;
+//     height: 30vh;
+//     display: grid;
+//     grid-template-columns: 1fr;
+//     background-color: black;
+//     border: 2.5px solid white;
+//     border-radius: 5px;
+
+//     ::ng-deep img {
+//         border: 2px solid white;
+//         border-radius: 5px;
+//         max-width: 185px;
+//         max-height: 185px;
+//         margin-top: 20px;
+//     }
+
+//     .service-description {
+//         height: 12rem;
+//         max-width: 70rem;
+//         font-size: 1.5rem;
+//         font-weight: 600;
+//         color: white;
+//         margin-top: 20px;
+//     }
+
+//     .info-container {
+//         display: flex;
+//         justify-content: space-around;
+//         align-items: flex-start;
+//     }
+
+//     .control-container {
+//         display: flex;
+//         justify-content: space-evenly;
+//         align-items: center;
+
+//         .select-button {
+//             height: 4rem;
+//             width: 40rem;
+//             font-size: 2.5rem;
+//             background-color: rgb(215 97 215);
+//             border: 3px solid blueviolet;
+
+//             &:hover {
+//                 transition: 300ms;
+//                 background-color: rgb(237, 130, 237);
+//             }
+//         }
+//     }
+// }

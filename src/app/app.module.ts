@@ -1,3 +1,4 @@
+import { SchedulingModule } from './template/scheduling/scheduling.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,6 +11,8 @@ import { FormsModule } from '@angular/forms';
 import { ButtonComponentModule } from './components/button/button.module';
 import { InputComponentModule } from './components/input-component/input-component.module';
 import { TerapiesModule } from './template/terapies/terapies.module';
+import { ModalModule } from './components/modal/modal.module';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,8 @@ import { TerapiesModule } from './template/terapies/terapies.module';
     InputComponentModule,
     HomeModule,
     TerapiesModule,
+    ModalModule,
+    SchedulingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,2 +1,3 @@
 <app-home/>
-<app-terapies/>
+<app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)"/>
+<app-scheduling id="schedulling" (onClickBack)="hideSchedullingPage($event)" (onFinishSchedule)="hideSchedullingPage($event)" *ngIf="displaySchedullingPage"/>
