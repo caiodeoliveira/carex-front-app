@@ -180,5 +180,4 @@ export class SchedulingComponent {
     this.displayFinishScheduleModal = false;
     this.onFinishSchedule.emit(false);
   }
-
 }

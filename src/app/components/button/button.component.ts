@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-button-component',
@@ -9,8 +9,12 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 export class ButtonComponent {
 
 @Input() buttonType: string;
+@Input() buttonLabel: string;
+
 backIcon = faChevronLeft;
 nextIcon = faChevronRight
 
-@Input() buttonLabel: string;
+confirmScheduleIcon = faCheck;
+deleteScheduleIcon = faTrash;
+
 }

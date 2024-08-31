@@ -1,4 +1,4 @@
-<p-dialog *ngIf="type == 'terapy'" header="{{terapyTitle}}" [(visible)]="terapyModalDisplay" (onHide)="onCloseModal()">
+<p-dialog *ngIf="type == 'terapy-choose'" header="{{terapyTitle}}" [(visible)]="terapyModalDisplay" (onHide)="onCloseModal()">
     <span class="image-container">
         <img class="terapy-image" src="{{terapyModalImage}}" alt="teste">
     </span>
@@ -20,7 +20,7 @@
 <p-dialog [styleClass]="type == 'advance-payment' ? 'advance-payment-modal' : ''" *ngIf="type == 'advance-payment'" header="Adiantamento" [(visible)]="advanceModaldisplay" (onHide)="onCloseModal()">
 
     <div class="advance-payment-text-container">
-        <p class="advance-description">Para consultas á domicílio, solicitamos um adiantamento de <b>20% do valor da consulta</b></p>
+        <p class="advance-description">{{modalAdvanceText}}</p>
 
         <div class="payment-container">
 
@@ -66,4 +66,26 @@
     </ng-template>
 </p-dialog>
 
-<!-- TODO: Estruturar o modal de sucesso e adicioná-lo à página de agendamento. -->
+<p-dialog [styleClass]="loginModalDisplay ? 'login-modal' : ''" *ngIf="type == 'login'" header="Digite a Senha para acessar a tela de programações" 
+    [(visible)]="loginModalDisplay" (onHide)="onCloseModal()">
+
+    <main class="login-field-container">
+        <span class="with-margin">
+            <label class="field-label" htmlFor="login-input">Senha</label>
+            <input id="login-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: Bneves552233@"/>
+            <label class="field-label" htmlFor="recovery-password-input" *ngIf="displayRecoveryPasswordInput">Código</label>
+            <input id="recovery-password-input" type="text" pInputText [(ngModel)]="recoveryFieldCodeValue" placeholder="Ex: Digite o código de 4 dígitos" *ngIf="displayRecoveryPasswordInput"/>
+        </span> 
+    </main>
+    
+    <ng-template pTemplate="footer">
+        <app-button-component (click)="displayRecoveryPasswordField()" buttonType="confirm-login-button" buttonLabel="Digitar Código para recuperar senha"/>
+        <app-button-component (click)="signIn()" (click)="onFinishScheduleModal()" buttonType="try-password-recovery-button" buttonLabel="Entrar"/>
+    </ng-template>
+</p-dialog>
+
+
+
+<!-- TODO 1: Adicionar validação para modal de adiantamento só ser exibido quando uma terapia alternativa for selecionada. -->
+<!-- TODO: 2: Desenha tela de programação, onde Beatriz vai acessar e ver as consultas agendadas. Para garantir que só ela vai ter acesso, implementar uma função secreta
+ que exibe um campo para login apenas com uma senha. Ao logar, ela terá acesso à essa página. -->

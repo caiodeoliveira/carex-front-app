@@ -26,6 +26,22 @@
     <p-button styleClass="p-button-go-to-schedule-page-button" [label]="buttonLabel"></p-button>
 </div>
 
+<span *ngIf="buttonType == 'confirm-schedule-button'" class="confirm-schedule-button-container">
+    <fa-icon [icon]="confirmScheduleIcon" class="confirm-schedule-button"></fa-icon>
+</span>
+
+<span *ngIf="buttonType == 'remove-schedule-button'" class="delete-schedule-button-container">
+    <fa-icon [icon]="deleteScheduleIcon" class="delete-schedule-button"></fa-icon>
+</span>
+
+<div *ngIf="buttonType == 'confirm-login-button'" class="button-container">
+    <p-button styleClass="p-button-confirm-login-button" [label]="buttonLabel"/>
+</div>
+
+<div *ngIf="buttonType == 'try-password-recovery-button'" class="button-container">
+    <p-button styleClass="p-button-try-recovery-password-button" [label]="buttonLabel"/>
+</div>
+
 <!-- <span *ngIf="buttonType == 'previousButton'" class="button-container">
     <fa-icon [icon]="backIcon" class="previous-button"></fa-icon>
 </span>

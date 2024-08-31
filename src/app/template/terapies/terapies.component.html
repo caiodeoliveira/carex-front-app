@@ -20,5 +20,5 @@
             </span>
         </div>
     </section>
-    <app-modal-component [terapyModalImage]="imageToShowOnModalOpen" [type]="modalType" [terapyModalDisplay]="displayModal" (onClose)="hideModal()" (onConfirmTerapy)="setModalConfirmationData($event)"/>
+    <app-modal-component [terapyType]="advanceModalterapyType" [terapyModalImage]="imageToShowOnModalOpen" [type]="modalType" [terapyModalDisplay]="displayModal" (onClose)="hideModal()" (onConfirmTerapy)="setModalConfirmationData($event)"/>
 </div>

@@ -9,8 +9,60 @@
            width: 108rem;
            height: 70rem;
            border: 4px solid #3cc97d;
-        //    Confirmar se esse estilo se aplica para aumentar dimensões do modal de adiantamento.
         }
+
+        &.login-modal {
+            width: 55rem;
+            height: 50rem;
+
+            .p-dialog-title {
+                font-size: 2rem;
+            }
+
+            span {
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-content: center;
+                gap: 0.3rem;
+                
+                &.with-margin {
+                    margin-top: 8rem;
+                }
+            }
+
+                .field-label {
+                    font-size: 3rem;
+                    color: #69cf99;
+                }
+
+                #login-input {
+                    width: 50rem;
+                    height: 5rem;
+                    border: 4px solid #69cf99;
+                    border-radius: 5px;
+                    font-size: 2rem;
+                    text-align: center;
+
+                    &::placeholder {
+                        color: rgb(164, 160, 160);
+                        font-size: 1.8rem;
+                        }
+                    }
+
+                #recovery-password-input {
+                    width: 50rem;
+                    height: 5rem;
+                    border: 4px solid #69cf99;
+                    border-radius: 5px;
+                    font-size: 2rem;
+                    text-align: center;
+
+                    &::placeholder {
+                        color: rgb(164, 160, 160);
+                        font-size: 1.8rem;
+                        }
+                    }
+        }        
 
         .p-dialog-title {
            color: black;
@@ -64,7 +116,7 @@
             }
             
             .advance-payment-text-container {
-                width: 84rem;
+                width: 97rem;
                 height: 40rem;
                 display: grid;
                 grid-template-columns: 1fr;
@@ -88,7 +140,7 @@
                         }
                         
                         ::ng-deep .p-dropdown {
-                            width: 30rem;
+                            width: 38.3rem;
                             height: 5rem;
                             border: 4px solid #69cf99;
                             

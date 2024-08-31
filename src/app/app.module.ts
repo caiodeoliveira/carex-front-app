@@ -12,11 +12,13 @@ import { ButtonComponentModule } from './components/button/button.module';
 import { InputComponentModule } from './components/input-component/input-component.module';
 import { TerapiesModule } from './template/terapies/terapies.module';
 import { ModalModule } from './components/modal/modal.module';
-import { CalendarComponent } from './components/calendar/calendar.component';
+import { DataTableModule } from './components/data-table/data-table.module';
+import { ProgrammingsComponent } from './template/programmings/programmings.component';
+import { ProgrammingsModule } from './template/programmings/programmings.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     TerapiesModule,
     ModalModule,
     SchedulingModule,
+    ProgrammingsModule,
+    DataTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

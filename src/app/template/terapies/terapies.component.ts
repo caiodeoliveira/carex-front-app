@@ -8,6 +8,7 @@ import {global} from '../../../global';
 export class TerapiesComponent {
 
   @Output() onTerapyConfirmed: EventEmitter<boolean> = new EventEmitter();
+  @Output() advanceModalterapyType: string;
 
   headerOne: string = global.terapies.headers.alternativeTerapies;
   headerTwo: string = global.terapies.headers.physioteraphyTerapies;
@@ -57,13 +58,14 @@ export class TerapiesComponent {
     },
   ]
 
-  modalType: string = "terapy"
+  modalType: string = "terapy-choose"
 
   imageToShowOnModalOpen: string;
 
   showModalAndGetImage(imageToShow: string) {
     this.displayModal = true;
     this.imageToShowOnModalOpen = imageToShow;
+    this.getTerapyType(imageToShow);
   }
 
   hideModal() {
@@ -73,6 +75,13 @@ export class TerapiesComponent {
   setModalConfirmationData($event: boolean) {
     this.isTerapyConfirmed = $event;
     this.onTerapyConfirmed.emit(true);
+  }
+
+
+  getTerapyType(terapyImageName: string) {
+    this.advanceModalterapyType = terapyImageName;
+    this.advanceModalterapyType == global.terapies.path.pelvicPhysioterapy || terapyImageName == global.terapies.path.obstetricPhysioterapy || 
+    terapyImageName == global.terapies.path.doulage ? this.advanceModalterapyType = 'physioterapy' : this.advanceModalterapyType = 'alternative';
   }
 
 }

@@ -16,28 +16,42 @@ export class ModalComponent implements OnInit {
   @Input() terapyModalDisplay: boolean = false;
   @Input() advanceModaldisplay: boolean = false;
   @Input() finishScheduleModalDisplay: boolean = false;
-
+  @Input() loginModalDisplay: boolean = true;
   @Input() type: string;
-
   @Input() terapyModalImage: string;
-
+  @Input() terapyType: string;
+  
+  
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishTerapy: EventEmitter<boolean> = new EventEmitter();
+  @Output() onSignIn: EventEmitter<boolean> = new EventEmitter();
+  
 
-  terapyDescription: string;
   terapyTitle: string;
-
+  terapyDescription: string;
+  
   paymentTypeList: PaymentType[];
   paymentTypeSelected: PaymentType;
-
+  
   paymentTypeSelectedToShow: string = "PIX"
+
+  loginInputFieldValue: string;
+  recoveryFieldCodeValue: string;
+
+  displayRecoveryPasswordInput: boolean = false;
+
+  modalAdvanceText: string;
 
   ngOnInit(): void {
     this.paymentTypeList = [
       {
-        type: "Crédito",
+        type: "Forma de Pagamento",
         code: "1"
+      },
+      {
+        type: "Crédito",
+        code: "2"
       },
       {
         type: "Débito",
@@ -53,6 +67,7 @@ export class ModalComponent implements OnInit {
   onCloseModal() {
     this.terapyModalDisplay = false;
     this.advanceModaldisplay = false;
+    this.loginModalDisplay = false;
     this.onClose.emit()
     }
 
@@ -61,6 +76,7 @@ export class ModalComponent implements OnInit {
     this.terapyModalDisplay = false;
     this.advanceModaldisplay = false;
     this.finishScheduleModalDisplay = false;
+    this.getModalAdvanceText(this.terapyType)
     }
   
   getModalTexts(): string {
@@ -98,6 +114,29 @@ export class ModalComponent implements OnInit {
   onFinishScheduleModal() {
     this.onFinishTerapy.emit(false);
   }
-  
-  //TODO: Implementar tela de agenda com programação semanal para consulta.
+
+  confirmLoginPassword() {
+    alert('Successfull!')
   }
+
+  displayRecoveryPasswordField() {
+    this.displayRecoveryPasswordInput = true;
+  }
+
+  signIn() {
+    this.loginModalDisplay = false;
+    this.onSignIn.emit(true);
+  }
+
+  getModalAdvanceText(terapyType: string) {
+    // console.log('terapy type -> ' + terapyType); O valor está chegando até aqui. TODO: Descobrir porque não exibe no template.
+    if(terapyType == 'physioterapy') {
+      this.modalAdvanceText = "Para consultas á domicílio, solicitamos um adiantamento de 20% do valor da consulta";
+    } 
+    else {
+      this.modalAdvanceText = "A avaliação é gratuita, mas solicitamos uma garantia no valor de R$ 20, que será devolvida após o atendimento.";
+    }
+    console.log(this.modalAdvanceText)
+  }
+
+}
