@@ -131,7 +131,7 @@ smothScroll() {
 				return;
 			}
 
-      // Para exibir o modal será necessário a combinação das três teclas no if abaixo: CTRL + SHIFT + L.
+      // To display the modal you will need the combination of the three keys in the if below: CTRL + SHIFT + L.
 			if (event.ctrlKey && event.shiftKey && event.keyCode == 76) {
         this.modalDisplayRule = true;
         this.displayLoginModal = true;
@@ -223,8 +223,6 @@ smothScroll() {
   }
 
   setTerapyType($event: string) {
-    console.log('Terapy Type value in App Component -> ' + $event);
-
     if($event == "physioterapy") {
       this.isTerapySelectedPhysioterapyType = true;
     }

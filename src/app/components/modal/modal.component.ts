@@ -123,11 +123,4 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  // generateSchedulingCode(): string {
-  //   const schedulingCodeGenerated =  Math.floor(Math.random() * 1000000)
-  //   return schedulingCodeGenerated.toString();
-  // }
-
 }
-
-// https://ng.ant.design/components/steps/en
