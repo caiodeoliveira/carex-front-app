@@ -1,3 +1,4 @@
+import { SchedulingModule } from './template/scheduling/scheduling.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,34 +8,31 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeModule } from './template/home/home.module';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponentModule } from './components/button-component/button-component.module';
+import { ButtonComponentModule } from './components/button/button.module';
 import { InputComponentModule } from './components/input-component/input-component.module';
-import { CalendarModule } from 'primeng/calendar';
-import { DateTimeModule } from './components/date-time/date-time.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ScheduleTimeLineComponent } from './components/schedule-time-line/schedule-time-line.component'
-import { TimelineModule } from 'primeng/timeline';
-import { CardModule } from 'primeng/card';
-
+import { TerapiesModule } from './template/terapies/terapies.module';
+import { ModalModule } from './components/modal/modal.module';
+import { DataTableModule } from './components/data-table/data-table.module';
+import { ProgrammingsComponent } from './template/programmings/programmings.component';
+import { ProgrammingsModule } from './template/programmings/programmings.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ScheduleTimeLineComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HomeModule,
     ButtonComponentModule,
     FormsModule,
     InputComponentModule,
-    DateTimeModule,
-    CalendarModule,
-    FontAwesomeModule,
-    TimelineModule,
-    CardModule,
+    HomeModule,
+    TerapiesModule,
+    ModalModule,
+    SchedulingModule,
+    ProgrammingsModule,
+    DataTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,60 @@
+<div class="scheduling-page">
+    <h1>Estamos quase lá, precisamos apenas de alguns dados...</h1>
+
+    <div class="form-container">
+        <div class="client-data-container">
+            <span class="client-data-field-container">
+                <label class="field-label" htmlFor="name-input">Informe seu Nome</label>
+                <input id="name-input" type="text" pInputText [(ngModel)]="nameInputValue" placeholder="Ex: Conceição Maria das Dores"/>
+            </span>
+            <span>
+                <label class="field-label" htmlFor="name-input">Escolha uma Data</label>
+                <app-calendar/>
+            </span>
+            <span>
+                <label class="field-label" htmlFor="name-input">Escolha um Horário</label>
+                <p-dropdown id="hour-dropdown" [options]="availableHours" [(ngModel)]="selectedHour" optionLabel="value"></p-dropdown>
+            </span>
+            <span>
+                <label class="field-label" htmlFor="name-input">Informe seu Gênero</label>
+                <p-dropdown id="gender-dropdown" [options]="genderList" [(ngModel)]="selectedGender" optionLabel="gender"></p-dropdown>
+            </span>
+            <span class="with-margin">
+                <label class="field-label" htmlFor="name-input">Telephone</label>
+                <p-inputMask id="phone-input" inputId="integeronly" [(ngModel)]="phoneInputValue" mask="(99)99999-9999" placeholder="(81)98593-4271"></p-inputMask>              
+            </span>
+            <span class="with-margin">
+                <label class="field-label" htmlFor="name-input">Modelo de Agendamento</label>
+                <p-dropdown id="payment-type-dropdown" [options]="paymentType" [(ngModel)]="paymentTypeSelected" optionLabel="type"></p-dropdown>
+            </span>
+            <span class="with-margin" *ngIf="paymentTypeSelected.type == 'Convênio'">
+                <label class="field-label" htmlFor="name-input">Informe o Plano de Saúde</label>
+                <p-dropdown [@easeDisplay] id="insurance-dropdown" [options]="insuranceList" [(ngModel)]="InsuranceSelected" optionLabel="insurance"></p-dropdown>
+            </span>
+            <span class="with-margin">
+                <label class="field-label" htmlFor="name-input">Local de Atendimento</label>
+                <p-dropdown id="location-attendance-dropdown" [options]="attendanceLocationList" [(ngModel)]="attendaceLocationSelected" optionLabel="location"></p-dropdown>
+            </span>
+            <span class="with-margin" *ngIf="attendaceLocationSelected.location == 'No endereço de minha preferência'">
+                <label *ngIf="attendaceLocationSelected.location == 'No endereço de minha preferência'" class="field-label" htmlFor="name-input">Endereço de atendimento</label>
+                <input [@easeDisplay] id="address-input" type="text" pInputText [(ngModel)]="addressInputValue" placeholder="Ex: Rua João Inácio, número 500. Pina, Recife."/>
+            </span>
+
+        </div>
+        <app-modal-component
+        [type]="'advance-payment'"
+        [advanceModaldisplay]="displayAdvanceModal"
+        (onCloseAdvanceModal)="handleAdvanceModal($event)"
+        (onConfirmAdvanceModal)="handleAdvanceModal($event)"
+        [isPhysioterapyType]="isAPhysioTerapyType"/>
+        <app-modal-component
+        [type]="'success-terapy-scheduled'"
+        [successScheduleModalDisplay]="displaySuccessScheduleModal"
+        (onClose)="hideFinishScheduleModal()"/>
+    </div>
+    <footer class="buttons-container">
+        <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
+        <app-button-component (click)="goToFinishSchedule()" buttonType="confirmButton-modal" buttonLabel="Ir para Finalização de Agendamento"/>
+    </footer>
+
+</div>

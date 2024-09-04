@@ -1,0 +1,31 @@
+<div class="terapies-page">
+    <h1>{{headerOne}}</h1>
+
+    <section class="terapies-container">
+        <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData;">
+            <span class="terapies-grid-data">
+                <img class="terapy-image" (click)="showModalAndGetImage(terapy.img)" src="{{terapy.img}}" alt="{{terapy.altText}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+                <h2>{{terapy.name}}</h2>
+            </span>
+        </div>
+    </section>
+
+    <h1>{{headerTwo}}</h1>
+    <section class="terapies-container">
+        <div class="terapies-grid-container" *ngFor="let terapy of physioTerapiesData;">
+
+            <span class="terapies-grid-data">
+                <img class="terapy-image" (click)="showModalAndGetImage(terapy.img)" src="{{terapy.img}}" alt="{{terapy.altText}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+                <h2>{{terapy.name}}</h2>
+            </span>
+        </div>
+    </section>
+    <app-modal-component
+    [type]="modalType"
+    [terapyModalImage]="imageToShowOnModalOpen"
+    [terapyModalDisplay]="displayModal"
+    [modalTerapyName]="terapyName"
+    [modalTerapyDescription]="terapyDescription"
+    (onClose)="hideModal()"
+    (onConfirmTerapy)="setModalConfirmationData($event)"/>
+</div>

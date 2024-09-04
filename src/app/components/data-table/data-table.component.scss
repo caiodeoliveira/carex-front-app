@@ -1,0 +1,62 @@
+:host ::ng-deep {
+
+    .p-datatable-table {
+        width: 100vw;
+    }
+
+    .p-datatable-thead {
+        width: 100%;
+        font-size: 2rem;
+
+        .confirm-attendance-header, .delete-schedule-header, .phone-header {
+            text-align: center;
+        }
+    }
+    
+    .p-element .p-datatable-tbody {
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition: 200ms;
+
+        :hover {
+            background-color: #dbdada;
+        }
+        
+        tr > .phone-data {
+            text-align: center;
+            letter-spacing: 0.1rem;
+        }
+    }
+
+    .p-link {
+        width: 4rem;
+        height: 4rem;
+        background-color: #dbdada;
+    }
+
+    .p-paginator-icon {
+        width: 3rem;
+        height: 3rem;
+        color: #69cf99;
+    }
+
+    .p-paginator-pages {
+        button {
+            font-size: 2rem;
+            width: 2rem;
+            height: 2rem;
+        }
+        
+    }
+
+    .p-paginator .p-dropdown {
+        width: 7rem;
+        height: 4rem;
+        text-align: center;
+
+        span {
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+}

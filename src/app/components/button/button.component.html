@@ -1,0 +1,51 @@
+<div *ngIf="buttonType == 'medicalContactButton'" class="button-container">
+    <p-button styleClass="p-button-contact" [label]="buttonLabel"></p-button>
+</div>
+
+<div *ngIf="buttonType == 'backButton-modal'" class="button-container">
+    <p-button styleClass="p-button-back-modal" [label]="buttonLabel"></p-button>
+</div>
+
+<div *ngIf="buttonType == 'confirmButton-modal'" class="button-container">
+    <p-button styleClass="p-button-confirm-modal" [label]="buttonLabel"></p-button>
+</div>
+
+<div *ngIf="buttonType == 'backButton'" class="button-container">
+    <p-button styleClass="p-button-back-default" [label]="buttonLabel"></p-button>
+</div>
+
+<div *ngIf="buttonType == 'confirmButton'" class="button-container">
+    <p-button styleClass="p-button-confirm-default" [label]="buttonLabel"></p-button>
+</div>
+
+<div *ngIf="buttonType == 'back-to-initial-page-button'" class="button-container">
+    <p-button styleClass="p-back-to-initial-page-button" [label]="buttonLabel"></p-button>
+</div>
+
+<div *ngIf="buttonType == 'go-to-shedule-page-button'" class="button-container">
+    <p-button styleClass="p-button-go-to-schedule-page-button" [label]="buttonLabel"></p-button>
+</div>
+
+<span *ngIf="buttonType == 'confirm-schedule-button'" class="confirm-schedule-button-container">
+    <fa-icon [icon]="confirmScheduleIcon" class="confirm-schedule-button"></fa-icon>
+</span>
+
+<span *ngIf="buttonType == 'remove-schedule-button'" class="delete-schedule-button-container">
+    <fa-icon [icon]="deleteScheduleIcon" class="delete-schedule-button"></fa-icon>
+</span>
+
+<div *ngIf="buttonType == 'confirm-login-button'" class="button-container">
+    <p-button styleClass="p-button-confirm-login-button" [label]="buttonLabel"/>
+</div>
+
+<div *ngIf="buttonType == 'try-password-recovery-button'" class="button-container">
+    <p-button styleClass="p-button-try-recovery-password-button" [label]="buttonLabel"/>
+</div>
+
+<!-- <span *ngIf="buttonType == 'previousButton'" class="button-container">
+    <fa-icon [icon]="backIcon" class="previous-button"></fa-icon>
+</span>
+
+<span *ngIf="buttonType == 'nextButton'" class="button-container">
+    <fa-icon [icon]="nextIcon" class="next-button"></fa-icon>
+</span> -->
