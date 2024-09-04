@@ -38,17 +38,6 @@ export class AppComponent{
       x_large_img: "/ear_acupunture_tp_small.png"
     },
 ]
-  schedulingBackgroundImages: any[] = [
-    // {
-    //   small: "scheduling-background-small.png",
-    // },
-    // {
-    //   average: "scheduling-background-average.png",
-    // },
-    {
-      large: "/scheduling-background-large.png",
-    },
-  ];  
 
   displaySchedullingPage: boolean;
 
@@ -125,6 +114,8 @@ export class AppComponent{
   modalDisplayRule = true;
   displayLoginModal: boolean = false;
 
+  isTerapySelectedPhysioterapyType: boolean;
+  
   constructor(private responsive: BreakpointObserver, private elementRef: ElementRef) {};
   
 
@@ -229,6 +220,14 @@ smothScroll() {
       const element = document.getElementById('programmings');
       element?.scrollIntoView({ behavior: 'smooth'});
     }, 1000)
+  }
+
+  setTerapyType($event: string) {
+    console.log('Terapy Type value in App Component -> ' + $event);
+
+    if($event == "physioterapy") {
+      this.isTerapySelectedPhysioterapyType = true;
+    }
   }
 
 }

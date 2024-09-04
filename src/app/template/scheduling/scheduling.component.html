@@ -41,8 +41,16 @@
             </span>
 
         </div>
-        <app-modal-component [type]="'advance-payment'" [advanceModaldisplay]="displayAdvanceModal" (onClose)="hideAdvanceModal()"/>
-        <app-modal-component [type]="'success-terapy-scheduled'" (onFinishTerapy)="finishScheduleModal()" [finishScheduleModalDisplay]="displayFinishScheduleModal" (onClose)="hideFinishScheduleModal()"/>
+        <app-modal-component
+        [type]="'advance-payment'"
+        [advanceModaldisplay]="displayAdvanceModal"
+        (onCloseAdvanceModal)="handleAdvanceModal($event)"
+        (onConfirmAdvanceModal)="handleAdvanceModal($event)"
+        [isPhysioterapyType]="isAPhysioTerapyType"/>
+        <app-modal-component
+        [type]="'success-terapy-scheduled'"
+        [successScheduleModalDisplay]="displaySuccessScheduleModal"
+        (onClose)="hideFinishScheduleModal()"/>
     </div>
     <footer class="buttons-container">
         <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>

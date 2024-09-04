@@ -47,7 +47,8 @@ interface Insurance {
 })
 export class SchedulingComponent {
 
-  
+  @Input() isAPhysioTerapyType: boolean;
+
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
   
@@ -76,7 +77,7 @@ export class SchedulingComponent {
   InsuranceSelected: Insurance;
   
   displayAdvanceModal: boolean = false;
-  displayFinishScheduleModal: boolean = false;
+  displaySuccessScheduleModal: boolean = false;
 
   ngOnInit() {
     this.availableHours = [
@@ -158,14 +159,21 @@ export class SchedulingComponent {
     },
   ]
 
-  hideAdvanceModal() {
+  handleAdvanceModal($event: boolean) {
     this.displayAdvanceModal = false;
-    this.displayFinishScheduleModal = true;
     this.closeEvent.emit(false);
+    
+    if($event) {
+      this.showSuccessScheduleModal();
+    }
+  }
+  
+  showSuccessScheduleModal() {
+    this.displaySuccessScheduleModal = true;
   }
 
   hideFinishScheduleModal() {
-    this.displayFinishScheduleModal = false;
+    this.displaySuccessScheduleModal = false;
   }
 
   onClickBackButton() {
@@ -176,8 +184,4 @@ export class SchedulingComponent {
     this.displayAdvanceModal = true;
   }
   
-  finishScheduleModal() {
-    this.displayFinishScheduleModal = false;
-    this.onFinishSchedule.emit(false);
-  }
 }

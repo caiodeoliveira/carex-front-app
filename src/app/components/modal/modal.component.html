@@ -1,10 +1,10 @@
-<p-dialog *ngIf="type == 'terapy-choose'" header="{{terapyTitle}}" [(visible)]="terapyModalDisplay" (onHide)="onCloseModal()">
+<p-dialog *ngIf="type == 'terapy-choose'" header="{{modalTerapyName}}" [(visible)]="terapyModalDisplay" (onHide)="closeTerapyModal()">
     <span class="image-container">
         <img class="terapy-image" src="{{terapyModalImage}}" alt="teste">
     </span>
 
     <div class="terapy-text-container">
-        <p class="terapy-description">{{getModalTexts()}}</p>
+        <p class="terapy-description">{{modalTerapyDescription}}</p>
 
         <p class="terapy-question">
             Deseja confirmar e prosseguir para a tela de agendamento?
@@ -12,15 +12,15 @@
     </div>
     
     <ng-template pTemplate="footer">
-        <app-button-component (click)="onCloseModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
+        <app-button-component (click)="closeTerapyModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
         <app-button-component (click)="confirmTerapy()" buttonType="confirmButton-modal" buttonLabel="Confirmar"/>
     </ng-template>
 </p-dialog>
 
-<p-dialog [styleClass]="type == 'advance-payment' ? 'advance-payment-modal' : ''" *ngIf="type == 'advance-payment'" header="Adiantamento" [(visible)]="advanceModaldisplay" (onHide)="onCloseModal()">
+<p-dialog [styleClass]="type == 'advance-payment' ? 'advance-payment-modal' : ''" *ngIf="type == 'advance-payment'" header="Adiantamento" [(visible)]="advanceModaldisplay" (onHide)="closeAdvanceModal()">
 
     <div class="advance-payment-text-container">
-        <p class="advance-description">{{modalAdvanceText}}</p>
+        <p class="advance-description">{{advanceDescription}}</p>
 
         <div class="payment-container">
 
@@ -44,30 +44,30 @@
         </div>
 
 
-        <p class="advance-question">Após o pagamento, clique em "Concluir" abaixo, vamos concluir o agendamento.</p>
+        <p class="advance-question">Após o pagamento, clique em "Concluir" abaixo, vamos confirmar seu agendamento.</p>
     </div>
     
     <ng-template pTemplate="footer">
-        <app-button-component (click)="onCloseModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
-        <app-button-component (click)="confirmTerapy()" buttonType="confirmButton-modal" buttonLabel="Concluir"/>
+        <app-button-component (click)="closeAdvanceModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
+        <app-button-component (click)="confirmTerapyScheduling()" buttonType="confirmButton-modal" buttonLabel="Concluir"/>
     </ng-template>
 </p-dialog>
 
-<p-dialog id="success-modal" *ngIf="type == 'success-terapy-scheduled'" header="" [(visible)]="finishScheduleModalDisplay" (onHide)="onCloseModal()">
+<p-dialog [styleClass]="type == 'success-terapy-scheduled' ? 'success-scheduling-modal' : ''" id="success-modal" *ngIf="type == 'success-terapy-scheduled'" header="Sucesso!" [(visible)]="successScheduleModalDisplay" (onHide)="closeSuccessSchedullingModal()">
 
     <div class="sucess-terapy-scheduled-text-container">
-        <p class="confirmation-description-first">Sucesso!</p>
+        <p class="scheduling-code">Anote o código do seu agendamento, ele será útil caso precise adiar ou cancelar a consulta: <b>{{scheduleCode}}</b></p>
         <p class="confirmation-description-second">Agradecemos a preferência 🎉🎉🎉</p>
     </div>
     
     <ng-template pTemplate="footer">
-        <app-button-component (click)="onCloseModal()" buttonType="back-to-initial-page-button" buttonLabel="Voltar para a página inicial"/>
+        <app-button-component (click)="closeSuccessSchedullingModal()" buttonType="back-to-initial-page-button" buttonLabel="Voltar para a página inicial"/>
         <app-button-component (click)="confirmTerapy()" (click)="onFinishScheduleModal()" buttonType="go-to-shedule-page-button" buttonLabel="Voltar ao início"/>
     </ng-template>
 </p-dialog>
 
 <p-dialog [styleClass]="loginModalDisplay ? 'login-modal' : ''" *ngIf="type == 'login'" header="Digite a Senha para acessar a tela de programações" 
-    [(visible)]="loginModalDisplay" (onHide)="onCloseModal()">
+    [(visible)]="loginModalDisplay" (onHide)="closeLoginModal()">
 
     <main class="login-field-container">
         <span class="with-margin">
@@ -83,9 +83,3 @@
         <app-button-component (click)="signIn()" (click)="onFinishScheduleModal()" buttonType="try-password-recovery-button" buttonLabel="Entrar"/>
     </ng-template>
 </p-dialog>
-
-
-
-<!-- TODO 1: Adicionar validação para modal de adiantamento só ser exibido quando uma terapia alternativa for selecionada. -->
-<!-- TODO: 2: Desenha tela de programação, onde Beatriz vai acessar e ver as consultas agendadas. Para garantir que só ela vai ter acesso, implementar uma função secreta
- que exibe um campo para login apenas com uma senha. Ao logar, ela terá acesso à essa página. -->

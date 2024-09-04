@@ -8,7 +8,7 @@ import {global} from '../../../global';
 export class TerapiesComponent {
 
   @Output() onTerapyConfirmed: EventEmitter<boolean> = new EventEmitter();
-  @Output() advanceModalterapyType: string;
+  @Output() onSetTerapyType: EventEmitter<string> = new EventEmitter();
 
   headerOne: string = global.terapies.headers.alternativeTerapies;
   headerTwo: string = global.terapies.headers.physioteraphyTerapies;
@@ -62,10 +62,13 @@ export class TerapiesComponent {
 
   imageToShowOnModalOpen: string;
 
+  terapyName: string;
+  terapyDescription: string;
+
   showModalAndGetImage(imageToShow: string) {
     this.displayModal = true;
     this.imageToShowOnModalOpen = imageToShow;
-    this.getTerapyType(imageToShow);
+    this.checkModalImageByTerapy(imageToShow);
   }
 
   hideModal() {
@@ -75,13 +78,46 @@ export class TerapiesComponent {
   setModalConfirmationData($event: boolean) {
     this.isTerapyConfirmed = $event;
     this.onTerapyConfirmed.emit(true);
+
+    const isPelvicPhysioterapy = global.terapies.path.pelvicPhysioterapy;
+    const obstetricPhysioterapy = global.terapies.path.obstetricPhysioterapy;
+    const doulagePhysioterapy = global.terapies.path.doulage;
+    if(this.imageToShowOnModalOpen == isPelvicPhysioterapy || this.imageToShowOnModalOpen == obstetricPhysioterapy || this.imageToShowOnModalOpen == doulagePhysioterapy) {
+      this.onSetTerapyType.emit("physioterapy");
+    }
+    else {
+      this.onSetTerapyType.emit("alternative");
+    }
   }
 
-
-  getTerapyType(terapyImageName: string) {
-    this.advanceModalterapyType = terapyImageName;
-    this.advanceModalterapyType == global.terapies.path.pelvicPhysioterapy || terapyImageName == global.terapies.path.obstetricPhysioterapy || 
-    terapyImageName == global.terapies.path.doulage ? this.advanceModalterapyType = 'physioterapy' : this.advanceModalterapyType = 'alternative';
+  checkModalImageByTerapy(terapyImage: string) {
+    if(terapyImage.includes('dry_nedling_tp_small')) {
+      this.terapyName = global.terapies.names.acupunture;
+      this.terapyDescription = global.terapies.modal.description.alternatives.acunputure;
+    }
+    if(terapyImage.includes('ear_acupunture_tp_small')) {
+      this.terapyName = global.terapies.names.earAcupunture;
+      this.terapyDescription = global.terapies.modal.description.alternatives.earAcupunture;
+    }
+    if(terapyImage.includes('myofacial_release_tp_small')) {
+      this.terapyName = global.terapies.names.myofacialRelease;
+      this.terapyDescription = global.terapies.modal.description.alternatives.myofacialRelease;
+    }
+    if(terapyImage.includes('suction_cup_tp_small')) {
+      this.terapyName = global.terapies.names.suctionCup;
+      this.terapyDescription = global.terapies.modal.description.alternatives.suctionCup;
+    }
+    if(terapyImage.includes('pelvic_physioterapy')) {
+      this.terapyName = global.terapies.names.pelvicPhysioterapy;
+      this.terapyDescription = global.terapies.modal.description.pelvicPhysioterapy;
+    }
+    if(terapyImage.includes('obstetric_physioterapy')) {
+      this.terapyName = global.terapies.names.obstetricPhysioterapy;
+      this.terapyDescription = global.terapies.modal.description.obstetricPhysioterapy;
+    }
+    if(terapyImage.includes('doulage')) {
+      this.terapyName = global.terapies.names.doulage;
+      this.terapyDescription = global.terapies.modal.description.doulage;
+    }
   }
-
 }

@@ -1,5 +1,4 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import {global} from '../../../global';
 
 interface PaymentType {
   type: string;
@@ -15,21 +14,21 @@ export class ModalComponent implements OnInit {
 
   @Input() terapyModalDisplay: boolean = false;
   @Input() advanceModaldisplay: boolean = false;
-  @Input() finishScheduleModalDisplay: boolean = false;
+  @Input() successScheduleModalDisplay: boolean = false;
   @Input() loginModalDisplay: boolean = true;
   @Input() type: string;
   @Input() terapyModalImage: string;
-  @Input() terapyType: string;
-  
-  
+  @Input() isPhysioterapyType: boolean;
+  @Input() modalTerapyName: string;
+  @Input() modalTerapyDescription: string;
+
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishTerapy: EventEmitter<boolean> = new EventEmitter();
   @Output() onSignIn: EventEmitter<boolean> = new EventEmitter();
-  
-
-  terapyTitle: string;
-  terapyDescription: string;
+  @Output() onCloseAdvanceModal: EventEmitter<boolean> = new EventEmitter();
+  @Output() onConfirmAdvanceModal: EventEmitter<boolean> = new EventEmitter();
+  @Output() onCloseSuccessModal: EventEmitter<boolean> = new EventEmitter();
   
   paymentTypeList: PaymentType[];
   paymentTypeSelected: PaymentType;
@@ -41,7 +40,9 @@ export class ModalComponent implements OnInit {
 
   displayRecoveryPasswordInput: boolean = false;
 
-  modalAdvanceText: string;
+  advanceDescription: string = "";
+
+  scheduleCode: string = Math.floor(Math.random() * 1000000).toString();
 
   ngOnInit(): void {
     this.paymentTypeList = [
@@ -62,53 +63,38 @@ export class ModalComponent implements OnInit {
         code: "3"
       },
     ]
+
+    this.checkTerapyType();
   }
 
-  onCloseModal() {
+  closeTerapyModal() {
     this.terapyModalDisplay = false;
+    this.onClose.emit();
+  }
+
+  closeAdvanceModal() {
     this.advanceModaldisplay = false;
+    this.onCloseAdvanceModal.emit(false);
+  }
+
+  closeSuccessSchedullingModal() {
+    this.successScheduleModalDisplay = false;
+    this.onClose.emit();
+    }
+
+  closeLoginModal() {
     this.loginModalDisplay = false;
-    this.onClose.emit()
+    this.onClose.emit();
     }
 
   confirmTerapy() {
     this.onConfirmTerapy.emit(true);
-    this.terapyModalDisplay = false;
-    this.advanceModaldisplay = false;
-    this.finishScheduleModalDisplay = false;
-    this.getModalAdvanceText(this.terapyType)
-    }
-  
-  getModalTexts(): string {
-    if(this.terapyModalImage.includes('dry_nedling_tp_small')) {
-      this.terapyTitle = global.terapies.names.acupunture;
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    if(this.terapyModalImage.includes('ear_acupunture_tp_small')) {
-      this.terapyTitle = global.terapies.names.earAcupunture
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    if(this.terapyModalImage.includes('myofacial_release_tp_small')) {
-      this.terapyTitle = global.terapies.names.myofacialRelease
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    if(this.terapyModalImage.includes('suction_cup_tp_small')) {
-      this.terapyTitle = global.terapies.names.suctionCup
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    if(this.terapyModalImage.includes('pelvic_physioterapy')) {
-      this.terapyTitle = global.terapies.names.pelvicPhysioterapy
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    if(this.terapyModalImage.includes('obstetric_physioterapy')) {
-      this.terapyTitle = global.terapies.names.obstetricPhysioterapy
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    if(this.terapyModalImage.includes('doulage')) {
-      this.terapyTitle = global.terapies.names.doulage
-      return this.terapyDescription = global.terapies.modal.description.alternatives.acunputure
-    }
-    return "";
+    this.closeTerapyModal();
+  }
+
+  confirmTerapyScheduling() {
+    this.onConfirmAdvanceModal.emit(true);
+    this.successScheduleModalDisplay = false;
   }
 
   onFinishScheduleModal() {
@@ -128,15 +114,20 @@ export class ModalComponent implements OnInit {
     this.onSignIn.emit(true);
   }
 
-  getModalAdvanceText(terapyType: string) {
-    // console.log('terapy type -> ' + terapyType); O valor está chegando até aqui. TODO: Descobrir porque não exibe no template.
-    if(terapyType == 'physioterapy') {
-      this.modalAdvanceText = "Para consultas á domicílio, solicitamos um adiantamento de 20% do valor da consulta";
-    } 
-    else {
-      this.modalAdvanceText = "A avaliação é gratuita, mas solicitamos uma garantia no valor de R$ 20, que será devolvida após o atendimento.";
+  checkTerapyType() {
+    if(this.isPhysioterapyType) {
+      this.advanceDescription = "Para consultas à domicílio, solicitamos um adiantamento de 20% do valor da consulta."
     }
-    console.log(this.modalAdvanceText)
+    else {
+      this.advanceDescription = "A avaliação é gratuita, mas solicitamos um adiantamento de 20% do valor Após a realização da consulta o valor será devolvido. Em caso de cancelamento da avaliação com menos de 12h de antecedência, o valor não poderá ser resarcido."
+    }
   }
 
+  // generateSchedulingCode(): string {
+  //   const schedulingCodeGenerated =  Math.floor(Math.random() * 1000000)
+  //   return schedulingCodeGenerated.toString();
+  // }
+
 }
+
+// https://ng.ant.design/components/steps/en
