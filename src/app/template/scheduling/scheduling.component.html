@@ -25,7 +25,7 @@
             </span>
             <span class="with-margin">
                 <label class="field-label" htmlFor="name-input">Modelo de Agendamento</label>
-                <p-dropdown id="payment-type-dropdown" [options]="paymentType" [(ngModel)]="paymentTypeSelected" optionLabel="type"></p-dropdown>
+                <p-dropdown id="payment-type-dropdown" (onChange)="onChange($event)" [options]="paymentType" [(ngModel)]="paymentTypeSelected" optionLabel="type"></p-dropdown>
             </span>
             <span class="with-margin" *ngIf="paymentTypeSelected.type == 'Convênio'">
                 <label class="field-label" htmlFor="name-input">Informe o Plano de Saúde</label>
