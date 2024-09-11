@@ -80,6 +80,7 @@ export class SchedulingComponent {
   displaySuccessScheduleModal: boolean = false;
 
   ngOnInit() {
+
     this.availableHours = [
       { value: '12:00', code: '1' },
       { value: '09:45', code: '2' },
@@ -106,7 +107,6 @@ export class SchedulingComponent {
     this.attendanceLocationList = [
       { location: 'Escolha uma opção', code: '1' },
       { location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '2' },
-      { location: 'No endereço de minha preferência', code: '3' },
     ];
 
     this.insuranceList = [
@@ -183,5 +183,24 @@ export class SchedulingComponent {
   goToFinishSchedule() {
     this.displayAdvanceModal = true;
   }
-  
+
+  onChange(event: { value: string; }) {
+    Object.values(event.value).forEach((value => {
+      this.toggleMyAddressLocationOption(value);
+    }))
+  }
+
+  toggleMyAddressLocationOption(value: string) {
+    if(value == 'Particular') {
+      this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '3' });
+    }
+    if(value == "Convênio") {
+      this.attendanceLocationList.forEach((option => {
+        if(option.code == '3') {
+          this.attendanceLocationList.pop();
+        }
+      }))
+    }
+  }
+
 }
