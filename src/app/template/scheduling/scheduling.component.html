@@ -35,6 +35,10 @@
                 <label class="field-label" htmlFor="name-input">Local de Atendimento</label>
                 <p-dropdown id="location-attendance-dropdown" [options]="attendanceLocationList" [(ngModel)]="attendaceLocationSelected" optionLabel="location"></p-dropdown>
             </span>
+            <span class="with-margin" *ngIf="paymentTypeSelected.type == 'Particular'">
+                <label class="field-label" htmlFor="name-input">Cidade onde será o atendimento</label>
+                <p-dropdown id="location-attendance-dropdown" [options]="attendanceCityList" [(ngModel)]="attendaceCitySelected" optionLabel="city"></p-dropdown>
+            </span>
             <span class="with-margin" *ngIf="attendaceLocationSelected.location == 'No endereço de minha preferência'">
                 <label *ngIf="attendaceLocationSelected.location == 'No endereço de minha preferência'" class="field-label" htmlFor="name-input">Endereço de atendimento</label>
                 <input [@easeDisplay] id="address-input" type="text" pInputText [(ngModel)]="addressInputValue" placeholder="Ex: Rua João Inácio, número 500. Pina, Recife."/>

@@ -27,6 +27,10 @@ interface Insurance {
   insurance: string;
   code: string;
 }
+interface city {
+  city: string;
+  code: string;
+}
 
 @Component({
   selector: 'app-scheduling',
@@ -75,6 +79,9 @@ export class SchedulingComponent {
 
   insuranceList: Insurance[];
   InsuranceSelected: Insurance;
+
+  attendanceCityList: city[];
+  attendaceCitySelected: city;
   
   displayAdvanceModal: boolean = false;
   displaySuccessScheduleModal: boolean = false;
@@ -104,11 +111,6 @@ export class SchedulingComponent {
       { type: 'Particular', code: '3' },
     ];
 
-    this.attendanceLocationList = [
-      { location: 'Escolha uma opção', code: '1' },
-      { location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '2' },
-    ];
-
     this.insuranceList = [
       { insurance: 'Escolha uma opção', code: '1' },
       { insurance: 'Bradesco Top Nacional Quarto', code: '2' },
@@ -116,6 +118,21 @@ export class SchedulingComponent {
       { insurance: 'Unimed Regional', code: '4' },
       { insurance: 'Hapvida Express', code: '5' },
     ];
+
+    this.attendanceLocationList = [
+      { location: 'Escolha uma opção', code: '1' },
+      { location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '2' },
+    ];
+
+    this.attendanceCityList = [
+      { city: 'Escolha uma Opção', code: '1' },
+      { city: 'Paulista', code: '2' },
+      { city: 'Olinda', code: '3' },
+      { city: 'Recife', code: '4' },
+      { city: 'Abreu e Lima', code: '5' },
+      { city: 'Igarassu', code: '6' },
+      { city: 'Itapissuma', code: '7' },
+    ]
   }
 
   alternativeTerapiesData: any = [
@@ -197,6 +214,7 @@ export class SchedulingComponent {
     }
     if(value == "Convênio") {
       this.attendaceLocationSelected = { location: 'Escolha uma opção', code: '1' };
+      this.attendaceCitySelected = { city: 'Escolha uma Opção', code: '1' };
       this.attendanceLocationList.forEach((option => {
         if(option.code == '3') {
           this.attendanceLocationList.pop();
