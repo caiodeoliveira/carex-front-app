@@ -191,10 +191,12 @@ export class SchedulingComponent {
   }
 
   toggleMyAddressLocationOption(value: string) {
+    console.log('paymentType Selected -> ', this.attendaceLocationSelected)
     if(value == 'Particular') {
       this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '3' });
     }
     if(value == "Convênio") {
+      this.attendaceLocationSelected = { location: 'Escolha uma opção', code: '1' };
       this.attendanceLocationList.forEach((option => {
         if(option.code == '3') {
           this.attendanceLocationList.pop();
