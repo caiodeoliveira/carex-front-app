@@ -1,10 +1,19 @@
-<p-dialog *ngIf="type == 'terapy-choose'" header="{{modalTerapyName}}" [(visible)]="terapyModalDisplay" (onHide)="closeTerapyModal()">
+<p-dialog [styleClass]="'terapy-choose-modal'" *ngIf="type == 'terapy-choose'" header="{{modalTerapyName}}" [(visible)]="terapyModalDisplay" (onHide)="closeTerapyModal()">
     <span class="image-container">
         <img class="terapy-image" src="{{terapyModalImage}}" alt="teste">
     </span>
 
     <div class="terapy-text-container">
         <p class="terapy-description">{{modalTerapyDescription}}</p>
+        
+        <span class="terapy-alert-container">
+            <h1 class="terapy-alert-header">Como funciona?</h1>
+
+            <div class="terapy-alert-body-container">
+                <p class="terapy-alert-text-body">A seção tem valor único e abrange todas as terapias alternativas (no fluxo de alternativas) listadas nesta página. No início da seção será avaliada a necessidade do paciente e decidido quais terapias poderão ser utilizadas de acordo com a necessidade poderão ser combinadas mais de uma terapia.</p>
+            </div>
+
+        </span>
 
         <p class="terapy-question">
             Deseja confirmar e prosseguir para a tela de agendamento?

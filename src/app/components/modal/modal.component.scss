@@ -5,6 +5,76 @@
        border: 4px solid #3cc97d;
 
        
+       &.terapy-choose-modal {
+        width: 120rem;
+        height: 70rem;
+        background-color: red;
+
+        .p-dialog-content {
+            display: flex;
+            justify-content: left;
+            align-items: initial;
+
+            .image-container {
+                margin: auto 0;
+                width: 25rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-items: center;
+                margin-right: 12rem;
+
+                .terapy-image {
+                    border-radius: 11.9rem;
+                    border: 5px solid #69cf99;
+            }
+        }
+
+        .terapy-text-container {
+            width: 75rem;
+            height: 40rem;
+            display: grid;
+            grid-template-columns: 1fr;
+
+            .terapy-description {
+                color: #555454;
+                font-weight: 600;
+                font-size: 2.5rem;
+            }
+
+            .terapy-alert-container {
+                display: grid;
+                grid-template-columns: 1fr;
+                color: red;
+                font-weight: 600;
+                font-size: 4.5rem;
+
+                .terapy-alert-header {
+                    color: black;
+                    font-size: 3rem;
+                }
+
+                .terapy-alert-body-container {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .terapy-alert-text-body {
+                    color: red;
+                    font-size: 2.5rem;
+                }
+            }
+
+            .terapy-question {
+                font-weight: bold;
+                color: black;
+                font-size: 2.5rem;
+            }
+
+        }
+    }
+}
+
        &.success-scheduling-modal {
            width: 108rem;
            height: 70rem;
@@ -12,8 +82,8 @@
         }
 
        &.advance-payment-modal {
-           width: 108rem;
-           height: 70rem;
+           width: 115rem;
+           height: 77rem;
            border: 4px solid #3cc97d;
         }
 
@@ -101,26 +171,6 @@
                 }
             }
 
-            .terapy-text-container {
-                width: 55rem;
-                height: 40rem;
-                display: grid;
-                grid-template-columns: 1fr;
-
-                .terapy-description {
-                    color: #555454;
-                    font-weight: 600;
-                    font-size: 2.5rem;
-                }
-
-                .terapy-question {
-                    font-weight: bold;
-                    color: black;
-                    font-size: 3rem;
-                }
-
-            }
-            
             .advance-payment-text-container {
                 width: 97rem;
                 height: 40rem;

@@ -1,4 +1,5 @@
 import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
 interface PaymentType {
   type: string;
@@ -43,6 +44,8 @@ export class ModalComponent implements OnInit {
   advanceDescription: string = "";
 
   scheduleCode: string = Math.floor(Math.random() * 1000000).toString();
+
+  alertIcon = faExclamation;
 
   ngOnInit(): void {
     this.paymentTypeList = [

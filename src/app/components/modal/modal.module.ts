@@ -5,6 +5,7 @@ import { ModalComponent } from './modal.component';
 import { ButtonComponentModule } from '../button/button.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { FormsModule } from '@angular/forms';
     ButtonComponentModule,
     FormsModule,
     DropdownModule,
+    FontAwesomeModule,
   ],
   exports: [
     ModalComponent,
