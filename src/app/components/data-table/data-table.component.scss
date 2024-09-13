@@ -26,6 +26,11 @@
             text-align: center;
             letter-spacing: 0.1rem;
         }
+
+        .confirmed {
+            border-top: 2px solid greenyellow;
+            border-bottom: 2px solid greenyellow;
+        }
     }
 
     .p-link {

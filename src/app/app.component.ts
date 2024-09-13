@@ -2,8 +2,9 @@ import { Component, ElementRef } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 interface Programmings {
+  status: string,
   name: string,
-  date: Date;
+  date: Date,
   phone: string,
   paymentType: string,
   location: string
@@ -45,6 +46,7 @@ export class AppComponent{
 
   programmings: Programmings[] = [
     {
+      status: "Confirmado",
       name: "José Fabrício",
       date: new Date(),
       phone: "(83)9 8485-2235",
@@ -52,6 +54,7 @@ export class AppComponent{
       location: "Marcos Freire, Jaboatão"
     },
     {
+      status: "Agendado",
       name: "Maria Severina",
       date: new Date(),
       phone: "(15)9 9848-3818",
@@ -59,6 +62,7 @@ export class AppComponent{
       location: "Clínica Care X"
     },
     {
+      status: "Agendado",
       name: "Eronildo Silveira",
       date: new Date(),
       phone: "(15)9 98632-2992",
@@ -66,6 +70,7 @@ export class AppComponent{
       location: "Casa Caiada, Olinda"
     },
     {
+      status: "Confirmado",
       name: "Ivanilson Nascimento",
       date: new Date(),
       phone: "(15)9 98454-3234",
@@ -73,6 +78,7 @@ export class AppComponent{
       location: "Arthur Lundgren 2, Paulista"
     },
     {
+      status: "Agendado",
       name: "João Bartolomeu",
       date: new Date(),
       phone: "(15)9 98632-2992",
@@ -80,6 +86,7 @@ export class AppComponent{
       location: "Clínica Care X"
     },
     {
+      status: "Confirmado",
       name: "Sebastião Neto",
       date: new Date(),
       phone: "(15)9 98632-2992",
@@ -87,6 +94,7 @@ export class AppComponent{
       location: "Clínica Care X, Recife"
     },
     {
+      status: "Confirmado",
       name: "Dalva Mércia",
       date: new Date(),
       phone: "(15)9 98632-2992",
@@ -94,6 +102,7 @@ export class AppComponent{
       location: "Bairro novo, Olinda"
     },
     {
+      status: "Confirmado",
       name: "Cleide Viturino",
       date: new Date(),
       phone: "(15)9 98333-5893",
@@ -101,6 +110,7 @@ export class AppComponent{
       location: "Janga, Paulista"
     },
     {
+      status: "Agendado",
       name: "Ricardo Roberto",
       date: new Date(),
       phone: "(15)9 98632-2992",
@@ -158,7 +168,7 @@ smothScroll() {
       }
     })
 
-    this.headers = ['Nome', 'Data', 'Hora', 'Cel', 'Pagamento', 'Local'];
+    this.headers = ['Status', 'Data', 'Hora', 'Cel', 'Pagamento', 'Local'];
   }
   
    getBreakpoints(): string {

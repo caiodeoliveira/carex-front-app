@@ -1,9 +1,10 @@
 <section>
-    <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+    <p-table [value]="tableData" [rows]="5" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
         <ng-template pTemplate="header">
             <tr>
                 <th class="confirm-attendance-header">Confirmar Consulta</th>
                 <th class="delete-schedule-header">Deletar Consulta</th>
+                <th class="delete-schedule-header">Status</th>
                 <th>Nome</th>
                 <th>Data / Hora</th>
                 <th class="phone-header">Cel</th>
@@ -12,14 +13,15 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
-            <tr class="table-body-row">
-                <td class="table-confirm-button-container"><app-button-component buttonType="confirm-schedule-button"/></td>
-                <td class="table-delete-button-container"><app-button-component buttonType="remove-schedule-button" /></td>
-                <td>{{ data.name }}</td>
-                <td>{{ data.date | date: 'dd/MM/yy HH:mm' }}</td>
-                <td class="phone-data">{{ data.phone }}</td>
-                <td>{{ data.paymentType }}</td>
-                <td>{{ data.location }}</td>
+            <tr>
+                <td class="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}"><app-button-component (click)="confirmSchedule(data)" buttonType="confirm-schedule-button"/></td>
+                <td class="table-delete-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}"><app-button-component (click)="cancelSchedule(data)" buttonType="remove-schedule-button" /></td>
+                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.status }}</td>
+                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.name }}</td>
+                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.date | date: 'dd/MM/yy HH:mm' }}</td>
+                <td class="phone-data {{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.phone }}</td>
+                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.paymentType }}</td>
+                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.location }}</td>
             </tr>
         </ng-template>
     </p-table>
