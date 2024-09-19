@@ -12,33 +12,33 @@ export class DataTableComponent implements OnInit {
 
   paginatorActivator: boolean;
   isConfirmedSchedule: string = "";
-  tableExists: boolean = true;
+  isUndoButtonActive: boolean = false;
+  dataInCache: any;
+  lastAction: string = "";
 
   ngOnInit(): void {
       this.paginatorActivator = true;
       this.filterRowsWhereStatusIsConfirmed();
   }
 
-  confirmSchedule(tableDataToBeConfirmed: any) {
+  confirmSchedule(tableDataConfirmed: any) {
     this.isConfirmedSchedule = "confirmed";
-    tableDataToBeConfirmed.status = "Confirmado";
+    tableDataConfirmed.status = "Confirmado";
+    this.lastAction = "confirmation";
+    this.dataInCache = tableDataConfirmed;
     this.filterRowsWhereStatusIsConfirmed();
+    this.activateUndoLasActionButton();
   }
 
-  cancelSchedule(tableDataToBeDeleted: any) {
-    Object.keys(tableDataToBeDeleted).forEach(key => {
-      if(typeof tableDataToBeDeleted[key] === 'string') {
-        tableDataToBeDeleted[key] = "";
-      }
-      if(tableDataToBeDeleted['date'] instanceof Date) {
-        tableDataToBeDeleted[key] = "";
-      }
-    })
-    this.tableExists = false;
+  deleteSchedule(tableDataToBeDeleted: any) {
+    const existingRows = this.tableData.filter(rowData => rowData != tableDataToBeDeleted);
+    this.lastAction = "delete";
+    this.dataInCache = tableDataToBeDeleted;
+    this.getExistingRows(existingRows);
+    this.activateUndoLasActionButton();
   }
 
   filterRowsWhereStatusIsConfirmed() {
-    this.tableData.filter((rowData) => rowData.status == 'Confirmado');
     this.setscheduleRowAsConfirmed();
   }
 
@@ -46,9 +46,31 @@ export class DataTableComponent implements OnInit {
     this.isConfirmedSchedule = "confirmed";
   }
 
-  /*
-    Pesquisar como fazer para ao chamar o método cancelSchedule remover de tela apenas a linha da tabela que foi deletada. Atualmente usando uma variável, eu
-    não consegui fazer isso pois combinei a variável com o ngIf no template mas escondia todas as linhas.
-    Ver se vai ser necessário usar o ngOnChanges.
-  */
+  getExistingRows(tableDataNewState: any[]) {
+    this.tableData = tableDataNewState;
+  }
+
+  activateUndoLasActionButton() {
+    this.isUndoButtonActive = true;
+  }
+
+  deactivateUndoLasActionButton() {
+    this.isUndoButtonActive = false;
+  }
+
+  undoLastAction() {
+    console.log('before undo last Action -> ', this.tableData);
+    if(this.lastAction == 'delete') {
+      this.tableData.push(this.dataInCache);
+      console.log('tableData After undo last action -> ', this.tableData);
+    }
+    else if(this.lastAction == 'confirmation') {
+      this.tableData.forEach((row) => {
+        if(row.name == this.dataInCache.name) {
+          row.status = 'Agendado';
+        }
+      })
+    }
+    console.log(this.tableData)
+  }
 }

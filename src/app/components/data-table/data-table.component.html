@@ -3,19 +3,30 @@
         <ng-template pTemplate="header">
             <tr>
                 <th class="confirm-attendance-header">Confirmar Consulta</th>
+                <th class="undo-action-header">Desfazer última Ação</th>
                 <th class="delete-schedule-header">Deletar Consulta</th>
                 <th class="delete-schedule-header">Status</th>
-                <th>Nome</th>
+                <th class="name-header">Nome</th>
                 <th>Data / Hora</th>
                 <th class="phone-header">Cel</th>
-                <th>Modelo</th>
-                <th>Local</th>
+                <th class="model-header">Modelo</th>
+                <th class="location-header">Local</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
-            <tr>
-                <td class="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}"><app-button-component (click)="confirmSchedule(data)" buttonType="confirm-schedule-button"/></td>
-                <td class="table-delete-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}"><app-button-component (click)="cancelSchedule(data)" buttonType="remove-schedule-button" /></td>
+            <tr ngClass="table-row-body">
+                <td class="status-data" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component (click)="confirmSchedule(data)" buttonType="confirm-schedule-button"/>
+                </td>
+                <td *ngIf="!isUndoButtonActive" class="status-data" class="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component buttonType="disabled-undo-action-button"/>
+                </td>
+                <td *ngIf="isUndoButtonActive" class="status-data" class="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component (click)="undoLastAction()" buttonType="undo-action-button"/>
+                </td>
+                <td class="table-delete-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component (click)="deleteSchedule(data)" buttonType="remove-schedule-button" />
+                </td>
                 <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.status }}</td>
                 <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.name }}</td>
                 <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.date | date: 'dd/MM/yy HH:mm' }}</td>

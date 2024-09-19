@@ -34,6 +34,14 @@
     <fa-icon [icon]="deleteScheduleIcon" class="delete-schedule-button"></fa-icon>
 </span>
 
+<span *ngIf="buttonType == 'undo-action-button'" class="undo-action-button-container">
+    <fa-icon [icon]="undoActionButton" class="undo-action-button"></fa-icon>
+</span>
+
+<span *ngIf="buttonType == 'disabled-undo-action-button'" class="disabled-undo-action-button-container">
+    <fa-icon [icon]="undoActionButton" class="disabled-undo-action-button"></fa-icon>
+</span>
+
 <div *ngIf="buttonType == 'confirm-login-button'" class="button-container">
     <p-button styleClass="p-button-confirm-login-button" [label]="buttonLabel"/>
 </div>

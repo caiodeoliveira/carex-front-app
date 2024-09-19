@@ -1,18 +1,22 @@
-<!-- <app-home/> -->
-<!-- <app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)" (onSetTerapyType)="setTerapyType($event)" /> -->
-<!-- <app-scheduling
+<app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)" (onSetTerapyType)="setTerapyType($event)" />
+<app-home/>
+<app-scheduling
 id="schedulling"
 (onClickBack)="hideSchedullingPage($event)"
 (onFinishSchedule)="hideSchedullingPage($event)"
 [isAPhysioTerapyType]="isTerapySelectedPhysioterapyType"
-*ngIf="displaySchedullingPage"/> -->
+*ngIf="displaySchedullingPage"
+/>
 <app-programmings
 id="programmings"
 [tableDataHeaders]="headers"
-[tableDataBody]="programmings"/> 
+[tableDataBody]="programmings"
+*ngIf="displayProgrammingsPage"
+/>
 <app-modal-component
 [type]="'login'"
 [loginModalDisplay]="displayLoginModal"
 (onClose)="hideModal()"
 (onSignIn)="doSignIn($event)"
-*ngIf="modalDisplayRule"/>
+*ngIf="modalDisplayRule"
+/>

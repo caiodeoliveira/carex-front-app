@@ -155,10 +155,6 @@
     }
 }
 
-::ng-deep .confirm-schedule-button-container:enabled:hover {
-    filter: brightness(95%);
-}
-
 ::ng-deep .delete-schedule-button-container {
     display: flex;
     justify-content: center;
@@ -178,8 +174,41 @@
     }
 }
 
-::ng-deep .delete-schedule-button-container:enabled:hover {
-    filter: brightness(95%);
+::ng-deep .undo-action-button-container {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+    :hover {
+        transition: 500ms;
+        background: 20px black !important;
+    }
+
+    .undo-action-button {
+        padding: 1rem 1.6rem;
+        border: 4px solid blue;
+        border-radius: 5px;
+        font-size: 3rem;
+        color: blue;
+    }
+}
+
+::ng-deep .disabled-undo-action-button-container {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+
+        :hover {
+            transition: 500ms;
+        }
+
+        .disabled-undo-action-button {
+            padding: 1rem 1.6rem;
+            border: 4px solid grey;
+            border-radius: 5px;
+            font-size: 3rem;
+            color: grey;
+        }        
 }
 
 .previous-button {

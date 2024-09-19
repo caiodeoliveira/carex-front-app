@@ -8,7 +8,8 @@
         width: 100%;
         font-size: 2rem;
 
-        .confirm-attendance-header, .delete-schedule-header, .phone-header {
+        .confirm-attendance-header, .undo-action-header, .delete-schedule-header, .name-header, .phone-header,
+        .model-header, .location-header {
             text-align: center;
         }
     }
@@ -17,12 +18,12 @@
         font-size: 1.6rem;
         cursor: pointer;
         transition: 200ms;
-
+        
         :hover {
             background-color: #dbdada;
         }
-        
-        tr > .phone-data {
+
+        tr > td {
             text-align: center;
             letter-spacing: 0.1rem;
         }
