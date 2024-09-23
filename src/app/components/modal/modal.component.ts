@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 
 interface PaymentType {
@@ -11,7 +11,7 @@ interface PaymentType {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.scss']
 })
-export class ModalComponent implements OnInit {
+export class ModalComponent implements OnInit, OnChanges {
 
   @Input() terapyModalDisplay: boolean = false;
   @Input() advanceModaldisplay: boolean = false;
@@ -22,6 +22,8 @@ export class ModalComponent implements OnInit {
   @Input() isPhysioterapyType: boolean;
   @Input() modalTerapyName: string;
   @Input() modalTerapyDescription: string;
+  @Input() chosenSchedullingCity: string;
+  @Input() advanceModalSchedullingFee: string;
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -47,6 +49,10 @@ export class ModalComponent implements OnInit {
 
   alertIcon = faExclamation;
 
+  schedullingCity: string;
+
+  schedullingFee: string;
+
   ngOnInit(): void {
     this.paymentTypeList = [
       {
@@ -68,6 +74,14 @@ export class ModalComponent implements OnInit {
     ]
 
     this.checkTerapyType();
+    this.schedullingCity = this.chosenSchedullingCity;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['chosenSchedullingCity'].currentValue) {
+      // console.log('chosenCity Has value -> ', changes['chosenSchedullingCity'].currentValue);
+      this.matchCitySelectedWithSchedullingFee(changes['chosenSchedullingCity'].currentValue);
+    }
   }
 
   closeTerapyModal() {
@@ -119,11 +133,47 @@ export class ModalComponent implements OnInit {
 
   checkTerapyType() {
     if(this.isPhysioterapyType) {
-      this.advanceDescription = "Para consultas à domicílio, solicitamos um adiantamento de 20% do valor da consulta."
+      this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`
     }
     else {
-      this.advanceDescription = "A avaliação é gratuita, mas solicitamos um adiantamento de 20% do valor Após a realização da consulta o valor será devolvido. Em caso de cancelamento da avaliação com menos de 12h de antecedência, o valor não poderá ser resarcido."
+      this.advanceDescription = "Marque na agenda o seu compromisso conosco 😄"
     }
   }
+
+  matchCitySelectedWithSchedullingFee(citySelected: string) {
+    switch(citySelected) {
+      case 'Paulista':
+        this.advanceModalSchedullingFee = '36';
+        this.checkTerapyType();
+        break;
+      case 'Olinda':
+        this.advanceModalSchedullingFee = '52';
+        this.checkTerapyType();
+        break;
+      case 'Recife':
+        this.advanceModalSchedullingFee = '72';
+        this.checkTerapyType();
+        break;
+      case 'Boa Viagem':
+        this.advanceModalSchedullingFee = '72';
+        this.checkTerapyType();
+        break;
+      case 'Abreu e Lima':
+        this.advanceModalSchedullingFee = '52';
+        this.checkTerapyType();
+        break;
+      case 'Igarassu':
+        this.advanceModalSchedullingFee = '52';
+        this.checkTerapyType();
+        break;
+      case 'Itapissuma':
+        this.advanceModalSchedullingFee = '72';
+        this.checkTerapyType();
+        break;
+
+        default: "12345";
+    }
+  }
+  // TODO: Dar um jeito de ao disparar o método goToFinishSchedule do componente schedulling, executar a função matchCitySelected para verificar a variável com o valor da cidade e jogar no template.
 
 }
