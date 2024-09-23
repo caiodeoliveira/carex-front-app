@@ -41,5 +41,20 @@ export const global = {
                 question: "Deseja confirmar e prosseguir para a tela de agendamento?"
             }
     },
-    professionalDescription: "Me chamo Ana Beatriz, sou formada em fisioterapia e pós graduanda em fisioterapia pélvica e obstetrícia. Essas são as áreas que atuo: Doulagem, liberação miofascial, Auriculoterapia, Ventosaterapia, Dry needling, Fisioterapia pélvica. Agende uma consulta ou avaliação abaixo. Se desejar, clique no botão ao lado para entrar em contato."
+
+    about: {
+        professionalDescription: "Me chamo Ana Beatriz, sou formada em fisioterapia e pós graduanda em fisioterapia pélvica e obstetrícia. Essas são as áreas que atuo: Doulagem, liberação miofascial, Auriculoterapia, Ventosaterapia, Dry needling, Fisioterapia pélvica. Agende uma consulta ou avaliação abaixo. Se desejar, clique no botão ao lado para entrar em contato."
+    },
+
+    schedulling: {
+        cities: {
+            paulista: 'Paulista',
+            olinda: 'Olinda',
+            recife: 'Recife',
+            boaViagem: 'Boa Viagem',
+            abreuELima: 'Abreu e Lima',
+            igarassu: 'Igarassu',
+            itapissuma: 'Itapissuma',
+        }
+    }
 }
