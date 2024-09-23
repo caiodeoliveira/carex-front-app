@@ -25,7 +25,7 @@
             </span>
             <span class="with-margin">
                 <label class="field-label" htmlFor="name-input">Modelo de Agendamento</label>
-                <p-dropdown id="payment-type-dropdown" (onChange)="onChange($event)" [options]="paymentType" [(ngModel)]="paymentTypeSelected" optionLabel="type"></p-dropdown>
+                <p-dropdown id="payment-type-dropdown" (onChange)="onChangePaymentType($event)" [options]="paymentType" [(ngModel)]="paymentTypeSelected" optionLabel="type"></p-dropdown>
             </span>
             <span class="with-margin" *ngIf="paymentTypeSelected.type == 'Convênio'">
                 <label class="field-label" htmlFor="name-input">Informe o Plano de Saúde</label>
@@ -50,7 +50,10 @@
         [advanceModaldisplay]="displayAdvanceModal"
         (onCloseAdvanceModal)="handleAdvanceModal($event)"
         (onConfirmAdvanceModal)="handleAdvanceModal($event)"
-        [isPhysioterapyType]="isAPhysioTerapyType"/>
+        [isPhysioterapyType]="isAPhysioTerapyType"
+        [chosenSchedullingCity]="schedullingCity"
+        [advanceModalSchedullingFee]="schedullingFee"
+        />
         <app-modal-component
         [type]="'success-terapy-scheduled'"
         [successScheduleModalDisplay]="displaySuccessScheduleModal"
