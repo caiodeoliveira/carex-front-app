@@ -85,6 +85,12 @@ export class SchedulingComponent {
   
   displayAdvanceModal: boolean = false;
   displaySuccessScheduleModal: boolean = false;
+  
+  schedullingCity: string;
+
+  citiesList: string[];
+
+  schedullingFee: string;
 
   ngOnInit() {
 
@@ -129,9 +135,19 @@ export class SchedulingComponent {
       { city: 'Paulista', code: '2' },
       { city: 'Olinda', code: '3' },
       { city: 'Recife', code: '4' },
-      { city: 'Abreu e Lima', code: '5' },
-      { city: 'Igarassu', code: '6' },
-      { city: 'Itapissuma', code: '7' },
+      { city: 'Boa Viagem', code: '6' },
+      { city: 'Abreu e Lima', code: '7' },
+      { city: 'Igarassu', code: '8' },
+      { city: 'Itapissuma', code: '9' },
+    ]
+
+    this.citiesList = [
+      `${global.schedulling.cities.paulista}`,
+      `${global.schedulling.cities.olinda}`,
+      `${global.schedulling.cities.recife}`,
+      `${global.schedulling.cities.abreuELima}`,
+      `${global.schedulling.cities.igarassu}`,
+      `${global.schedulling.cities.itapissuma}`,
     ]
   }
 
@@ -199,16 +215,20 @@ export class SchedulingComponent {
 
   goToFinishSchedule() {
     this.displayAdvanceModal = true;
+    this.schedullingCity = this.attendaceCitySelected.city;
   }
 
-  onChange(event: { value: string; }) {
+  onChangePaymentType(event: { value: string; }) {
     Object.values(event.value).forEach((value => {
       this.toggleMyAddressLocationOption(value);
     }))
   }
 
+  // onChangeAttendanceCity(event: any) {
+  //   this.schedullingCity = event.value.city;
+  // }
+
   toggleMyAddressLocationOption(value: string) {
-    console.log('paymentType Selected -> ', this.attendaceLocationSelected)
     if(value == 'Particular') {
       this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '3' });
     }
