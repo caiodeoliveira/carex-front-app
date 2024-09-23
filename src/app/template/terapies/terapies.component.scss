@@ -4,11 +4,11 @@
     justify-items: center;
     background-color: #E5E5E5;
 
-    h1 {
+    .first-header, .second-header {
         font-size: 5.5rem;
         color: #555454;
         text-align: center;
-        margin-top: 10rem;
+        margin: 2rem 0 4rem 0;
     }
 
     h2 {
@@ -21,6 +21,7 @@
         width: 90%;
         display: flex;
         justify-content: space-around;
+        margin-bottom: 3rem;
 
         .terapies-grid-container {
             display: grid;
