@@ -14,10 +14,11 @@ import { TerapiesModule } from './template/terapies/terapies.module';
 import { ModalModule } from './components/modal/modal.module';
 import { DataTableModule } from './components/data-table/data-table.module';
 import { ProgrammingsModule } from './template/programmings/programmings.module';
+import { HomeModule } from './template/home/home.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +33,7 @@ import { ProgrammingsModule } from './template/programmings/programmings.module'
     SchedulingModule,
     ProgrammingsModule,
     DataTableModule,
+    HomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
