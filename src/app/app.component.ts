@@ -192,23 +192,15 @@ export class AppComponent{
   
   showSchedullingPage($event: boolean) {
     this.displaySchedullingPage = $event;
-    this.scrollToSchedullingPage();
+    this.scrollToPage('schedulling');
   }
 
   hideSchedullingPage($event: boolean) {
-    const element = document.getElementById('terapies');
-    element?.scrollIntoView({ behavior: 'smooth'});
+    this.scrollToPage('terapies');
 
     setTimeout(() => {
       this.displaySchedullingPage = $event;
       }, 800)
-  }
-  
-  scrollToSchedullingPage() {
-    setTimeout(() => {
-    const element = document.getElementById('schedulling');
-    element?.scrollIntoView({ behavior: 'smooth'});
-    }, 300)
   }
 
   hideModal() {
@@ -230,6 +222,25 @@ export class AppComponent{
     if($event == "physioterapy") {
       this.isTerapySelectedPhysioterapyType = true;
     }
+  }
+
+  scrollToPage(page: string) {
+    if(page == 'schedulling') {
+      setTimeout(() => {
+        const element = document.getElementById(page);
+        element?.scrollIntoView({ behavior: 'smooth'});
+        }, 300)
+    }
+    if(page == 'terapies') {
+      const element = document.getElementById(page);
+      element?.scrollIntoView({ behavior: 'smooth'});
+    }
+
+    if(page == 'about') {
+      const element = document.getElementById(page);
+      element?.scrollIntoView({ behavior: 'smooth'});
+    }
+
   }
 
 }

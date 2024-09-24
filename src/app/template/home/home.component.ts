@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  @Output() onClickToScroll: EventEmitter<string> = new EventEmitter();
+
+
+  onClickGoToTerapies() {
+    this.onClickToScroll.emit('terapies');
+  }
+
+  onClickTalkToTeraphist() {
+    this.onClickToScroll.emit('about');
+  }
 
 }

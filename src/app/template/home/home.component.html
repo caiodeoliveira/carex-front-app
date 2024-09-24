@@ -33,8 +33,8 @@
         </div>
 
         <div class="home-actions-container">
-            <app-button-component [buttonType]="'confirmButton'" buttonLabel="Falar com a Terapeuta"/>
-            <app-button-component [buttonType]="'confirmButton'" buttonLabel="Conheça nossas terapias"/>
+            <app-button-component (click)="onClickTalkToTeraphist()" [buttonType]="'confirmButton'" buttonLabel="Falar com a Terapeuta"/>
+            <app-button-component (click)="onClickGoToTerapies()" [buttonType]="'confirmButton'" buttonLabel="Conheça nossas terapias"/>
         </div>
     </div>
 </div>

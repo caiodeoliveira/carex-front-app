@@ -1,6 +1,6 @@
-<app-home/>
+<app-home (onClickToScroll)="scrollToPage($event)"/>
 <app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)" (onSetTerapyType)="setTerapyType($event)" />
-<app-about/>
+<app-about id="about"/>
 <app-scheduling
 id="schedulling"
 (onClickBack)="hideSchedullingPage($event)"
