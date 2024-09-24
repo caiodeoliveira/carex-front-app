@@ -20,7 +20,7 @@
             background-color: black;
             margin: 0 auto;
             width: 143rem;
-            height: 24rem;
+            height: 29rem;
             border-radius: 15px;
             padding: 0 2rem;
 
@@ -60,6 +60,12 @@
                     }
                 }
 
+            }
+
+            .home-actions-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
             }
             
         }
