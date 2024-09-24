@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 interface Programmings {
@@ -126,13 +126,7 @@ export class AppComponent{
 
   isTerapySelectedPhysioterapyType: boolean;
   
-  constructor(private responsive: BreakpointObserver, private elementRef: ElementRef) {};
-  
-
-smothScroll() {
-  const elementToExecuteScroll = this.elementRef.nativeElement.querySelector('schedulling');
-  elementToExecuteScroll.scrollIntoView({behavior : 'smooth'})
-}
+  constructor(private responsive: BreakpointObserver) {};
 
   ngOnInit() {
 
