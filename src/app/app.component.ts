@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { DataService } from './services/services/data.service';
 
 interface Programmings {
   status: string,
@@ -21,28 +22,7 @@ export class AppComponent{
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
-  medicineServices: any[] = [
-    {
-      name: "Ventosaterapia",
-      x_large_img: "/suction_cup_tp_small.png"
-    },
-    {
-      name: "Liberação Miofacial",
-      x_large_img: "/myofacial_release_tp_small.png"
-    },
-    {
-      name: "Acupuntura",
-      x_large_img: "/dry_nedling_tp_small.png"
-    },
-    {
-      name: "Auriculoterapia",
-      x_large_img: "/ear_acupunture_tp_small.png"
-    },
-]
-
   displaySchedullingPage: boolean;
-
-  headers: string[];
 
   programmings: Programmings[] = [
     {
@@ -123,8 +103,6 @@ export class AppComponent{
   
   modalDisplayRule = true;
   displayLoginModal: boolean = false;
-
-  isTerapySelectedPhysioterapyType: boolean;
   
   constructor(private responsive: BreakpointObserver) {};
 
@@ -162,7 +140,6 @@ export class AppComponent{
       }
     })
 
-    this.headers = ['Status', 'Data', 'Hora', 'Cel', 'Pagamento', 'Local'];
   }
   
    getBreakpoints(): string {
@@ -216,12 +193,6 @@ export class AppComponent{
       const element = document.getElementById('programmings');
       element?.scrollIntoView({ behavior: 'smooth'});
     }, 1000)
-  }
-
-  setTerapyType($event: string) {
-    if($event == "physioterapy") {
-      this.isTerapySelectedPhysioterapyType = true;
-    }
   }
 
   scrollToPage(page: string) {

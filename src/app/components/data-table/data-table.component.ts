@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DataTableComponent implements OnInit {
 
-  @Input() tableHeaders: string[];
   @Input() tableData: any[];
 
   paginatorActivator: boolean;

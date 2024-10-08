@@ -1,11 +1,14 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {global} from '../../../global';
+import { DataService } from 'src/app/services/services/data.service';
 @Component({
   selector: 'app-terapies',
   templateUrl: './terapies.component.html',
   styleUrls: ['./terapies.component.scss']
 })
-export class TerapiesComponent {
+export class TerapiesComponent implements OnInit {
+
+  constructor(private dataService: DataService) {}
 
   @Output() onTerapyConfirmed: EventEmitter<boolean> = new EventEmitter();
   @Output() onSetTerapyType: EventEmitter<string> = new EventEmitter();
@@ -17,47 +20,6 @@ export class TerapiesComponent {
 
   isTerapyConfirmed: boolean;
 
-  alternativeTerapiesData: any = [
-    {
-      img: global.terapies.path.alternatives.acupunture,
-      altText: "imagem de uma Auriculoterapia",
-      name: global.terapies.names.acupunture
-    },
-    {
-      img: global.terapies.path.alternatives.earAcupunture,
-      altText: "imagem de uma acupuntura terapia",
-      name: global.terapies.names.earAcupunture
-    },
-    {
-      img: global.terapies.path.alternatives.myofacialRelease,
-      altText: "imagem de uma terapia myofacial",
-      name: global.terapies.names.myofacialRelease
-    },
-    {
-      img: global.terapies.path.alternatives.suctionCup,
-      altText: "imagem de uma ventosaterapia",
-      name: global.terapies.names.suctionCup
-    },
-  ];
-
-  physioTerapiesData: any = [
-    {
-      img: global.terapies.path.pelvicPhysioterapy,
-      altText: "imagem de uma Fiosioterapia Pélvica",
-      name: global.terapies.names.pelvicPhysioterapy
-    },
-    {
-      img: global.terapies.path.obstetricPhysioterapy,
-      altText: "imagem de uma Fisioterapia Obstétrica",
-      name: global.terapies.names.obstetricPhysioterapy
-    },
-    {
-      img: global.terapies.path.doulage,
-      altText: "imagem de uma Doulagem",
-      name: global.terapies.names.doulage
-    },
-  ]
-
   modalType: string = "terapy-choose"
 
   imageToShowOnModalOpen: string;
@@ -65,10 +27,18 @@ export class TerapiesComponent {
   terapyName: string;
   terapyDescription: string;
 
-  showModalAndGetImage(imageToShow: string) {
+  alternativeTerapiesData$: any[] = [];
+  physioterapyTerapiesData$: any[] = [];
+
+
+  ngOnInit(): void {
+    this.getAllTerapiesData();
+  }
+
+  showModalAndGetImage(imageToShow: string, description: string, name: string) {
     this.displayModal = true;
     this.imageToShowOnModalOpen = imageToShow;
-    this.checkModalImageByTerapy(imageToShow);
+    this.checkModalImageByTerapy(name, description);
   }
 
   hideModal() {
@@ -79,45 +49,51 @@ export class TerapiesComponent {
     this.isTerapyConfirmed = $event;
     this.onTerapyConfirmed.emit(true);
 
-    const isPelvicPhysioterapy = global.terapies.path.pelvicPhysioterapy;
-    const obstetricPhysioterapy = global.terapies.path.obstetricPhysioterapy;
-    const doulagePhysioterapy = global.terapies.path.doulage;
-    if(this.imageToShowOnModalOpen == isPelvicPhysioterapy || this.imageToShowOnModalOpen == obstetricPhysioterapy || this.imageToShowOnModalOpen == doulagePhysioterapy) {
-      this.onSetTerapyType.emit("physioterapy");
-    }
-    else {
-      this.onSetTerapyType.emit("alternative");
-    }
+    const alternativeTerapyImages: string[] = [];
+
+    this.dataService.getAllTerapies().subscribe(terapies => {
+      terapies.forEach((terapy: any) => {
+        if(terapy.alternative) {
+          alternativeTerapyImages.push(terapy.image);
+        }
+      })
+    })
+
+    alternativeTerapyImages.forEach((altImage: string) => {
+      if(this.imageToShowOnModalOpen == altImage) {
+        this.onSetTerapyType.emit("alternative");
+      }
+      else {
+        this.onSetTerapyType.emit("physioterapy");
+      }
+    })
   }
 
-  checkModalImageByTerapy(terapyImage: string) {
-    if(terapyImage.includes('dry_nedling_tp_small')) {
-      this.terapyName = global.terapies.names.acupunture;
-      this.terapyDescription = global.terapies.modal.description.alternatives.acunputure;
-    }
-    if(terapyImage.includes('ear_acupunture_tp_small')) {
-      this.terapyName = global.terapies.names.earAcupunture;
-      this.terapyDescription = global.terapies.modal.description.alternatives.earAcupunture;
-    }
-    if(terapyImage.includes('myofacial_release_tp_small')) {
-      this.terapyName = global.terapies.names.myofacialRelease;
-      this.terapyDescription = global.terapies.modal.description.alternatives.myofacialRelease;
-    }
-    if(terapyImage.includes('suction_cup_tp_small')) {
-      this.terapyName = global.terapies.names.suctionCup;
-      this.terapyDescription = global.terapies.modal.description.alternatives.suctionCup;
-    }
-    if(terapyImage.includes('pelvic_physioterapy')) {
-      this.terapyName = global.terapies.names.pelvicPhysioterapy;
-      this.terapyDescription = global.terapies.modal.description.pelvicPhysioterapy;
-    }
-    if(terapyImage.includes('obstetric_physioterapy')) {
-      this.terapyName = global.terapies.names.obstetricPhysioterapy;
-      this.terapyDescription = global.terapies.modal.description.obstetricPhysioterapy;
-    }
-    if(terapyImage.includes('doulage')) {
-      this.terapyName = global.terapies.names.doulage;
-      this.terapyDescription = global.terapies.modal.description.doulage;
-    }
+  checkModalImageByTerapy(terapyName: string, terapyDescription: string) {
+    this.dataService.getAllTerapyNames().subscribe(name => {
+
+      this.terapyName = name.find((n: any) => n == terapyName);
+    })
+
+    this.dataService.getAllTerapyDescriptions().subscribe(description => {
+      this.terapyDescription = description.find((d: any) => d == terapyDescription);
+    })
+
+  }
+
+  getAllTerapiesData() {
+    this.dataService.getAllTerapies().subscribe(response => {
+
+      
+      response.forEach((obj: any) => {
+        
+        if(obj.alternative) {
+          this.alternativeTerapiesData$.push(obj);
+        }
+        else {
+          this.physioterapyTerapiesData$.push(obj);
+        }
+      })
+    });
   }
 }

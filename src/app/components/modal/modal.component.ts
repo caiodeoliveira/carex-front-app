@@ -19,7 +19,6 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() loginModalDisplay: boolean = true;
   @Input() type: string;
   @Input() terapyModalImage: string;
-  @Input() isPhysioterapyType: boolean;
   @Input() modalTerapyName: string;
   @Input() modalTerapyDescription: string;
   @Input() chosenSchedullingCity: string;
@@ -73,7 +72,7 @@ export class ModalComponent implements OnInit, OnChanges {
       },
     ]
 
-    this.checkTerapyType();
+    this.setAdvanceModalDescription();
     this.schedullingCity = this.chosenSchedullingCity;
   }
 
@@ -131,44 +130,39 @@ export class ModalComponent implements OnInit, OnChanges {
     this.onSignIn.emit(true);
   }
 
-  checkTerapyType() {
-    if(this.isPhysioterapyType) {
+  setAdvanceModalDescription() {
       this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`
-    }
-    else {
-      this.advanceDescription = "Marque na agenda o seu compromisso conosco 😄"
-    }
   }
 
   matchCitySelectedWithSchedullingFee(citySelected: string) {
     switch(citySelected) {
       case 'Paulista':
         this.advanceModalSchedullingFee = '36';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
       case 'Olinda':
         this.advanceModalSchedullingFee = '52';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
       case 'Recife':
         this.advanceModalSchedullingFee = '72';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
       case 'Boa Viagem':
         this.advanceModalSchedullingFee = '72';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
       case 'Abreu e Lima':
         this.advanceModalSchedullingFee = '52';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
       case 'Igarassu':
         this.advanceModalSchedullingFee = '52';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
       case 'Itapissuma':
         this.advanceModalSchedullingFee = '72';
-        this.checkTerapyType();
+        this.setAdvanceModalDescription();
         break;
 
         default: "12345";

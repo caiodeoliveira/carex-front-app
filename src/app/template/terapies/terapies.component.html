@@ -2,20 +2,21 @@
     <h1 class="first-header">{{headerOne}}</h1>
 
     <section class="terapies-container">
-        <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData;">
-            <span class="terapies-grid-data">
-                <img class="terapy-image" (click)="showModalAndGetImage(terapy.img)" src="{{terapy.img}}" alt="{{terapy.altText}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+        <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData$;">
+            <span *ngIf="terapy.alternative" class="terapies-grid-data">
+                <img class="terapy-image" (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)" src="{{terapy.image}}" alt="{{terapy.description}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
                 <h2>{{terapy.name}}</h2>
             </span>
         </div>
     </section>
 
     <h1 class="second-header">{{headerTwo}}</h1>
-    <section class="terapies-container">
-        <div class="terapies-grid-container" *ngFor="let terapy of physioTerapiesData;">
 
-            <span class="terapies-grid-data">
-                <img class="terapy-image" (click)="showModalAndGetImage(terapy.img)" src="{{terapy.img}}" alt="{{terapy.altText}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+    <section class="terapies-container">
+        <div class="terapies-grid-container" *ngFor="let terapy of physioterapyTerapiesData$;">
+
+            <span *ngIf="!terapy.alternative" class="terapies-grid-data">
+                <img class="terapy-image" (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)" src="{{terapy.image}}" alt="{{terapy.description}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
                 <h2>{{terapy.name}}</h2>
             </span>
         </div>

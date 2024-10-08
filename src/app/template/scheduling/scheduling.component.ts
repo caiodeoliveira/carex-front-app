@@ -51,8 +51,6 @@ interface city {
 })
 export class SchedulingComponent {
 
-  @Input() isAPhysioTerapyType: boolean;
-
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
   

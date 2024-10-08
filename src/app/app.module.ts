@@ -2,6 +2,7 @@ import { SchedulingModule } from './template/scheduling/scheduling.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { ModalModule } from './components/modal/modal.module';
 import { DataTableModule } from './components/data-table/data-table.module';
 import { ProgrammingsModule } from './template/programmings/programmings.module';
 import { HomeModule } from './template/home/home.module';
+
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { HomeModule } from './template/home/home.module';
     ProgrammingsModule,
     DataTableModule,
     HomeModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

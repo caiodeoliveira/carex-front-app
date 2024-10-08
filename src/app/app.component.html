@@ -1,16 +1,14 @@
 <app-home (onClickToScroll)="scrollToPage($event)"/>
-<app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)" (onSetTerapyType)="setTerapyType($event)" />
+<app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)" />
 <app-about id="about"/>
 <app-scheduling
 id="schedulling"
 (onClickBack)="hideSchedullingPage($event)"
 (onFinishSchedule)="hideSchedullingPage($event)"
-[isAPhysioTerapyType]="isTerapySelectedPhysioterapyType"
 *ngIf="displaySchedullingPage"
 />
 <app-programmings
 id="programmings"
-[tableDataHeaders]="headers"
 [tableDataBody]="programmings"
 *ngIf="displayProgrammingsPage"
 />

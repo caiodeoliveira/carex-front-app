@@ -7,7 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProgrammingsComponent implements OnInit{
 
-  @Input() tableDataHeaders: string[];
   @Input() tableDataBody: any[];
 
 
