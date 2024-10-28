@@ -14,7 +14,7 @@ export class SchedulingComponent {
 
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
-  @Output() onCloseAndBackHome: EventEmitter<boolean> = new EventEmitter();
+  @Output() onCloseAndBackHome: EventEmitter<string> = new EventEmitter();
   
 
   headerOne: string = global.terapies.headers.alternativeTerapies;
@@ -202,10 +202,6 @@ export class SchedulingComponent {
 
       this.displayAdvanceModal = true;
       this.schedullingCity = this.attendanceCitySelected?.city;
-
-      console.log('advance Modal State -> ', this.displayAdvanceModal);
-      console.log('sucess Modal State -> ', this.displaySuccessScheduleModal);
-
   }
 
   onChangePaymentType(event: { value: string; }) {
@@ -262,10 +258,9 @@ export class SchedulingComponent {
 
   setAttendanceCity(cityData: string) {
     this.schedullingCity = cityData;
-    // console.log('cityData -> ', cityData);
   }
 
-  closeModalAndBackHome(event: boolean) {
+  closeSucessModalAndBackHome(event: string) {
     this.onCloseAndBackHome.emit(event);
   }
 

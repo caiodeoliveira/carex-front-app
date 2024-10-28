@@ -155,7 +155,9 @@
         <app-modal-component
             [type]="'success-terapy-scheduled'"
             [successScheduleModalDisplay]="displaySuccessScheduleModal"
-            (onClose)="hideFinishScheduleModal()"/>
+            (onClose)="hideFinishScheduleModal()"
+            (onCloseAndBackToHome)="closeSucessModalAndBackHome($event)"
+            />
 
             <footer class="buttons-container">
                 <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>

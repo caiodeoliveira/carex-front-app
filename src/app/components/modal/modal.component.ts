@@ -28,7 +28,7 @@ export class ModalComponent implements OnInit, OnChanges {
   @Output() onCloseAdvanceModal: EventEmitter<boolean> = new EventEmitter();
   @Output() onConfirmAdvanceModal: EventEmitter<boolean> = new EventEmitter();
   @Output() onCloseSuccessModal: EventEmitter<boolean> = new EventEmitter();
-  @Output() onCloseAndBackToHome: EventEmitter<boolean> = new EventEmitter();
+  @Output() onCloseAndBackToHome: EventEmitter<string> = new EventEmitter();
   
   paymentTypeList: Payment[];
   paymentTypeSelected: Payment;
@@ -97,7 +97,6 @@ export class ModalComponent implements OnInit, OnChanges {
 
   closeSuccessSchedullingModal() {
     this.successScheduleModalDisplay = false;
-    this.onClose.emit();
     }
 
   closeLoginModal() {
@@ -120,7 +119,9 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   closeAndBackToHome() {
-    this.onCloseAndBackToHome.emit(true);
+    this.successScheduleModalDisplay = false;
+    this.onClose.emit();
+    this.onCloseAndBackToHome.emit('home');
   }
 
   confirmLoginPassword() {
