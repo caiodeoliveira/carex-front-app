@@ -1,15 +1,6 @@
 import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import { DataService } from './services/services/data.service';
-
-interface Programmings {
-  status: string,
-  name: string,
-  date: Date,
-  phone: string,
-  paymentType: string,
-  location: string
-}
+import { Programmings } from './models/programmings';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +13,7 @@ export class AppComponent{
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
-  displaySchedullingPage: boolean;
+  displaySchedullingPage: boolean = true;
 
   programmings: Programmings[] = [
     {

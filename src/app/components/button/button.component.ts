@@ -11,6 +11,8 @@ export class ButtonComponent {
 @Input() buttonType: string;
 @Input() buttonLabel: string;
 @Input() undoActionButtonActive: boolean;
+@Input() isSubmitButtonDisabled: boolean = false;
+
 
 backIcon = faChevronLeft;
 nextIcon = faChevronRight

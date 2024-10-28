@@ -1,10 +1,7 @@
 import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { Payment } from 'src/app/models/form';
 
-interface PaymentType {
-  type: string;
-  code: string;
-}
 
 @Component({
   selector: 'app-modal-component',
@@ -21,8 +18,8 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() terapyModalImage: string;
   @Input() modalTerapyName: string;
   @Input() modalTerapyDescription: string;
-  @Input() chosenSchedullingCity: string;
-  @Input() advanceModalSchedullingFee: string;
+  @Input() chosenSchedullingCity: string | undefined;
+  @Input() advanceModalSchedullingFee: string = ""
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -32,8 +29,8 @@ export class ModalComponent implements OnInit, OnChanges {
   @Output() onConfirmAdvanceModal: EventEmitter<boolean> = new EventEmitter();
   @Output() onCloseSuccessModal: EventEmitter<boolean> = new EventEmitter();
   
-  paymentTypeList: PaymentType[];
-  paymentTypeSelected: PaymentType;
+  paymentTypeList: Payment[];
+  paymentTypeSelected: Payment;
   
   paymentTypeSelectedToShow: string = "PIX"
 
@@ -48,9 +45,13 @@ export class ModalComponent implements OnInit, OnChanges {
 
   alertIcon = faExclamation;
 
-  schedullingCity: string;
+  schedullingCity: string | undefined;
 
   schedullingFee: string;
+
+  showPaymentOptions: boolean;
+
+  advanceModalHeader: string;
 
   ngOnInit(): void {
     this.paymentTypeList = [
@@ -110,7 +111,7 @@ export class ModalComponent implements OnInit, OnChanges {
 
   confirmTerapyScheduling() {
     this.onConfirmAdvanceModal.emit(true);
-    this.successScheduleModalDisplay = false;
+    this.successScheduleModalDisplay = true;
   }
 
   onFinishScheduleModal() {
@@ -131,7 +132,15 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   setAdvanceModalDescription() {
-      this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`
+    if(!typeof this.advanceModalSchedullingFee == undefined) {
+      this.advanceModalHeader = 'Adiantamento'
+      this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`;
+    }
+    else {
+      this.advanceModalHeader = 'Estamos quase lá...'
+      this.advanceDescription = 'Atenção, o cancelamento / adiamento da consulta só poderá ser efetuada com no mínimo 24 horas de antecedência.';
+      this.showPaymentOptions = false;
+    }
   }
 
   matchCitySelectedWithSchedullingFee(citySelected: string) {
@@ -165,7 +174,7 @@ export class ModalComponent implements OnInit, OnChanges {
         this.setAdvanceModalDescription();
         break;
 
-        default: "12345";
+        default: this.advanceModalSchedullingFee = "0";
     }
   }
   // TODO: Dar um jeito de ao disparar o método goToFinishSchedule do componente schedulling, executar a função matchCitySelected para verificar a variável com o valor da cidade e jogar no template.

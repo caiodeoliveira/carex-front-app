@@ -1,55 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {global} from '../../../global';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
-
-interface Hour {
-  value: string;
-  code: string;
-}
-
-interface Gender {
-  gender: string;
-  code: string;
-}
-
-interface Payment {
-  type: string;
-  code: string;
-}
-
-interface Location {
-  location: string;
-  code: string;
-}
-
-interface Insurance {
-  insurance: string;
-  code: string;
-}
-interface city {
-  city: string;
-  code: string;
-}
+import { PrimeNGConfig } from 'primeng/api';
+import { Hour, Gender, Payment, Location, Insurance, city } from 'src/app/models/form';
 
 @Component({
   selector: 'app-scheduling',
   templateUrl: './scheduling.component.html',
   styleUrls: ['./scheduling.component.scss'],
-  animations: [
-    trigger('easeDisplay', [
-      state('void', style({
-        opacity: 0
-      })),
-      transition(':enter', [
-        animate('2.2s', style({
-          opacity: 1
-        })),
-      ]),
-    ]),
-  ]
 })
 export class SchedulingComponent {
+
+  constructor(private primengConfig: PrimeNGConfig) {}
 
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
@@ -63,32 +24,40 @@ export class SchedulingComponent {
   phoneInputValue: string;
   addressInputValue: string;
 
+  attendanceDate: Date;
   availableHours: Hour[];
   selectedHour: Hour;
   
   genderList: Gender[];
   selectedGender: Gender;
 
-  paymentType: Payment[];
+  paymentTypeList: Payment[];
   paymentTypeSelected: Payment;
 
   attendanceLocationList: Location[];
-  attendaceLocationSelected: Location;
+  attendanceLocationSelected: Location | undefined;
 
   insuranceList: Insurance[];
-  InsuranceSelected: Insurance;
+  InsuranceSelected: Insurance | undefined;
 
   attendanceCityList: city[];
-  attendaceCitySelected: city;
+  attendanceCitySelected: city | undefined;
   
   displayAdvanceModal: boolean = false;
   displaySuccessScheduleModal: boolean = false;
   
-  schedullingCity: string;
+  schedullingCity: string | undefined;
 
   citiesList: string[];
 
   schedullingFee: string;
+
+  pt: any;
+
+  isInsuranceAsPayment: boolean;
+
+
+  isMyLocationSelected: boolean = false;
 
   ngOnInit() {
 
@@ -103,40 +72,35 @@ export class SchedulingComponent {
   ];
 
     this.genderList = [
-      { gender: 'Escolha uma opção', code: '1' },
-      { gender: 'Masculino', code: '2' },
-      { gender: 'Feminino', code: '3' },
-      { gender: 'Prefiro não informar', code: '4' },
+      { gender: 'Masculino', code: '1' },
+      { gender: 'Feminino', code: '2' },
+      { gender: 'Prefiro não informar', code: '3' },
     ];
 
-    this.paymentType = [
-      { type: 'Escolha uma opção', code: '1' },
-      { type: 'Convênio', code: '2' },
-      { type: 'Particular', code: '3' },
+    this.paymentTypeList = [
+      { type: 'Convênio', code: '1' },
+      { type: 'Particular', code: '2' },
     ];
 
     this.insuranceList = [
-      { insurance: 'Escolha uma opção', code: '1' },
-      { insurance: 'Bradesco Top Nacional Quarto', code: '2' },
-      { insurance: 'Sulamérica Nacional', code: '3' },
-      { insurance: 'Unimed Regional', code: '4' },
-      { insurance: 'Hapvida Express', code: '5' },
+      { insurance: 'Bradesco Top Nacional Quarto', code: '1' },
+      { insurance: 'Sulamérica Nacional', code: '2' },
+      { insurance: 'Unimed Regional', code: '3' },
+      { insurance: 'Hapvida Express', code: '4' },
     ];
 
     this.attendanceLocationList = [
-      { location: 'Escolha uma opção', code: '1' },
-      { location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '2' },
+      { location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '1' },
     ];
 
     this.attendanceCityList = [
-      { city: 'Escolha uma Opção', code: '1' },
-      { city: 'Paulista', code: '2' },
-      { city: 'Olinda', code: '3' },
-      { city: 'Recife', code: '4' },
-      { city: 'Boa Viagem', code: '6' },
-      { city: 'Abreu e Lima', code: '7' },
-      { city: 'Igarassu', code: '8' },
-      { city: 'Itapissuma', code: '9' },
+      { city: 'Paulista', code: '1' },
+      { city: 'Olinda', code: '2' },
+      { city: 'Recife', code: '3' },
+      { city: 'Boa Viagem', code: '4' },
+      { city: 'Abreu e Lima', code: '5' },
+      { city: 'Igarassu', code: '6' },
+      { city: 'Itapissuma', code: '7' },
     ]
 
     this.citiesList = [
@@ -147,6 +111,20 @@ export class SchedulingComponent {
       `${global.schedulling.cities.igarassu}`,
       `${global.schedulling.cities.itapissuma}`,
     ]
+
+    this.pt = {
+
+      firstDayOfWeek: 0,
+      dayNames: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
+      dayNamesShort: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+      dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
+      monthNames: [ "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" ],
+      monthNamesShort: [ "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez" ],
+      today: 'Hoje',
+      clear: 'Limpar'
+    };
+
+    this.primengConfig.setTranslation(this.pt);
   }
 
   alternativeTerapiesData: any = [
@@ -211,34 +189,74 @@ export class SchedulingComponent {
     this.onClickBack.emit(false);
   }
 
-  goToFinishSchedule() {
-    this.displayAdvanceModal = true;
-    this.schedullingCity = this.attendaceCitySelected.city;
+  goToFinishSchedule(formGroup: any) {
+
+    this.validateForm(formGroup);
+
+    if(!typeof formGroup.form.value.city == undefined) {
+      this.setAttendanceCity(formGroup.form.value.city.city);
+    }
+
+      this.displayAdvanceModal = true;
+      this.schedullingCity = this.attendanceCitySelected?.city;
+
   }
 
   onChangePaymentType(event: { value: string; }) {
+
     Object.values(event.value).forEach((value => {
       this.toggleMyAddressLocationOption(value);
     }))
-  }
 
-  // onChangeAttendanceCity(event: any) {
-  //   this.schedullingCity = event.value.city;
-  // }
+    if(this.paymentTypeSelected.type == 'Convênio') {
+      this.isInsuranceAsPayment = true;
+      this.attendanceLocationSelected = undefined;
+      this.addressInputValue = '';
+      this.attendanceCitySelected = undefined;
+
+      this.isMyLocationSelected = false;
+    }
+    if(this.paymentTypeSelected.type == 'Particular') {
+      this.InsuranceSelected = undefined;
+      this.attendanceLocationSelected = undefined;
+
+      this.isInsuranceAsPayment = false;
+    }
+  }
 
   toggleMyAddressLocationOption(value: string) {
     if(value == 'Particular') {
-      this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '3' });
+      this.attendanceLocationList.pop();
+      this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '1' });
     }
     if(value == "Convênio") {
-      this.attendaceLocationSelected = { location: 'Escolha uma opção', code: '1' };
-      this.attendaceCitySelected = { city: 'Escolha uma Opção', code: '1' };
-      this.attendanceLocationList.forEach((option => {
-        if(option.code == '3') {
-          this.attendanceLocationList.pop();
-        }
-      }))
+      this.attendanceLocationSelected = undefined;
+      this.attendanceLocationList.pop();
+      this.attendanceLocationList.push({ location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '1' });
     }
+  }
+
+  validateForm(formGroup: any): boolean {
+    if(formGroup.form.status == 'VALID') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  logForm(formGroup: any) {
+    console.log('formGroup Stats -> ', formGroup.form)
+  }
+
+  changeAttendanceLocation() {
+    if(this.attendanceLocationSelected?.location == 'No endereço de minha preferência')
+    this.isMyLocationSelected = true;
+  }
+
+  setAttendanceCity(cityData: string) {
+    this.schedullingCity = cityData;
+    // console.log('cityData -> ', cityData);
   }
 
 }
