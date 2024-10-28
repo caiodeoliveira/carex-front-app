@@ -14,7 +14,9 @@ export class SchedulingComponent {
 
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
+  @Output() onCloseAndBackHome: EventEmitter<boolean> = new EventEmitter();
   
+
   headerOne: string = global.terapies.headers.alternativeTerapies;
   headerTwo: string = global.terapies.headers.physioteraphyTerapies;
 
@@ -187,6 +189,7 @@ export class SchedulingComponent {
 
   onClickBackButton() {
     this.onClickBack.emit(false);
+    this.displayAdvanceModal = false;
   }
 
   goToFinishSchedule(formGroup: any) {
@@ -199,6 +202,9 @@ export class SchedulingComponent {
 
       this.displayAdvanceModal = true;
       this.schedullingCity = this.attendanceCitySelected?.city;
+
+      console.log('advance Modal State -> ', this.displayAdvanceModal);
+      console.log('sucess Modal State -> ', this.displaySuccessScheduleModal);
 
   }
 
@@ -257,6 +263,10 @@ export class SchedulingComponent {
   setAttendanceCity(cityData: string) {
     this.schedullingCity = cityData;
     // console.log('cityData -> ', cityData);
+  }
+
+  closeModalAndBackHome(event: boolean) {
+    this.onCloseAndBackHome.emit(event);
   }
 
 }

@@ -28,6 +28,7 @@ export class ModalComponent implements OnInit, OnChanges {
   @Output() onCloseAdvanceModal: EventEmitter<boolean> = new EventEmitter();
   @Output() onConfirmAdvanceModal: EventEmitter<boolean> = new EventEmitter();
   @Output() onCloseSuccessModal: EventEmitter<boolean> = new EventEmitter();
+  @Output() onCloseAndBackToHome: EventEmitter<boolean> = new EventEmitter();
   
   paymentTypeList: Payment[];
   paymentTypeSelected: Payment;
@@ -78,8 +79,8 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['chosenSchedullingCity'].currentValue) {
-      // console.log('chosenCity Has value -> ', changes['chosenSchedullingCity'].currentValue);
+
+    if(!typeof this.chosenSchedullingCity == undefined) {
       this.matchCitySelectedWithSchedullingFee(changes['chosenSchedullingCity'].currentValue);
     }
   }
@@ -116,6 +117,10 @@ export class ModalComponent implements OnInit, OnChanges {
 
   onFinishScheduleModal() {
     this.onFinishTerapy.emit(false);
+  }
+
+  closeAndBackToHome() {
+    this.onCloseAndBackToHome.emit(true);
   }
 
   confirmLoginPassword() {

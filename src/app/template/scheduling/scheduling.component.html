@@ -159,7 +159,7 @@
 
             <footer class="buttons-container">
                 <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
-                <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
+                <app-button-component [isSubmitButtonDisabled]="false" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
             </footer>
         </form>
 

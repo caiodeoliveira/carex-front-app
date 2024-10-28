@@ -26,7 +26,7 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [styleClass]="type == 'advance-payment' && showPaymentOptions ? 'advance-payment-modal' : 'advance-payment-modal-with-no-fee'" *ngIf="type == 'advance-payment'" [header]="advanceModalHeader" [(visible)]="advanceModaldisplay" (onHide)="closeAdvanceModal()">
+<p-dialog [styleClass]="type == 'advance-payment' && showPaymentOptions ? 'advance-payment-modal' : 'advance-payment-modal-with-no-fee'" [header]="advanceModalHeader" [(visible)]="advanceModaldisplay" (onHide)="closeAdvanceModal()">
 
     <div class="advance-payment-text-container">
         <p class="advance-description">{{advanceDescription}}</p>
@@ -69,8 +69,8 @@
     </div>
     
     <ng-template pTemplate="footer">
-        <app-button-component (click)="closeSuccessSchedullingModal()" buttonType="back-to-initial-page-button" buttonLabel="Voltar para a página inicial"/>
-        <app-button-component (click)="confirmTerapy()" (click)="onFinishScheduleModal()" buttonType="go-to-shedule-page-button" buttonLabel="Voltar ao início"/>
+        <app-button-component (click)="closeSuccessSchedullingModal()" buttonType="back-to-initial-page-button" buttonLabel="Voltar ao Início"/>
+        <app-button-component (click)="confirmTerapy()" (click)="closeAndBackToHome()" buttonType="go-to-shedule-page-button" buttonLabel="Fechar"/>
     </ng-template>
 </p-dialog>
 
