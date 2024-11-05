@@ -13,7 +13,7 @@ export class AppComponent{
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
-  displaySchedullingPage: boolean = false;
+  displaySchedullingPage: boolean = true;
 
   programmings: Programmings[] = [
     {
@@ -207,7 +207,5 @@ export class AppComponent{
       const element = document.getElementById(page);
       element?.scrollIntoView({ behavior: 'smooth'});
     }
-
   }
-
 }

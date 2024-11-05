@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {global} from '../../../global';
-import { DataService } from 'src/app/services/services/data.service';
+import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-terapies',
   templateUrl: './terapies.component.html',

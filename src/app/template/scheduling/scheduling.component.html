@@ -24,9 +24,12 @@
                     inputId="schedule-date-input"
                     name="date"
                     dateFormat="dd/mm/yy"
+                    [disabledDates]="unavailableDates"
                     [locale]="pt"
                     placeholder="Escolha uma opção"
                     [(ngModel)]="attendanceDate"
+                    (ngModelChange)="getUnavailableDates()"
+                    (onSelect)="activateAttendanceHourField()"
                     [required]="true">
                 </p-calendar>
             </span>
@@ -38,8 +41,10 @@
                     name="hour"
                     [options]="availableHours"
                     optionLabel="value"
+                    (onShow)="getAndSetAvailableHoursOptions()"
                     [(ngModel)]="selectedHour"
                     [required]="true"
+                    [disabled]="!attendanceIsChosen"
                     placeholder="Escolha uma opção">    
                 </p-dropdown>
             </span>
@@ -51,6 +56,7 @@
                     name="gender"
                     [options]="genderList"
                     optionLabel="gender"
+                    (onShow)="getAndSetGenderOptions()"
                     [(ngModel)]="selectedGender"
                     [required]="true"
                     placeholder="Escolha uma opção">
@@ -76,10 +82,12 @@
                 <p-dropdown
                     id="payment-type-dropdown"
                     name="paymentType"
+                    (onShow)="getAndSetPaymentOptions()"
                     (onChange)="onChangePaymentType($event)"
                     [options]="paymentTypeList"
                     optionLabel="type"
                     [(ngModel)]="paymentTypeSelected"
+                    (ngModelChange)="checkIfHasToGetInsuranceOptions()"
                     placeholder="Escolha uma opção"
                     [required]="true">
                 </p-dropdown>
@@ -92,6 +100,7 @@
                     name="insurance"
                     [options]="insuranceList"
                     optionLabel="insurance"
+                    (onShow)="getAndSetInsuranceOptions()"
                     [(ngModel)]="InsuranceSelected"
                     placeholder="Escolha uma opção"
                     [disabled]="!isInsuranceAsPayment"
@@ -120,6 +129,7 @@
                     name="city"
                     [options]="attendanceCityList"
                     optionLabel="city"
+                    (onShow)="getAndSetAttendanceCityOptions()"
                     [(ngModel)]="attendanceCitySelected"
                     placeholder="Escolha uma opção"
                     [disabled]="!isMyLocationSelected"
@@ -161,7 +171,7 @@
 
             <footer class="buttons-container">
                 <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
-                <app-button-component [isSubmitButtonDisabled]="false" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
+                <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
             </footer>
         </form>
 

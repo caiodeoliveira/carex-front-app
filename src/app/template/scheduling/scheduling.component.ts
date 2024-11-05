@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {global} from '../../../global';
 import { PrimeNGConfig } from 'primeng/api';
 import { Hour, Gender, Payment, Location, Insurance, city } from 'src/app/models/form';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-scheduling',
@@ -10,7 +11,7 @@ import { Hour, Gender, Payment, Location, Insurance, city } from 'src/app/models
 })
 export class SchedulingComponent {
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(private primengConfig: PrimeNGConfig, private dataService: DataService) {}
 
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
@@ -27,7 +28,10 @@ export class SchedulingComponent {
   addressInputValue: string;
 
   attendanceDate: Date;
-  availableHours: Hour[];
+
+  unavailableDates: any[] = [];
+
+  availableHours: Hour[] = [];
   selectedHour: Hour;
   
   genderList: Gender[];
@@ -36,7 +40,7 @@ export class SchedulingComponent {
   paymentTypeList: Payment[];
   paymentTypeSelected: Payment;
 
-  attendanceLocationList: Location[];
+  attendanceLocationList: Location[] = [{ location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '1' }];
   attendanceLocationSelected: Location | undefined;
 
   insuranceList: Insurance[];
@@ -58,61 +62,18 @@ export class SchedulingComponent {
 
   isInsuranceAsPayment: boolean;
 
-
   isMyLocationSelected: boolean = false;
+
+  attendanceIsChosen: boolean = false;
 
   ngOnInit() {
 
-    this.availableHours = [
-      { value: '12:00', code: '1' },
-      { value: '09:45', code: '2' },
-      { value: '10:30', code: '3' },
-      { value: '14:15', code: '4' },
-      { value: '15:22', code: '5' },
-      { value: '16:40', code: '6' },
-      { value: '17:10', code: '7' }
-  ];
-
-    this.genderList = [
-      { gender: 'Masculino', code: '1' },
-      { gender: 'Feminino', code: '2' },
-      { gender: 'Prefiro não informar', code: '3' },
-    ];
-
-    this.paymentTypeList = [
-      { type: 'Convênio', code: '1' },
-      { type: 'Particular', code: '2' },
-    ];
-
-    this.insuranceList = [
-      { insurance: 'Bradesco Top Nacional Quarto', code: '1' },
-      { insurance: 'Sulamérica Nacional', code: '2' },
-      { insurance: 'Unimed Regional', code: '3' },
-      { insurance: 'Hapvida Express', code: '4' },
-    ];
-
-    this.attendanceLocationList = [
-      { location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '1' },
-    ];
-
-    this.attendanceCityList = [
-      { city: 'Paulista', code: '1' },
-      { city: 'Olinda', code: '2' },
-      { city: 'Recife', code: '3' },
-      { city: 'Boa Viagem', code: '4' },
-      { city: 'Abreu e Lima', code: '5' },
-      { city: 'Igarassu', code: '6' },
-      { city: 'Itapissuma', code: '7' },
-    ]
-
-    this.citiesList = [
-      `${global.schedulling.cities.paulista}`,
-      `${global.schedulling.cities.olinda}`,
-      `${global.schedulling.cities.recife}`,
-      `${global.schedulling.cities.abreuELima}`,
-      `${global.schedulling.cities.igarassu}`,
-      `${global.schedulling.cities.itapissuma}`,
-    ]
+    //DONE: Criar método get no service e implementar no back o endpoint para buscar os dados que vão preencher os arrays abaixo somente no onShow ou algo assim dos componentes.
+    //DONE: Implementar ordenação de valores do array availableHours.
+    //DONE  Manter dropdown "escolha um horário enquanto não tiver data selecionada".
+    //TODO 2: Alterar as opções de plano de saúde para as opções reais atendidas.
+    //TODO 3: Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
+    //TODO 4: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
 
     this.pt = {
 
@@ -127,7 +88,86 @@ export class SchedulingComponent {
     };
 
     this.primengConfig.setTranslation(this.pt);
+
+    setTimeout(() => {
+      this.getUnavailableDates();
+    }, 200)
+
   }
+
+  getProfessionalData() {
+    let response: any;
+    this.dataService.getProfessionalData().subscribe(observer => {
+      response = observer;
+      console.log('Professional Data -> ', response);
+    })
+  }
+
+
+  getUnavailableDates() {
+    this.dataService.getAllUnavailableDates().subscribe(obs => {
+
+      obs.forEach((obj:any) => {
+        this.unavailableDates.push(new Date(obj.date))
+      })
+      
+    })
+    this.availableHours = [];
+  }
+
+  getAndSetAvailableHoursOptions() {
+    this.dataService.getUnavailableHoursByDate(this.attendanceDate).subscribe(obs => {
+
+      obs.forEach((obj: any) => {
+      const hasDuplicatedHour = this.availableHours.some((hourObj) => hourObj.value ==  obj.hour)
+        
+        if(!hasDuplicatedHour) {
+          this.availableHours.push({value: obj.hour});
+          this.availableHours.sort((hourA, hourB) => {
+            return hourA.value.localeCompare(hourB.value);
+          })
+        }
+      })
+
+    })
+  }
+
+  getAndSetGenderOptions() {
+    this.genderList = [
+      { gender: 'Masculino', code: '1' },
+      { gender: 'Feminino', code: '2' },
+      { gender: 'Prefiro não informar', code: '3' },
+    ];
+  }
+
+  getAndSetPaymentOptions() {
+    this.paymentTypeList = [
+      { type: 'Convênio', code: '1' },
+      { type: 'Particular', code: '2' },
+    ];
+  }
+
+  getAndSetInsuranceOptions() {
+    this.insuranceList = [
+      { insurance: 'Bradesco Top Nacional Quarto', code: '1' },
+      { insurance: 'Sulamérica Nacional', code: '2' },
+      { insurance: 'Unimed Regional', code: '3' },
+      { insurance: 'Hapvida Express', code: '4' },
+    ];
+  }
+
+  getAndSetAttendanceCityOptions() {
+    this.attendanceCityList = [
+      { city: 'Paulista', code: '1' },
+      { city: 'Olinda', code: '2' },
+      { city: 'Recife', code: '3' },
+      { city: 'Boa Viagem', code: '4' },
+      { city: 'Abreu e Lima', code: '5' },
+      { city: 'Igarassu', code: '6' },
+      { city: 'Itapissuma', code: '7' },
+    ]
+  }
+  
 
   alternativeTerapiesData: any = [
     {
@@ -262,6 +302,22 @@ export class SchedulingComponent {
 
   closeSucessModalAndBackHome(event: string) {
     this.onCloseAndBackHome.emit(event);
+  }
+
+  activateAttendanceHourField() {
+    this.attendanceIsChosen = true;
+  }
+
+  checkIfHasToGetInsuranceOptions() {
+    if(this.paymentTypeSelected.type == 'Convênio') {
+
+    }
+  }
+
+  getInsuranceOptions() {
+    this.dataService.getAllInsuranceOptions().subscribe(obs => {
+      // Terminar a implementação 06/11/2024;
+    })
   }
 
 }

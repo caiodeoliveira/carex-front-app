@@ -1,6 +1,5 @@
 export interface Hour {
         value: string;
-        code: string;
 };
 
 export interface Gender {

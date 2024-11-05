@@ -183,6 +183,4 @@ export class ModalComponent implements OnInit, OnChanges {
         default: this.advanceModalSchedullingFee = "0";
     }
   }
-  // TODO: Dar um jeito de ao disparar o método goToFinishSchedule do componente schedulling, executar a função matchCitySelected para verificar a variável com o valor da cidade e jogar no template.
-
 }

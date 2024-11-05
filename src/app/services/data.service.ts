@@ -20,4 +20,27 @@ export class DataService {
   getAllTerapyDescriptions(): Observable<any> {
     return this.httpClient.get('http://localhost:8080/terapy/descriptions')
   }
+
+  // ProfessionalSchedule:
+
+  getProfessionalData(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/professionalschedule/allschedules`);
+  }
+
+  getAllUnavailableDates(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/professionalschedule/date`)
+  }
+
+  getUnavailableHoursByDate(date: Date): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/professionalschedule/hour/${date}`)
+  }
+
+  // Insurance
+
+  getAllInsuranceOptions(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/insurance/getAll`)
+  }
+
+  
+
 }

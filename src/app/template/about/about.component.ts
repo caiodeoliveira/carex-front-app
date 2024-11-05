@@ -20,8 +20,8 @@ export class AboutComponent implements OnInit{
   }
 
   openWhatsApp() {
-    const phoneNumber = '558186504846'; // Substitua pelo número desejado
-    const message = 'Olá, gostaria de mais informações.'; // Mensagem opcional
+    const phoneNumber = '558186504846';
+    const message = 'Olá, gostaria de mais informações.';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   }
