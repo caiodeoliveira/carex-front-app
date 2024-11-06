@@ -40,7 +40,7 @@ export class SchedulingComponent {
   paymentTypeList: Payment[];
   paymentTypeSelected: Payment;
 
-  attendanceLocationList: Location[] = [{ location: 'Clínica AVP Fisioterapia Especializada (Recife-PE)', code: '1' }];
+  attendanceLocationList: Location[] = [];
   attendanceLocationSelected: Location | undefined;
 
   insuranceList: Insurance[] = [];
@@ -212,6 +212,7 @@ export class SchedulingComponent {
 
       this.isInsuranceAsPayment = false;
     }
+
   }
 
   toggleMyAddressLocationOption(value: string) {
