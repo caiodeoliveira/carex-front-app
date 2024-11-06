@@ -117,6 +117,7 @@
                     (onChange)="changeAttendanceLocation()"
                     placeholder="Escolha uma opção"
                     [(ngModel)]="attendanceLocationSelected"
+                    [disabled]="attendanceLocationList.length == 0"
                     [required]="true">
                 </p-dropdown>
             </span>
