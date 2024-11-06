@@ -40,10 +40,10 @@ export class SchedulingComponent {
   paymentTypeList: Payment[];
   paymentTypeSelected: Payment;
 
-  attendanceLocationList: Location[] = [{ location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '1' }];
+  attendanceLocationList: Location[] = [{ location: 'Clínica AVP Fisioterapia Especializada (Recife-PE)', code: '1' }];
   attendanceLocationSelected: Location | undefined;
 
-  insuranceList: Insurance[];
+  insuranceList: Insurance[] = [];
   InsuranceSelected: Insurance | undefined;
 
   attendanceCityList: city[];
@@ -103,7 +103,6 @@ export class SchedulingComponent {
     })
   }
 
-
   getUnavailableDates() {
     this.dataService.getAllUnavailableDates().subscribe(obs => {
 
@@ -147,15 +146,6 @@ export class SchedulingComponent {
     ];
   }
 
-  getAndSetInsuranceOptions() {
-    this.insuranceList = [
-      { insurance: 'Bradesco Top Nacional Quarto', code: '1' },
-      { insurance: 'Sulamérica Nacional', code: '2' },
-      { insurance: 'Unimed Regional', code: '3' },
-      { insurance: 'Hapvida Express', code: '4' },
-    ];
-  }
-
   getAndSetAttendanceCityOptions() {
     this.attendanceCityList = [
       { city: 'Paulista', code: '1' },
@@ -167,48 +157,6 @@ export class SchedulingComponent {
       { city: 'Itapissuma', code: '7' },
     ]
   }
-  
-
-  alternativeTerapiesData: any = [
-    {
-      img: global.terapies.path.alternatives.acupunture,
-      altText: "imagem de uma Auriculoterapia",
-      name: global.terapies.names.acupunture
-    },
-    {
-      img: global.terapies.path.alternatives.earAcupunture,
-      altText: "imagem de uma acupuntura terapia",
-      name: global.terapies.names.earAcupunture
-    },
-    {
-      img: global.terapies.path.alternatives.myofacialRelease,
-      altText: "imagem de uma terapia myofacial",
-      name: global.terapies.names.myofacialRelease
-    },
-    {
-      img: global.terapies.path.alternatives.suctionCup,
-      altText: "imagem de uma ventosaterapia",
-      name: global.terapies.names.suctionCup
-    },
-  ];
-
-  physioTerapiesData: any = [
-    {
-      img: global.terapies.path.pelvicPhysioterapy,
-      altText: "imagem de uma Fiosioterapia Pélvica",
-      name: global.terapies.names.acupunture
-    },
-    {
-      img: global.terapies.path.obstetricPhysioterapy,
-      altText: "imagem de uma Fisioterapia Obstétrica",
-      name: global.terapies.names.earAcupunture
-    },
-    {
-      img: global.terapies.path.doulage,
-      altText: "imagem de uma Doulagem",
-      name: global.terapies.names.myofacialRelease
-    },
-  ]
 
   handleAdvanceModal($event: boolean) {
     this.displayAdvanceModal = false;
@@ -274,7 +222,7 @@ export class SchedulingComponent {
     if(value == "Convênio") {
       this.attendanceLocationSelected = undefined;
       this.attendanceLocationList.pop();
-      this.attendanceLocationList.push({ location: 'Clínica Care, Rua Patrício Lisboa, número 400. Recife PE', code: '1' });
+      this.attendanceLocationList.push({ location: 'Clínica AVP Fisioterapia Especializada (Recife-PE)', code: '1' });
     }
   }
 
@@ -310,13 +258,17 @@ export class SchedulingComponent {
 
   checkIfHasToGetInsuranceOptions() {
     if(this.paymentTypeSelected.type == 'Convênio') {
-
+      this.getInsuranceOptions();
     }
   }
 
   getInsuranceOptions() {
-    this.dataService.getAllInsuranceOptions().subscribe(obs => {
+    this.dataService.getAllInsuranceOptions().subscribe((obs: any[]) => {
       // Terminar a implementação 06/11/2024;
+      obs.forEach(insuranceObj => {
+        this.insuranceList.push({insurance: insuranceObj.name})
+        console.log('insuranceList after the API Request -> ', this.insuranceList);
+      })
     })
   }
 
