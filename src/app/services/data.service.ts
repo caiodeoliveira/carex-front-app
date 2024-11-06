@@ -38,7 +38,7 @@ export class DataService {
   // Insurance
 
   getAllInsuranceOptions(): Observable<any> {
-    return this.httpClient.get(`http://localhost:8080/insurance/getAll`)
+    return this.httpClient.get(`http://localhost:8080/insurance/allinsurances`)
   }
 
   
