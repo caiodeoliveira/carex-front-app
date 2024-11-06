@@ -19,7 +19,6 @@ export interface Location {
 
 export interface Insurance {
         insurance: string;
-        code: string;
 }
 export interface city {
         city: string;
