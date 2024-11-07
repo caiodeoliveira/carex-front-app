@@ -206,9 +206,10 @@
         justify-content: space-around;
     }
 
-    ::ng-deep .p-tooltip .p-tooltip-text	 {
-        width: 30rem;
-        font-size: 2rem;
-        color: #FFF;
-        }
+}
+
+::ng-deep .p-tooltip .p-tooltip-text {
+    width: 32rem;
+    font-size: 2.2rem;
+    color: #FFF;
 }

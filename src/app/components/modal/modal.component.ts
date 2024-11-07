@@ -20,6 +20,7 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() modalTerapyDescription: string;
   @Input() chosenSchedullingCity: string | undefined;
   @Input() advanceModalSchedullingFee: string = ""
+  @Input() schedullingPaymentType: Payment = {type: "", code: ""};
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -46,8 +47,6 @@ export class ModalComponent implements OnInit, OnChanges {
 
   alertIcon = faExclamation;
 
-  schedullingCity: string | undefined;
-
   schedullingFee: string;
 
   advanceModalHeader: string;
@@ -73,13 +72,12 @@ export class ModalComponent implements OnInit, OnChanges {
     ]
 
     this.setAdvanceModalDescription();
-    this.schedullingCity = this.chosenSchedullingCity;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
 
-    if(!typeof this.chosenSchedullingCity == undefined) {
-      this.matchCitySelectedWithSchedullingFee(changes['chosenSchedullingCity'].currentValue);
+    if(this.advanceModaldisplay) {
+      this.matchCitySelectedWithSchedullingFee(this.chosenSchedullingCity);
     }
   }
 
@@ -136,11 +134,20 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   setAdvanceModalDescription() {
-      this.advanceModalHeader = 'Adiantamento'
-      this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`;
+    switch(this.schedullingPaymentType.type) {
+      case 'Particular':
+        this.advanceModalHeader = 'Adiantamento'
+        this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`;
+      break
+
+      case 'Convênio':
+        this.advanceModalHeader = 'Aviso'
+        this.advanceDescription = 'Antes de concluir o agendamento, por favor, leia o aviso abaixo.';
+      break
+    }
   }
 
-  matchCitySelectedWithSchedullingFee(citySelected: string) {
+  matchCitySelectedWithSchedullingFee(citySelected: string | undefined) {
     switch(citySelected) {
       case 'Paulista':
         this.advanceModalSchedullingFee = '36';
@@ -171,7 +178,9 @@ export class ModalComponent implements OnInit, OnChanges {
         this.setAdvanceModalDescription();
         break;
 
-        default: this.advanceModalSchedullingFee = "0";
+        default:
+        this.advanceModalSchedullingFee = "72";
+        this.setAdvanceModalDescription();
     }
   }
 }

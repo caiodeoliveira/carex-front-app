@@ -5,6 +5,7 @@
         <div class="client-data-container">
 
             <span class="client-data-field-container">
+
                 <label class="field-label" for="name-input">Informe seu Nome</label>
                 <input
                     id="name-input"
@@ -18,6 +19,7 @@
                     />
             </span>
             <span>
+
                 <label class="field-label" for="schedule-date-input">Escolha uma Data</label>
                 <p-calendar
                     id="schedule-date-input"
@@ -34,7 +36,11 @@
                 </p-calendar>
             </span>
            
-            <span>
+            <span
+                [escape]="false"
+                [pTooltip]="!attendanceIsChosen ? 'Campo desabilitado. <b>Escolha uma data</b> para habilitá-lo.' : '' "
+                [tooltipPosition]="'top'">
+
                 <label class="field-label" for="hour-dropdown">Escolha um Horário</label>
                 <p-dropdown
                     id="hour-dropdown"
@@ -50,6 +56,7 @@
             </span>
 
             <span>
+        
                 <label class="field-label" for="gender-dropdown">Informe seu Gênero</label>
                 <p-dropdown
                     id="gender-dropdown"
@@ -64,6 +71,7 @@
             </span>
 
             <span class="with-margin">
+
                 <label class="field-label" for="integeronly">Telephone</label>
                 <p-inputMask
                     id="phone-input"
@@ -78,6 +86,7 @@
             </span>
 
             <span class="with-margin">
+
                 <label class="field-label" for="payment-type-dropdown">Modelo de Agendamento</label>
                 <p-dropdown
                     id="payment-type-dropdown"
@@ -93,7 +102,12 @@
                 </p-dropdown>
             </span>
 
-            <span class="with-margin">
+            <span
+                class="with-margin"
+                [escape]="false"
+                [pTooltip]="!isInsuranceAsPayment ? 'Campo desabilitado. Escolha o modelo de agendamento <b>Convênio</b> para habilitá-lo.' : '' "
+                [tooltipPosition]="'top'">
+
                 <label class="field-label" for="insurance-dropdown">Informe o Plano de Saúde</label>
                 <p-dropdown
                     id="insurance-dropdown"
@@ -107,7 +121,11 @@
                 </p-dropdown>
             </span>
 
-            <span class="with-margin">
+            <span
+                class="with-margin"
+                [escape]="false"
+                [pTooltip]="attendanceLocationList.length == 0 ? 'Campo desabilitado. <b>Escolha um modelo de agendamento</b> para habilitá-lo.' : '' "
+                [tooltipPosition]="'top'">
                 <label class="field-label" for="location-attendance-dropdown">Local de Atendimento</label>
                 <p-dropdown
                     id="location-attendance-dropdown"
@@ -122,7 +140,12 @@
                 </p-dropdown>
             </span>
 
-            <span class="with-margin">
+            <span
+                class="with-margin"
+                [escape]="false"
+                [pTooltip]="!isMyLocationSelected ? 'Campo desabilitado. Escolha o local de atendimento <b>no endereço de minha preferência</b> para habilitá-lo.' : '' "
+                [tooltipPosition]="'top'">
+
                 <label class="field-label" for="name-input">Cidade onde será o atendimento</label>
                 <p-dropdown
                     id="location-attendance-dropdown"
@@ -137,8 +160,13 @@
                 </p-dropdown>
             </span>
 
-            <span class="with-margin">
-                <label class="field-label" htmlFor="name-input">Endereço de atendimento</label>
+            <span
+                class="with-margin"
+                [escape]="false"
+                [pTooltip]="!isMyLocationSelected ? 'Campo desabilitado. Escolha o local de atendimento <b>no endereço de minha preferência</b> para habilitá-lo.' : '' "
+                [tooltipPosition]="'top'">
+
+                <label class="field-label" for="address-input">Endereço de atendimento</label>
                 <input
                 id="address-input"
                 name="address"
@@ -154,24 +182,29 @@
         </div>
 
         <app-modal-component
-            *ngIf="displayAdvanceModal"
             [type]="'advance-payment'"
             [advanceModaldisplay]="displayAdvanceModal"
             (onCloseAdvanceModal)="handleAdvanceModal($event)"
             (onConfirmAdvanceModal)="handleAdvanceModal($event)"
-            [chosenSchedullingCity]="schedullingCity"
+            [chosenSchedullingCity]="attendanceCitySelected?.city"
             [advanceModalSchedullingFee]="schedullingFee"
+            [schedullingPaymentType]="paymentTypeSelected"
         />
         <app-modal-component
             [type]="'success-terapy-scheduled'"
             [successScheduleModalDisplay]="displaySuccessScheduleModal"
             (onClose)="hideFinishScheduleModal()"
             (onCloseAndBackToHome)="closeSucessModalAndBackHome($event)"
-            />
+        />
 
-            <footer class="buttons-container">
+            <footer
+                class="buttons-container" 
+                [escape]="false"
+                [pTooltip]="scheduleForm.form.status == 'INVALID' ? 'Botão desabilitado. Preencha <b>todos os campos habilitados.</b>' : '' "
+                [tooltipPosition]="'top'">
                 <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
-                <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
+                <!-- <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/> -->
+                <app-button-component [isSubmitButtonDisabled]="false" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
             </footer>
         </form>
 

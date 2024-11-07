@@ -4,7 +4,16 @@
     <section class="terapies-container">
         <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData$;">
             <span *ngIf="terapy.alternative" class="terapies-grid-data">
-                <img class="terapy-image" (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)" src="{{terapy.image}}" alt="{{terapy.description}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+                <img
+                    class="terapy-image"
+                    (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)"
+                    src="{{terapy.image}}"
+                    alt="{{terapy.description}}"
+                    pInputText
+                    tooltipStyleClass="terapiesTooltip"
+                    pTooltip="Clique na imagem para mais detalhes e agendamento."
+                    tooltipPosition="top"
+                    placeholder="Right">
                 <h2>{{terapy.name}}</h2>
             </span>
         </div>
@@ -16,17 +25,26 @@
         <div class="terapies-grid-container" *ngFor="let terapy of physioterapyTerapiesData$;">
 
             <span *ngIf="!terapy.alternative" class="terapies-grid-data">
-                <img class="terapy-image" (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)" src="{{terapy.image}}" alt="{{terapy.description}}" pInputText pTooltip="Clique na imagem para mais detalhes e agendamento" tooltipPosition="top" placeholder="Right">
+                <img
+                    class="terapy-image"
+                    (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)"
+                    src="{{terapy.image}}"
+                    alt="{{terapy.description}}"
+                    pInputText
+                    tooltipStyleClass="terapiesTooltip"
+                    pTooltip="Clique na imagem para mais detalhes e agendamento."
+                    tooltipPosition="top"
+                    placeholder="Right">
                 <h2>{{terapy.name}}</h2>
             </span>
         </div>
     </section>
     <app-modal-component
-    [type]="modalType"
-    [terapyModalImage]="imageToShowOnModalOpen"
-    [terapyModalDisplay]="displayModal"
-    [modalTerapyName]="terapyName"
-    [modalTerapyDescription]="terapyDescription"
-    (onClose)="hideModal()"
-    (onConfirmTerapy)="setModalConfirmationData($event)"/>
+        [type]="modalType"
+        [terapyModalImage]="imageToShowOnModalOpen"
+        [terapyModalDisplay]="displayModal"
+        [modalTerapyName]="terapyName"
+        [modalTerapyDescription]="terapyDescription"
+        (onClose)="hideModal()"
+        (onConfirmTerapy)="setModalConfirmationData($event)"/>
 </div>

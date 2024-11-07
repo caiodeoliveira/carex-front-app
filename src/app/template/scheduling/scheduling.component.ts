@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {global} from '../../../global';
 import { PrimeNGConfig } from 'primeng/api';
 import { Hour, Gender, Payment, Location, Insurance, city } from 'src/app/models/form';
@@ -52,8 +52,6 @@ export class SchedulingComponent {
   displayAdvanceModal: boolean = false;
   displaySuccessScheduleModal: boolean = false;
   
-  schedullingCity: string | undefined;
-
   citiesList: string[];
 
   schedullingFee: string;
@@ -71,7 +69,7 @@ export class SchedulingComponent {
     //DONE: Criar método get no service e implementar no back o endpoint para buscar os dados que vão preencher os arrays abaixo somente no onShow ou algo assim dos componentes.
     //DONE: Implementar ordenação de valores do array availableHours.
     //DONE  Manter dropdown "escolha um horário enquanto não tiver data selecionada".
-    //TODO 2: Alterar as opções de plano de saúde para as opções reais atendidas.
+    //DONE  Alterar as opções de plano de saúde para as opções reais atendidas.
     //TODO 3: Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
     //TODO 4: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
 
@@ -184,12 +182,12 @@ export class SchedulingComponent {
 
     this.validateForm(formGroup);
 
-    if(!typeof formGroup.form.value.city == undefined) {
-      this.setAttendanceCity(formGroup.form.value.city.city);
+    if(formGroup.form.value.city) {
+      this.attendanceCitySelected = {city: formGroup.form.value.city.city, code: "1"};
+      console.log('Attendance City in Schedulling component -> ', formGroup.form.value.city.city);
     }
 
       this.displayAdvanceModal = true;
-      this.schedullingCity = this.attendanceCitySelected?.city;
   }
 
   onChangePaymentType(event: { value: string; }) {
@@ -205,6 +203,7 @@ export class SchedulingComponent {
       this.attendanceCitySelected = undefined;
 
       this.isMyLocationSelected = false;
+      this.attendanceCitySelected = {city: "nenhuma", code: ""};
     }
     if(this.paymentTypeSelected.type == 'Particular') {
       this.InsuranceSelected = undefined;
@@ -217,18 +216,36 @@ export class SchedulingComponent {
 
   toggleMyAddressLocationOption(value: string) {
     if(value == 'Particular') {
-      this.attendanceLocationList.pop();
-      this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '1' });
+      this.attendanceLocationList = [];
+      this.attendanceLocationList.push({ location: 'Clínica AVP Fisioterapia Especializada (Recife-PE)', code: '1' });
+      this.attendanceLocationList.push({ location: 'No endereço de minha preferência', code: '2' });
     }
     if(value == "Convênio") {
       this.attendanceLocationSelected = undefined;
-      this.attendanceLocationList.pop();
+
+      this.attendanceLocationList = [];
+      
       this.attendanceLocationList.push({ location: 'Clínica AVP Fisioterapia Especializada (Recife-PE)', code: '1' });
     }
   }
 
   validateForm(formGroup: any): boolean {
     if(formGroup.form.status == 'VALID') {
+      const formDataArr = [
+        formGroup.form.value.name,
+        formGroup.form.value.date,
+        formGroup.form.value.hour,
+        formGroup.form.value.gender,
+        formGroup.form.value.phone,
+        formGroup.form.value.paymentType,
+        // formGroup.form.value.insurance.insurance,
+        formGroup.form.value.location
+      ];
+      console.log('Form Data Array -> ', formDataArr)
+
+      /* O array acima foi criado apenas para ver como ficam os dados ao submeter o formulário.
+      TODO: Implementar taxa de agendamento para consulta particular com localidade "Clínica AVP (Recife) com o valor da cidade Recife."
+      */
       return true;
     }
     else {
@@ -243,10 +260,6 @@ export class SchedulingComponent {
   changeAttendanceLocation() {
     if(this.attendanceLocationSelected?.location == 'No endereço de minha preferência')
     this.isMyLocationSelected = true;
-  }
-
-  setAttendanceCity(cityData: string) {
-    this.schedullingCity = cityData;
   }
 
   closeSucessModalAndBackHome(event: string) {
@@ -265,10 +278,8 @@ export class SchedulingComponent {
 
   getInsuranceOptions() {
     this.dataService.getAllInsuranceOptions().subscribe((obs: any[]) => {
-      // Terminar a implementação 06/11/2024;
       obs.forEach(insuranceObj => {
         this.insuranceList.push({insurance: insuranceObj.name})
-        console.log('insuranceList after the API Request -> ', this.insuranceList);
       })
     })
   }
