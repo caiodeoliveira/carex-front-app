@@ -50,8 +50,6 @@ export class ModalComponent implements OnInit, OnChanges {
 
   schedullingFee: string;
 
-  showPaymentOptions: boolean;
-
   advanceModalHeader: string;
 
   ngOnInit(): void {
@@ -138,15 +136,8 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   setAdvanceModalDescription() {
-    if(!typeof this.advanceModalSchedullingFee == undefined) {
       this.advanceModalHeader = 'Adiantamento'
       this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`;
-    }
-    else {
-      this.advanceModalHeader = 'Estamos quase lá...'
-      this.advanceDescription = 'Atenção, o cancelamento / adiamento da consulta só poderá ser efetuada com no mínimo 24 horas de antecedência.';
-      this.showPaymentOptions = false;
-    }
   }
 
   matchCitySelectedWithSchedullingFee(citySelected: string) {
