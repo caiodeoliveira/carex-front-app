@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {global} from '../../../global';
 import { PrimeNGConfig } from 'primeng/api';
-import { Hour, Gender, Payment, Location, Insurance, city } from 'src/app/models/form';
+import { Hour, Gender, Payment, Location, Insurance, city, PaymentType } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -34,11 +34,11 @@ export class SchedulingComponent {
   availableHours: Hour[] = [];
   selectedHour: Hour;
   
-  genderList: Gender[];
+  genderList: Gender[] = [];
   selectedGender: Gender;
 
-  paymentTypeList: Payment[];
-  paymentTypeSelected: Payment;
+  paymentTypeList: PaymentType[] = [];
+  paymentTypeSelected: PaymentType;
 
   attendanceLocationList: Location[] = [];
   attendanceLocationSelected: Location | undefined;
@@ -46,7 +46,7 @@ export class SchedulingComponent {
   insuranceList: Insurance[] = [];
   InsuranceSelected: Insurance | undefined;
 
-  attendanceCityList: city[];
+  attendanceCityList: city[] = [];
   attendanceCitySelected: city | undefined;
   
   displayAdvanceModal: boolean = false;
@@ -70,8 +70,9 @@ export class SchedulingComponent {
     //DONE: Implementar ordenação de valores do array availableHours.
     //DONE  Manter dropdown "escolha um horário enquanto não tiver data selecionada".
     //DONE  Alterar as opções de plano de saúde para as opções reais atendidas.
-    //TODO 3: Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
-    //TODO 4: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
+    //TODO 3: Transformar todos os dados estáticos, como por exemplo as opções de cidades no agendamento em ENUMS no Backend.
+    //TODO 4: Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
+    //TODO 5: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
 
     this.pt = {
 
@@ -90,6 +91,7 @@ export class SchedulingComponent {
     setTimeout(() => {
       this.getUnavailableDates();
     }, 200)
+
 
   }
 
@@ -130,30 +132,28 @@ export class SchedulingComponent {
   }
 
   getAndSetGenderOptions() {
-    this.genderList = [
-      { gender: 'Masculino', code: '1' },
-      { gender: 'Feminino', code: '2' },
-      { gender: 'Prefiro não informar', code: '3' },
-    ];
+    this.dataService.getAllGenderOptions().subscribe((obs: string[]) => {
+      obs.forEach((genderOption) => {
+        this.genderList.push({gender: genderOption});
+      })
+    })
   }
 
-  getAndSetPaymentOptions() {
-    this.paymentTypeList = [
-      { type: 'Convênio', code: '1' },
-      { type: 'Particular', code: '2' },
-    ];
+  getAndSetPaymentTypeOptions() {
+    this.dataService.getAllPaymentTypeOptions().subscribe((obs: string[]) => {
+      obs.forEach((paymentOption) => {
+        this.paymentTypeList.push({type: paymentOption})
+      })
+    })
   }
 
   getAndSetAttendanceCityOptions() {
-    this.attendanceCityList = [
-      { city: 'Paulista', code: '1' },
-      { city: 'Olinda', code: '2' },
-      { city: 'Recife', code: '3' },
-      { city: 'Boa Viagem', code: '4' },
-      { city: 'Abreu e Lima', code: '5' },
-      { city: 'Igarassu', code: '6' },
-      { city: 'Itapissuma', code: '7' },
-    ]
+    this.dataService.getAllAttendanceCityOptions().subscribe((obs: string[]) => {
+      obs.forEach((attendanceCityOption) => {
+        this.attendanceCityList.push({city: attendanceCityOption})
+      })
+    })
+
   }
 
   handleAdvanceModal($event: boolean) {
@@ -183,7 +183,7 @@ export class SchedulingComponent {
     this.validateForm(formGroup);
 
     if(formGroup.form.value.city) {
-      this.attendanceCitySelected = {city: formGroup.form.value.city.city, code: "1"};
+      this.attendanceCitySelected = {city: formGroup.form.value.city.city};
       console.log('Attendance City in Schedulling component -> ', formGroup.form.value.city.city);
     }
 
@@ -203,7 +203,7 @@ export class SchedulingComponent {
       this.attendanceCitySelected = undefined;
 
       this.isMyLocationSelected = false;
-      this.attendanceCitySelected = {city: "nenhuma", code: ""};
+      this.attendanceCitySelected = {city: "nenhuma"};
     }
     if(this.paymentTypeSelected.type == 'Particular') {
       this.InsuranceSelected = undefined;

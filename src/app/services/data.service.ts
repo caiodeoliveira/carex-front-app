@@ -41,6 +41,22 @@ export class DataService {
     return this.httpClient.get(`http://localhost:8080/insurance/allinsurances`)
   }
 
+  // Schedulling
+
+  getAllGenderOptions(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/schedulling/allgenders`)
+  }
+
+  getAllPaymentTypeOptions(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/schedulling/allpaymenttypeoptions`)
+  }
   
+  getAllAttendanceCityOptions(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/schedulling/allattendancecityoptions`)
+  }
+
+  getAllPaymentOptions(): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/schedulling/allpaymentoptions`)
+  }
 
 }

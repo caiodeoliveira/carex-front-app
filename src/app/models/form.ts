@@ -4,12 +4,14 @@ export interface Hour {
 
 export interface Gender {
         gender: string;
-        code: string;
 };
+
+export interface PaymentType {
+        type: string;
+      }
 
 export interface Payment {
         type: string;
-        code: string;
       }
       
 export interface Location {
@@ -22,5 +24,4 @@ export interface Insurance {
 }
 export interface city {
         city: string;
-        code: string;
 }

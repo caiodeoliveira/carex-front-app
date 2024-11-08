@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Payment } from 'src/app/models/form';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { Payment } from 'src/app/models/form';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit, OnChanges {
+
+  constructor(private dataService: DataService) {}
 
   @Input() terapyModalDisplay: boolean = false;
   @Input() advanceModaldisplay: boolean = false;
@@ -20,7 +23,7 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() modalTerapyDescription: string;
   @Input() chosenSchedullingCity: string | undefined;
   @Input() advanceModalSchedullingFee: string = ""
-  @Input() schedullingPaymentType: Payment = {type: "", code: ""};
+  @Input() schedullingPaymentType: Payment = {type: ""};
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -31,10 +34,10 @@ export class ModalComponent implements OnInit, OnChanges {
   @Output() onCloseSuccessModal: EventEmitter<boolean> = new EventEmitter();
   @Output() onCloseAndBackToHome: EventEmitter<string> = new EventEmitter();
   
-  paymentTypeList: Payment[];
-  paymentTypeSelected: Payment;
+  paymentOptionList: Payment[] = [];
+  paymentOptionSelected: Payment;
   
-  paymentTypeSelectedToShow: string = "PIX"
+  paymentOptionSelectedToShow: string = "PIX"
 
   loginInputFieldValue: string;
   recoveryFieldCodeValue: string;
@@ -52,26 +55,9 @@ export class ModalComponent implements OnInit, OnChanges {
   advanceModalHeader: string;
 
   ngOnInit(): void {
-    this.paymentTypeList = [
-      {
-        type: "Forma de Pagamento",
-        code: "1"
-      },
-      {
-        type: "Crédito",
-        code: "2"
-      },
-      {
-        type: "Débito",
-        code: "2"
-      },
-      {
-        type: "PIX",
-        code: "3"
-      },
-    ]
 
     this.setAdvanceModalDescription();
+    this.getAndSetPaymentOptions();
   }
 
   ngOnChanges(): void {
@@ -79,6 +65,14 @@ export class ModalComponent implements OnInit, OnChanges {
     if(this.advanceModaldisplay) {
       this.matchCitySelectedWithSchedullingFee(this.chosenSchedullingCity);
     }
+  }
+
+  getAndSetPaymentOptions() {
+    this.dataService.getAllPaymentOptions().subscribe((obs: string[]) => {
+      obs.forEach((paymentOption) => {
+        this.paymentOptionList.push({type: paymentOption})
+      })
+    })
   }
 
   closeTerapyModal() {
@@ -137,7 +131,7 @@ export class ModalComponent implements OnInit, OnChanges {
     switch(this.schedullingPaymentType.type) {
       case 'Particular':
         this.advanceModalHeader = 'Adiantamento'
-        this.advanceDescription = `Para concluir o agendamento e reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa: R$ ${this.advanceModalSchedullingFee}`;
+        this.advanceDescription = 'Para reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa:';
       break
 
       case 'Convênio':
