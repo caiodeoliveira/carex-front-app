@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements OnInit {
+export class DataTableComponent implements OnInit, OnChanges{
 
   @Input() tableData: any[];
 
@@ -18,6 +18,10 @@ export class DataTableComponent implements OnInit {
   ngOnInit(): void {
       this.paginatorActivator = true;
       this.filterRowsWhereStatusIsConfirmed();
+    }
+    
+    ngOnChanges(changes: SimpleChanges): void {
+      this.getEmptyFieldsData();
   }
 
   confirmSchedule(tableDataConfirmed: any) {
@@ -58,10 +62,10 @@ export class DataTableComponent implements OnInit {
   }
 
   undoLastAction() {
-    console.log('before undo last Action -> ', this.tableData);
     if(this.lastAction == 'delete') {
       this.tableData.push(this.dataInCache);
-      console.log('tableData After undo last action -> ', this.tableData);
+      this.lastAction = "";
+      this.isUndoButtonActive = false;
     }
     else if(this.lastAction == 'confirmation') {
       this.tableData.forEach((row) => {
@@ -69,7 +73,15 @@ export class DataTableComponent implements OnInit {
           row.status = 'Agendado';
         }
       })
+      this.lastAction = "";
+      this.isUndoButtonActive = false;
     }
-    console.log(this.tableData)
+  }
+
+  getEmptyFieldsData() {
+    this.tableData.forEach((dataObj) => {
+      dataObj.attendanceCity ? dataObj.attendanceCity : dataObj.attendanceCity = "Recife";
+      dataObj.attendanceAddress ? dataObj.attendanceAddress : dataObj.attendanceCity = "Rua Djalma Farias, 251, Torreão, Recife - PE";
+    })
   }
 }

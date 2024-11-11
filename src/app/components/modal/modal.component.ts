@@ -16,14 +16,14 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() terapyModalDisplay: boolean = false;
   @Input() advanceModaldisplay: boolean = false;
   @Input() successScheduleModalDisplay: boolean = false;
-  @Input() loginModalDisplay: boolean = true;
+  @Input() loginModalDisplay: boolean;
   @Input() type: string;
   @Input() terapyModalImage: string;
   @Input() modalTerapyName: string;
   @Input() modalTerapyDescription: string;
   @Input() chosenSchedullingCity: string | undefined;
   @Input() advanceModalSchedullingFee: string = ""
-  @Input() schedullingPaymentType: Payment = {type: ""};
+  @Input() schedullingPaymentType: Payment;
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -55,6 +55,8 @@ export class ModalComponent implements OnInit, OnChanges {
   advanceModalHeader: string;
 
   ngOnInit(): void {
+
+    this.schedullingPaymentType = {type: ""};
 
     this.setAdvanceModalDescription();
     this.getAndSetPaymentOptions();
@@ -102,6 +104,7 @@ export class ModalComponent implements OnInit, OnChanges {
   confirmTerapyScheduling() {
     this.onConfirmAdvanceModal.emit(true);
     this.successScheduleModalDisplay = true;
+    
   }
 
   onFinishScheduleModal() {

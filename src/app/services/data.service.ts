@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -57,6 +57,19 @@ export class DataService {
 
   getAllPaymentOptions(): Observable<any> {
     return this.httpClient.get(`http://localhost:8080/schedulling/allpaymentoptions`)
+  }
+
+  // Programming
+
+  saveAllFormData(formData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.httpClient.post<any>('http://localhost:8080/programming/saveformdata', formData, { headers });
+  }
+
+  getAllProgrammings() {
+    return this.httpClient.get(`http://localhost:8080/programming/allprogrammings`)
   }
 
 }

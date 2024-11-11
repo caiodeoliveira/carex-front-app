@@ -80,7 +80,7 @@
 
     <main class="login-field-container">
         <span class="with-margin">
-            <label class="field-label" htmlFor="login-input">Senha</label>
+            <label class="field-label" for="login-input">Senha</label>
             <input id="login-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: Bneves552233@"/>
             <label class="field-label" htmlFor="recovery-password-input" *ngIf="displayRecoveryPasswordInput">Código</label>
             <input id="recovery-password-input" type="text" pInputText [(ngModel)]="recoveryFieldCodeValue" placeholder="Ex: Digite o código de 4 dígitos" *ngIf="displayRecoveryPasswordInput"/>

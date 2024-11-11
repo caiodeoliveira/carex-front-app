@@ -64,13 +64,16 @@ export class SchedulingComponent {
 
   attendanceIsChosen: boolean = false;
 
+  formData: {} = {};
+
   ngOnInit() {
 
-    //DONE: Criar método get no service e implementar no back o endpoint para buscar os dados que vão preencher os arrays abaixo somente no onShow ou algo assim dos componentes.
-    //DONE: Implementar ordenação de valores do array availableHours.
+    //DONE  Criar método get no service e implementar no back o endpoint para buscar os dados que vão preencher os arrays abaixo somente no onShow ou algo assim dos componentes.
+    //DONE  Implementar ordenação de valores do array availableHours.
     //DONE  Manter dropdown "escolha um horário enquanto não tiver data selecionada".
     //DONE  Alterar as opções de plano de saúde para as opções reais atendidas.
-    //TODO 3: Transformar todos os dados estáticos, como por exemplo as opções de cidades no agendamento em ENUMS no Backend.
+    //DONE  Transformar todos os dados estáticos, como por exemplo as opções de cidades no agendamento em ENUMS no Backend.
+    //DONE  Adicionar verificação de duplicidade para ao buscar opções no Back dos campos dropdown, não duplicar a lista a cada request feito pelo onShow.
     //TODO 4: Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
     //TODO 5: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
 
@@ -133,6 +136,8 @@ export class SchedulingComponent {
 
   getAndSetGenderOptions() {
     this.dataService.getAllGenderOptions().subscribe((obs: string[]) => {
+      this.genderList = [];
+
       obs.forEach((genderOption) => {
         this.genderList.push({gender: genderOption});
       })
@@ -141,6 +146,8 @@ export class SchedulingComponent {
 
   getAndSetPaymentTypeOptions() {
     this.dataService.getAllPaymentTypeOptions().subscribe((obs: string[]) => {
+      this.paymentTypeList = [];
+
       obs.forEach((paymentOption) => {
         this.paymentTypeList.push({type: paymentOption})
       })
@@ -149,6 +156,8 @@ export class SchedulingComponent {
 
   getAndSetAttendanceCityOptions() {
     this.dataService.getAllAttendanceCityOptions().subscribe((obs: string[]) => {
+      this.attendanceCityList = [];
+
       obs.forEach((attendanceCityOption) => {
         this.attendanceCityList.push({city: attendanceCityOption})
       })
@@ -167,6 +176,7 @@ export class SchedulingComponent {
   
   showSuccessScheduleModal() {
     this.displaySuccessScheduleModal = true;
+    this.saveFormData();
   }
 
   hideFinishScheduleModal() {
@@ -178,7 +188,7 @@ export class SchedulingComponent {
     this.displayAdvanceModal = false;
   }
 
-  goToFinishSchedule(formGroup: any) {
+  goToSchedullingLastStep(formGroup: any) {
 
     this.validateForm(formGroup);
 
@@ -188,6 +198,8 @@ export class SchedulingComponent {
     }
 
       this.displayAdvanceModal = true;
+
+      //TODO: Implementar o post para salvar os dados do formulário ao clicar em "Concluir" no advance modal.
   }
 
   onChangePaymentType(event: { value: string; }) {
@@ -231,17 +243,20 @@ export class SchedulingComponent {
 
   validateForm(formGroup: any): boolean {
     if(formGroup.form.status == 'VALID') {
-      const formDataArr = [
-        formGroup.form.value.name,
-        formGroup.form.value.date,
-        formGroup.form.value.hour,
-        formGroup.form.value.gender,
-        formGroup.form.value.phone,
-        formGroup.form.value.paymentType,
-        // formGroup.form.value.insurance.insurance,
-        formGroup.form.value.location
-      ];
-      console.log('Form Data Array -> ', formDataArr)
+      this.formData = {
+        status: "A Confirmar",
+        name: formGroup.form.value.name,
+        attendanceDate: formGroup.form.value.date,
+        attendanceHour: formGroup.form.value.hour,
+        patientGender: formGroup.form.value.gender,
+        patientPhoneNumber: formGroup.form.value.phone,
+        paymentType: formGroup.form.value.paymentType,
+        attendanceLocation: formGroup.form.value.location,
+        healthInsurance: formGroup.form.value.insurance,
+        attendanceCity: formGroup.form.value.city,
+        attendanceAddress: formGroup.form.value.address
+      }
+      console.log('Form Data Array -> ', this.formData)
 
       /* O array acima foi criado apenas para ver como ficam os dados ao submeter o formulário.
       TODO: Implementar taxa de agendamento para consulta particular com localidade "Clínica AVP (Recife) com o valor da cidade Recife."
@@ -281,6 +296,22 @@ export class SchedulingComponent {
       obs.forEach(insuranceObj => {
         this.insuranceList.push({insurance: insuranceObj.name})
       })
+    })
+  }
+
+  saveFormData() {
+    this.dataService.saveAllFormData(this.formData).subscribe({
+      next: (response) => {
+        console.log('POST Successfull ', response);
+      },
+
+      error: (error) => {
+        console.log('Error Ocurred ', error);
+      },
+
+      complete: () => {
+        console.log('Request complete');
+      },
     })
   }
 

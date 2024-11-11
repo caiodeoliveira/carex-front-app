@@ -7,10 +7,12 @@
                 <th class="delete-schedule-header">Deletar Consulta</th>
                 <th class="delete-schedule-header">Status</th>
                 <th class="name-header">Nome</th>
-                <th>Data / Hora</th>
+                <th class="date-hour-header">Data / Hora</th>
                 <th class="phone-header">Cel</th>
                 <th class="model-header">Modelo</th>
                 <th class="location-header">Local</th>
+                <th class="location-header">Cidade</th>
+                <th class="location-header">Endereço</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
@@ -27,12 +29,14 @@
                 <td class="table-delete-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
                     <app-button-component (click)="deleteSchedule(data)" buttonType="remove-schedule-button" />
                 </td>
-                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.status }}</td>
-                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.name }}</td>
-                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.date | date: 'dd/MM/yy HH:mm' }}</td>
-                <td class="phone-data {{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.phone }}</td>
-                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.paymentType }}</td>
-                <td class="{{data.status == 'Confirmado' ? 'confirmed' : ''}}">{{ data.location }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.status }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.name }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.patientPhoneNumber }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.paymentType }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceLocation }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceCity }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceAddress }}</td>
             </tr>
         </ng-template>
     </p-table>
