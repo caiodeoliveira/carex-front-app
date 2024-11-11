@@ -1,11 +1,11 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements OnInit, OnChanges{
+export class DataTableComponent implements OnInit {
 
   @Input() tableData: any[];
 
@@ -19,10 +19,6 @@ export class DataTableComponent implements OnInit, OnChanges{
       this.paginatorActivator = true;
       this.filterRowsWhereStatusIsConfirmed();
     }
-    
-    ngOnChanges(changes: SimpleChanges): void {
-      this.getEmptyFieldsData();
-  }
 
   confirmSchedule(tableDataConfirmed: any) {
     this.isConfirmedSchedule = "confirmed";
