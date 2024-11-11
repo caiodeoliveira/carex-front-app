@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import { Programmings } from './models/programmings';
 
 @Component({
   selector: 'app-root',
@@ -9,101 +8,26 @@ import { Programmings } from './models/programmings';
 })
 export class AppComponent{
 
+  constructor(private responsive: BreakpointObserver) {};
+
   breakpointActive: string = ""; 
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
   displaySchedullingPage: boolean = true;
 
-  programmings: Programmings[] = [
-    {
-      status: "Confirmado",
-      name: "José Fabrício",
-      date: new Date(),
-      phone: "(83)9 8485-2235",
-      paymentType: "Particular",
-      location: "Marcos Freire, Jaboatão"
-    },
-    {
-      status: "Agendado",
-      name: "Maria Severina",
-      date: new Date(),
-      phone: "(15)9 9848-3818",
-      paymentType: "Convênio",
-      location: "Clínica Care X"
-    },
-    {
-      status: "Agendado",
-      name: "Eronildo Silveira",
-      date: new Date(),
-      phone: "(15)9 98632-2992",
-      paymentType: "Convênio",
-      location: "Casa Caiada, Olinda"
-    },
-    {
-      status: "Confirmado",
-      name: "Ivanilson Nascimento",
-      date: new Date(),
-      phone: "(15)9 98454-3234",
-      paymentType: "Convênio",
-      location: "Arthur Lundgren 2, Paulista"
-    },
-    {
-      status: "Agendado",
-      name: "João Bartolomeu",
-      date: new Date(),
-      phone: "(15)9 98632-2992",
-      paymentType: "Convênio",
-      location: "Clínica Care X"
-    },
-    {
-      status: "Confirmado",
-      name: "Sebastião Neto",
-      date: new Date(),
-      phone: "(15)9 98632-2992",
-      paymentType: "Convênio",
-      location: "Clínica Care X, Recife"
-    },
-    {
-      status: "Confirmado",
-      name: "Dalva Mércia",
-      date: new Date(),
-      phone: "(15)9 98632-2992",
-      paymentType: "Convênio",
-      location: "Bairro novo, Olinda"
-    },
-    {
-      status: "Confirmado",
-      name: "Cleide Viturino",
-      date: new Date(),
-      phone: "(15)9 98333-5893",
-      paymentType: "Convênio",
-      location: "Janga, Paulista"
-    },
-    {
-      status: "Agendado",
-      name: "Ricardo Roberto",
-      date: new Date(),
-      phone: "(15)9 98632-2992",
-      paymentType: "Convênio",
-      location: "Tamarineira, Recife"
-    },
-  ]
-
   displayProgrammingsPage: boolean = false;
   
   modalDisplayRule = true;
   displayLoginModal: boolean = false;
   
-  constructor(private responsive: BreakpointObserver) {};
-
+  
   ngOnInit() {
 
     const keyboardEvent = (event: any) => {
 			if (event.repeat) {
 				return;
 			}
-
       // To display the modal you will need the combination of the three keys in the if below: CTRL + SHIFT + L.
 			if (event.ctrlKey && event.shiftKey && event.keyCode == 76) {
         this.modalDisplayRule = true;
