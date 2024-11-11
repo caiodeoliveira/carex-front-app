@@ -194,7 +194,6 @@ export class SchedulingComponent {
 
     if(formGroup.form.value.city) {
       this.attendanceCitySelected = {city: formGroup.form.value.city.city};
-      console.log('Attendance City in Schedulling component -> ', formGroup.form.value.city.city);
     }
 
       this.displayAdvanceModal = true;
@@ -224,6 +223,8 @@ export class SchedulingComponent {
       this.isInsuranceAsPayment = false;
     }
 
+    this.checkIfHasToGetInsuranceOptions();
+
   }
 
   toggleMyAddressLocationOption(value: string) {
@@ -247,13 +248,13 @@ export class SchedulingComponent {
         status: "A Confirmar",
         name: formGroup.form.value.name,
         attendanceDate: formGroup.form.value.date,
-        attendanceHour: formGroup.form.value.hour,
-        patientGender: formGroup.form.value.gender,
+        attendanceHour: formGroup.form.value.hour.value,
+        patientGender: formGroup.form.value.gender.gender,
         patientPhoneNumber: formGroup.form.value.phone,
-        paymentType: formGroup.form.value.paymentType,
-        attendanceLocation: formGroup.form.value.location,
+        paymentType: formGroup.form.value.paymentType.type,
+        attendanceLocation: formGroup.form.value.location.location,
         healthInsurance: formGroup.form.value.insurance,
-        attendanceCity: formGroup.form.value.city,
+        attendanceCity: formGroup.form.value.city.city,
         attendanceAddress: formGroup.form.value.address
       }
       console.log('Form Data Array -> ', this.formData)
