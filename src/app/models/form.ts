@@ -3,15 +3,15 @@ export interface Hour {
 };
 
 export interface Gender {
-        gender: string;
+        value: string;
 };
 
 export interface PaymentType {
-        type: string;
+        value: string;
       }
 
 export interface Payment {
-        type: string;
+        value: string;
       }
       
 export interface Location {
