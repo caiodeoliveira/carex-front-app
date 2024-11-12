@@ -26,18 +26,18 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [styleClass]="type == 'advance-payment' && schedullingPaymentType.type == 'Particular' ? 'advance-payment-modal' : 'advance-payment-modal-with-insurance' " [header]="advanceModalHeader" [(visible)]="advanceModaldisplay" (onHide)="closeAdvanceModal()">
+<p-dialog [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal' : 'advance-payment-modal-with-insurance' " [header]="advanceModalHeader" [(visible)]="advanceModaldisplay" (onHide)="closeAdvanceModal()">
 
-    <div [ngClass]="schedullingPaymentType.type == 'Particular' ? 'advance-payment-text-container' : 'advance-payment-text-container-with-insurance' ">
-        <p [ngClass]="schedullingPaymentType.type == 'Particular' ? 'advance-description' : 'advance-description-with-insurance' ">{{advanceDescription}} <b>R$ {{advanceModalSchedullingFee}}</b></p>
+    <div [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-payment-text-container' : 'advance-payment-text-container-with-insurance' ">
+        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-description' : 'advance-description-with-insurance' ">{{advanceDescription}} <b>R$ {{advanceModalSchedullingFee}}</b></p>
         <div class="payment-container">
 
-            <form class="payment-dropdown-container" *ngIf="schedullingPaymentType.type == 'Particular' ">
+            <form class="payment-dropdown-container" *ngIf="schedullingPaymentType.value == 'Particular' ">
                 <label class="payment-field-label" htmlFor="payment-type">Forma de Pagamento</label>
                 <p-dropdown id="payment-type-dropdown" (onShow)="getAndSetPaymentOptions()" [options]="paymentOptionList" [(ngModel)]="paymentOptionSelected" optionLabel="type" placeholder="Escolha uma opção"></p-dropdown>
             </form>
 
-            <span class="payment-options-container" *ngIf="schedullingPaymentType.type == 'Particular' ">
+            <span class="payment-options-container" *ngIf="schedullingPaymentType.value == 'Particular' ">
 
                 <div class="credit-payment-container" *ngIf="paymentOptionSelectedToShow == 'Crédito'">
                     <p class="credit-payment-text">{{paymentOptionSelectedToShow}}</p>
@@ -52,8 +52,8 @@
         </div>
 
 
-        <p class="advance-statement" *ngIf="schedullingPaymentType.type == 'Particular' ">Clique em "Concluir" abaixo, Assim que validarmos o pagamento vamos confirmar a consulta.</p>
-        <p [ngClass]="schedullingPaymentType.type == 'Particular' ? 'advance-warn' : 'advance-warn-with-insurance' ">Em caso de cancelamento ou adiamento de consulta com menos de 24 horas de atecedência sem comprovação de justificativa, resultará na retenção de 50% do valor de agendamento.</p>
+        <p class="advance-statement" *ngIf="schedullingPaymentType.value == 'Particular' ">Clique em "Concluir" abaixo, Assim que validarmos o pagamento vamos confirmar a consulta.</p>
+        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-warn' : 'advance-warn-with-insurance' ">Em caso de cancelamento ou adiamento de consulta com menos de 24 horas de atecedência sem comprovação de justificativa, resultará na retenção de 50% do valor de agendamento.</p>
     </div>
     
     <ng-template pTemplate="footer">

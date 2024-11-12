@@ -24,6 +24,9 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() chosenSchedullingCity: string | undefined;
   @Input() advanceModalSchedullingFee: string = ""
   @Input() schedullingPaymentType: Payment;
+  @Input() formDataToSave: {};
+  @Input() scheduleCode: string;
+
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -46,8 +49,6 @@ export class ModalComponent implements OnInit, OnChanges {
 
   advanceDescription: string = "";
 
-  scheduleCode: string = Math.floor(Math.random() * 1000000).toString();
-
   alertIcon = faExclamation;
 
   schedullingFee: string;
@@ -56,7 +57,7 @@ export class ModalComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
 
-    this.schedullingPaymentType = {type: ""};
+    this.schedullingPaymentType = {value: ""};
 
     this.setAdvanceModalDescription();
     this.getAndSetPaymentOptions();
@@ -72,7 +73,7 @@ export class ModalComponent implements OnInit, OnChanges {
   getAndSetPaymentOptions() {
     this.dataService.getAllPaymentOptions().subscribe((obs: string[]) => {
       obs.forEach((paymentOption) => {
-        this.paymentOptionList.push({type: paymentOption})
+        this.paymentOptionList.push({value: paymentOption})
       })
     })
   }
@@ -104,7 +105,7 @@ export class ModalComponent implements OnInit, OnChanges {
   confirmTerapyScheduling() {
     this.onConfirmAdvanceModal.emit(true);
     this.successScheduleModalDisplay = true;
-    
+    this.saveFormData();
   }
 
   onFinishScheduleModal() {
@@ -131,7 +132,7 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   setAdvanceModalDescription() {
-    switch(this.schedullingPaymentType.type) {
+    switch(this.schedullingPaymentType.value) {
       case 'Particular':
         this.advanceModalHeader = 'Adiantamento'
         this.advanceDescription = 'Para reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa:';
@@ -179,5 +180,21 @@ export class ModalComponent implements OnInit, OnChanges {
         this.advanceModalSchedullingFee = "72";
         this.setAdvanceModalDescription();
     }
+  }
+
+  saveFormData() {
+    this.dataService.saveAllFormData(this.formDataToSave).subscribe({
+      next: (response) => {
+        console.log('POST Successfull ', response);
+      },
+
+      error: (error) => {
+        console.log('Error Ocurred ', error);
+      },
+
+      complete: () => {
+        console.log('Request complete');
+      },
+    })
   }
 }
