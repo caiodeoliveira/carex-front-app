@@ -62,7 +62,7 @@
                     id="gender-dropdown"
                     name="gender"
                     [options]="genderList"
-                    optionLabel="gender"
+                    optionLabel="value"
                     (onShow)="getAndSetGenderOptions()"
                     [(ngModel)]="selectedGender"
                     [required]="true"
@@ -94,7 +94,7 @@
                     (onShow)="getAndSetPaymentTypeOptions()"
                     (onChange)="onChangePaymentType($event)"
                     [options]="paymentTypeList"
-                    optionLabel="type"
+                    optionLabel="value"
                     [(ngModel)]="paymentTypeSelected"
                     placeholder="Escolha uma opção"
                     [required]="true">
@@ -188,6 +188,7 @@
             [chosenSchedullingCity]="attendanceCitySelected?.city"
             [advanceModalSchedullingFee]="schedullingFee"
             [schedullingPaymentType]="paymentTypeSelected"
+            [formDataToSave]="formData"
         />
         <app-modal-component
             [type]="'success-terapy-scheduled'"

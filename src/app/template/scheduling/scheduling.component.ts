@@ -66,6 +66,8 @@ export class SchedulingComponent {
 
   formData: {} = {};
 
+  scheduleCode: string ="";
+
   ngOnInit() {
 
     //DONE  Criar método get no service e implementar no back o endpoint para buscar os dados que vão preencher os arrays abaixo somente no onShow ou algo assim dos componentes.
@@ -139,7 +141,7 @@ export class SchedulingComponent {
       this.genderList = [];
 
       obs.forEach((genderOption) => {
-        this.genderList.push({gender: genderOption});
+        this.genderList.push({value: genderOption});
       })
     })
   }
@@ -149,7 +151,7 @@ export class SchedulingComponent {
       this.paymentTypeList = [];
 
       obs.forEach((paymentOption) => {
-        this.paymentTypeList.push({type: paymentOption})
+        this.paymentTypeList.push({value: paymentOption})
       })
     })
   }
@@ -176,7 +178,6 @@ export class SchedulingComponent {
   
   showSuccessScheduleModal() {
     this.displaySuccessScheduleModal = true;
-    this.saveFormData();
   }
 
   hideFinishScheduleModal() {
@@ -207,7 +208,7 @@ export class SchedulingComponent {
       this.toggleMyAddressLocationOption(value);
     }))
 
-    if(this.paymentTypeSelected.type == 'Convênio') {
+    if(this.paymentTypeSelected.value == 'Convênio') {
       this.isInsuranceAsPayment = true;
       this.attendanceLocationSelected = undefined;
       this.addressInputValue = '';
@@ -216,7 +217,7 @@ export class SchedulingComponent {
       this.isMyLocationSelected = false;
       this.attendanceCitySelected = {city: "nenhuma"};
     }
-    if(this.paymentTypeSelected.type == 'Particular') {
+    if(this.paymentTypeSelected.value == 'Particular') {
       this.InsuranceSelected = undefined;
       this.attendanceLocationSelected = undefined;
 
@@ -243,30 +244,26 @@ export class SchedulingComponent {
   }
 
   validateForm(formGroup: any): boolean {
-    if(formGroup.form.status == 'VALID') {
+    let cityValueToPreventUndefined = "";
+    formGroup.value.city ? cityValueToPreventUndefined = formGroup.value.city : cityValueToPreventUndefined = "Recife";
+
       this.formData = {
         status: "A Confirmar",
         name: formGroup.form.value.name,
         attendanceDate: formGroup.form.value.date,
         attendanceHour: formGroup.form.value.hour.value,
-        patientGender: formGroup.form.value.gender.gender,
+        patientGender: formGroup.form.value.gender.value,
         patientPhoneNumber: formGroup.form.value.phone,
-        paymentType: formGroup.form.value.paymentType.type,
+        paymentType: formGroup.form.value.paymentType.value,
         attendanceLocation: formGroup.form.value.location.location,
-        healthInsurance: formGroup.form.value.insurance,
-        attendanceCity: formGroup.form.value.city.city,
-        attendanceAddress: formGroup.form.value.address
+        healthInsurance: formGroup.form.value.insurance.insurance,
+        attendanceCity: cityValueToPreventUndefined,
+        attendanceAddress: formGroup.form.value.address,
+        attendanceCode: Math.floor(Math.random() * 1000000).toString(),
       }
       console.log('Form Data Array -> ', this.formData)
 
-      /* O array acima foi criado apenas para ver como ficam os dados ao submeter o formulário.
-      TODO: Implementar taxa de agendamento para consulta particular com localidade "Clínica AVP (Recife) com o valor da cidade Recife."
-      */
       return true;
-    }
-    else {
-      return false;
-    }
   }
 
   logForm(formGroup: any) {
@@ -287,7 +284,7 @@ export class SchedulingComponent {
   }
 
   checkIfHasToGetInsuranceOptions() {
-    if(this.paymentTypeSelected.type == 'Convênio') {
+    if(this.paymentTypeSelected.value == 'Convênio') {
       this.getInsuranceOptions();
     }
   }
@@ -299,21 +296,4 @@ export class SchedulingComponent {
       })
     })
   }
-
-  saveFormData() {
-    this.dataService.saveAllFormData(this.formData).subscribe({
-      next: (response) => {
-        console.log('POST Successfull ', response);
-      },
-
-      error: (error) => {
-        console.log('Error Ocurred ', error);
-      },
-
-      complete: () => {
-        console.log('Request complete');
-      },
-    })
-  }
-
 }
