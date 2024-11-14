@@ -29,7 +29,6 @@ import { ButtonComponentModule } from '../../components/button/button.module';
     InputMaskModule,
     BrowserAnimationsModule,
     ButtonComponentModule,
-    
 ],
   exports: [SchedulingComponent]
 })

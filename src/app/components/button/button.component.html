@@ -54,6 +54,10 @@
     <p-button styleClass="p-button-try-recovery-password-button" [label]="buttonLabel"/>
 </div>
 
+<div *ngIf="buttonType == 'confirmButton-advanceModal'" class="button-container">
+    <p-button type="submit" [disabled]="isSubmitButtonDisabled" styleClass="p-button-confirm-modal" [label]="buttonLabel"></p-button>
+</div>
+
 <!-- <span *ngIf="buttonType == 'previousButton'" class="button-container">
     <fa-icon [icon]="backIcon" class="previous-button"></fa-icon>
 </span>

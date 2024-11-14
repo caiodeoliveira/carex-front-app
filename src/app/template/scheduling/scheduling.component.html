@@ -18,6 +18,22 @@
                     placeholder="Conceição Maria das Dores"
                     />
             </span>
+
+            <span class="client-data-field-container">
+
+                <label class="field-label" for="stringonly">CPF para Confirmação</label>
+                    <p-inputMask
+                    id="cpf-input"
+                    inputId="stringonly"
+                    name="cpf"
+                    mask="999.999.999-99"
+                    [(ngModel)]="cpfInputValue"
+                    minLength="14"
+                    [required]="true"
+                    placeholder="053.724.984-31">
+                </p-inputMask>      
+            </span>
+
             <span>
 
                 <label class="field-label" for="schedule-date-input">Escolha uma Data</label>
@@ -87,7 +103,7 @@
 
             <span class="with-margin">
 
-                <label class="field-label" for="payment-type-dropdown">Modelo de Agendamento</label>
+                <label class="field-label" for="payment-type-dropdown">Forma de Pagamento</label>
                 <p-dropdown
                     id="payment-type-dropdown"
                     name="paymentType"
@@ -107,7 +123,7 @@
                 [pTooltip]="!isInsuranceAsPayment ? 'Campo desabilitado. Escolha o modelo de agendamento <b>Convênio</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="insurance-dropdown">Informe o Plano de Saúde</label>
+                <label class="field-label" for="insurance-dropdown">Plano de Saúde</label>
                 <p-dropdown
                     id="insurance-dropdown"
                     name="insurance"
@@ -145,7 +161,7 @@
                 [pTooltip]="!isMyLocationSelected ? 'Campo desabilitado. Escolha o local de atendimento <b>no endereço de minha preferência</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="name-input">Cidade onde será o atendimento</label>
+                <label class="field-label" for="name-input">Cidade do atendimento</label>
                 <p-dropdown
                     id="location-attendance-dropdown"
                     name="city"
@@ -165,7 +181,7 @@
                 [pTooltip]="!isMyLocationSelected ? 'Campo desabilitado. Escolha o local de atendimento <b>no endereço de minha preferência</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="address-input">Endereço de atendimento</label>
+                <label class="field-label" for="address-input">Endereço</label>
                 <input
                 id="address-input"
                 name="address"
@@ -203,8 +219,7 @@
                 [pTooltip]="scheduleForm.form.status == 'INVALID' ? 'Botão desabilitado. Preencha <b>todos os campos habilitados.</b>' : '' "
                 [tooltipPosition]="'top'">
                 <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
-                <!-- <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/> -->
-                <app-button-component [isSubmitButtonDisabled]="false" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
+                <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
             </footer>
         </form>
 

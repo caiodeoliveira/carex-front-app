@@ -24,6 +24,7 @@ export class SchedulingComponent {
   closeEvent: EventEmitter<any> = new EventEmitter();
 
   nameInputValue: string;
+  cpfInputValue: string;
   phoneInputValue: string;
   addressInputValue: string;
 
@@ -199,7 +200,6 @@ export class SchedulingComponent {
 
       this.displayAdvanceModal = true;
 
-      //TODO: Implementar o post para salvar os dados do formulário ao clicar em "Concluir" no advance modal.
   }
 
   onChangePaymentType(event: { value: string; }) {
@@ -213,15 +213,14 @@ export class SchedulingComponent {
       this.attendanceLocationSelected = undefined;
       this.addressInputValue = '';
       this.attendanceCitySelected = undefined;
-
       this.isMyLocationSelected = false;
       this.attendanceCitySelected = {city: "nenhuma"};
     }
     if(this.paymentTypeSelected.value == 'Particular') {
       this.InsuranceSelected = undefined;
       this.attendanceLocationSelected = undefined;
-
       this.isInsuranceAsPayment = false;
+      this.attendanceCitySelected = {city: "Recife"};
     }
 
     this.checkIfHasToGetInsuranceOptions();
@@ -245,7 +244,21 @@ export class SchedulingComponent {
 
   validateForm(formGroup: any): boolean {
     let cityValueToPreventUndefined = "";
-    formGroup.value.city ? cityValueToPreventUndefined = formGroup.value.city : cityValueToPreventUndefined = "Recife";
+    let insuranceValueToPreventUndefined = "";
+    
+    if(formGroup.form.value.paymentType.value == 'Particular') {
+      if(formGroup.form.value.city) {
+            cityValueToPreventUndefined = formGroup.form.value.city.city;
+      }
+      else {
+        cityValueToPreventUndefined = "Recife";
+        console.log(this.attendanceCitySelected?.city);
+      }
+    }
+    else {
+      cityValueToPreventUndefined = "";
+    }
+    formGroup.form.value.insurance ? insuranceValueToPreventUndefined = formGroup.form.value.insurance.insurance : insuranceValueToPreventUndefined = "";
 
       this.formData = {
         status: "A Confirmar",
@@ -256,12 +269,11 @@ export class SchedulingComponent {
         patientPhoneNumber: formGroup.form.value.phone,
         paymentType: formGroup.form.value.paymentType.value,
         attendanceLocation: formGroup.form.value.location.location,
-        healthInsurance: formGroup.form.value.insurance.insurance,
+        healthInsurance: insuranceValueToPreventUndefined,
         attendanceCity: cityValueToPreventUndefined,
         attendanceAddress: formGroup.form.value.address,
         attendanceCode: Math.floor(Math.random() * 1000000).toString(),
       }
-      console.log('Form Data Array -> ', this.formData)
 
       return true;
   }

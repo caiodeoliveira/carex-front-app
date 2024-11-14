@@ -6,7 +6,7 @@ import { ButtonComponentModule } from '../button/button.module';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [ModalComponent],
@@ -17,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     DropdownModule,
     FontAwesomeModule,
+    CheckboxModule,
   ],
   exports: [
     ModalComponent,
