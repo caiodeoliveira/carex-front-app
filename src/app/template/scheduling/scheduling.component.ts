@@ -81,7 +81,6 @@ export class SchedulingComponent {
     //TODO 5: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
 
     this.pt = {
-
       firstDayOfWeek: 0,
       dayNames: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
       dayNamesShort: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
@@ -276,10 +275,6 @@ export class SchedulingComponent {
       }
 
       return true;
-  }
-
-  logForm(formGroup: any) {
-    console.log('formGroup Stats -> ', formGroup.form)
   }
 
   changeAttendanceLocation() {

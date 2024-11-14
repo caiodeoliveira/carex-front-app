@@ -1,8 +1,7 @@
-import { Component, Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit, OnChanges } from '@angular/core';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { Payment } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
-
 
 @Component({
   selector: 'app-modal-component',
@@ -22,11 +21,10 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() modalTerapyName: string;
   @Input() modalTerapyDescription: string;
   @Input() chosenSchedullingCity: string | undefined;
-  @Input() advanceModalSchedullingFee: string = ""
+  @Input() advanceModalSchedullingFee: string = "";
   @Input() schedullingPaymentType: Payment;
   @Input() formDataToSave: {};
   @Input() scheduleCode: string;
-
 
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -39,9 +37,6 @@ export class ModalComponent implements OnInit, OnChanges {
   
   paymentOptionList: Payment[] = [];
   paymentOptionSelected: Payment = {value: ""};
-  
-  // TODO: Verificar exibição desse valor "PIX" está aparecendo duas vezes no dropdown.
-  paymentOptionSelectedToShow: string = "Crédito"
 
   loginInputFieldValue: string;
   recoveryFieldCodeValue: string;
@@ -57,15 +52,13 @@ export class ModalComponent implements OnInit, OnChanges {
   checked: boolean = false;
   
   ngOnInit(): void {
-
-    this.schedullingPaymentType = {value: ""};
+    this.schedullingPaymentType = {value: "PIX"};
 
     this.setAdvanceModalDescription();
     this.getAndSetPaymentOptions();
   }
 
   ngOnChanges(): void {
-
     if(this.advanceModaldisplay) {
       this.matchCitySelectedWithSchedullingFee(this.chosenSchedullingCity);
     }
@@ -148,43 +141,19 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   matchCitySelectedWithSchedullingFee(citySelected: string | undefined) {
-    switch(citySelected) {
-      case 'Paulista':
-        this.advanceModalSchedullingFee = 'R$ 36';
-        this.setAdvanceModalDescription();
-        break;
-      case 'Olinda':
-        this.advanceModalSchedullingFee = 'R$ 52';
-        this.setAdvanceModalDescription();
-        break;
-      case 'Recife':
-        this.advanceModalSchedullingFee = 'R$ 72';
-        this.setAdvanceModalDescription();
-        break;
-      case 'Boa Viagem':
-        this.advanceModalSchedullingFee = 'R$ 72';
-        this.setAdvanceModalDescription();
-        break;
-      case 'Abreu e Lima':
-        this.advanceModalSchedullingFee = 'R$ 52';
-        this.setAdvanceModalDescription();
-        break;
-      case 'Igarassu':
-        this.advanceModalSchedullingFee = 'R$ 52';
-        this.setAdvanceModalDescription();
-        break;
-      case 'Itapissuma':
-        this.advanceModalSchedullingFee = 'R$ 72';
-        this.setAdvanceModalDescription();
-        break;
-
-        default:
-        this.advanceModalSchedullingFee = "";
+        this.dataService.getSchedullingFee(citySelected).subscribe((obs: any) => {
+          if(obs) {
+            this.advanceModalSchedullingFee = `R$ ${obs}`;
+          }
+          else {
+            this.advanceModalSchedullingFee = "";
+          }
+        })
         this.setAdvanceModalDescription();
     }
-  }
 
   validateForm(formGroup: any) {
+    console.log(formGroup.form);
     if(formGroup.form.status == 'VALID') {
       this.saveFormData();
     }
@@ -206,6 +175,4 @@ export class ModalComponent implements OnInit, OnChanges {
     })
   }
 
-  //TODO: Definir o button do advance payment modal como submit para ser habilitado apenas ao ter uma forma de pagamento selecionada e o checkbox marcado.
-  //TODO: Ajustar verificação de formulário no botão para habilitar corretamente quando formulário for validado.
 }

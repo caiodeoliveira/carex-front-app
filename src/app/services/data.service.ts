@@ -72,4 +72,8 @@ export class DataService {
     return this.httpClient.get(`http://localhost:8080/programming/allprogrammings`)
   }
 
+  getSchedullingFee(city: String | undefined) {
+    return this.httpClient.get(`http://localhost:8080/schedulling/getschedullingfee/${city}`)
+  }
+
 }

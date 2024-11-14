@@ -26,7 +26,11 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal' : 'advance-payment-modal-with-insurance' " [header]="advanceModalHeader" [(visible)]="advanceModaldisplay" (onHide)="closeAdvanceModal()">
+<p-dialog 
+    [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal' : 'advance-payment-modal-with-insurance' "
+    [header]="advanceModalHeader"
+    [(visible)]="advanceModaldisplay"
+    (onHide)="closeAdvanceModal()">
 
     <form
         #advanceContainerForm="ngForm"
