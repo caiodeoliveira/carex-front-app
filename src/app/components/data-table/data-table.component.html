@@ -1,5 +1,5 @@
 <section>
-    <p-table [value]="tableData" [rows]="5" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+    <p-table *ngIf="dataTableType == 'programming-table' " [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
         <ng-template pTemplate="header">
             <tr>
                 <th class="confirm-attendance-header">Confirmar Consulta</th>
@@ -37,6 +37,48 @@
                 <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceLocation }}</td>
                 <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceCity }}</td>
                 <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceAddress }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <p-table *ngIf="dataTableType == 'search-schedule-table' " [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th class="delete-schedule-header">Status</th>
+                <th class="name-header">Nome</th>
+                <th class="date-hour-header">Data / Hora</th>
+                <th class="phone-header">Cel</th>
+                <th class="model-header">Modelo</th>
+                <th class="location-header">Local</th>
+                <th class="location-header">Cidade</th>
+                <th class="location-header">Endereço</th>
+                <th class="confirm-attendance-header">Reagendar Consulta</th>
+                <th class="undo-action-header">Cancelar</th>
+                <th class="delete-schedule-header">Confirmar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr ngClass="table-row-body">
+                <td class="status-data" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component (click)="confirmSchedule(data)" buttonType="confirm-schedule-button"/>
+                </td>
+                <td *ngIf="!isUndoButtonActive" class="status-data" class="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component buttonType="disabled-undo-action-button"/>
+                </td>
+                <td *ngIf="isUndoButtonActive" class="status-data" class="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component (click)="undoLastAction()" buttonType="undo-action-button"/>
+                </td>
+                <td class="table-delete-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component (click)="deleteSchedule(data)" buttonType="remove-schedule-button" />
+                </td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.status }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.name }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.patientPhoneNumber }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.paymentType }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceLocation }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">Cancel Button</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">Confirm Button</td>
             </tr>
         </ng-template>
     </p-table>

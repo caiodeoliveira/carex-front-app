@@ -8,12 +8,14 @@ import { Component, Input, OnInit } from '@angular/core';
 export class DataTableComponent implements OnInit {
 
   @Input() tableData: any[];
+  @Input() dataTableType: string = "";
 
   paginatorActivator: boolean;
   isConfirmedSchedule: string = "";
   isUndoButtonActive: boolean = false;
   dataInCache: any;
   lastAction: string = "";
+
 
   ngOnInit(): void {
       this.paginatorActivator = true;

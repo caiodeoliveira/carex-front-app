@@ -32,6 +32,11 @@ export class TerapiesComponent implements OnInit {
 
   displaySkeleton: boolean = true;
 
+  searchScheduleInputValue: string = "";
+  searchingForSchedule: boolean = false;
+  searchScheduleEvent: any;  
+
+  scheduleFound: any[] = [];
 
   ngOnInit(): void {
     this.getAllTerapiesData();
@@ -100,5 +105,22 @@ export class TerapiesComponent implements OnInit {
         }
       })
     });
+  }
+
+  checkSearchFieldValue() {
+    clearInterval(this.searchScheduleEvent);
+
+    if(this.searchScheduleInputValue != "") {
+
+      this.searchingForSchedule = true;
+
+      this.searchScheduleEvent = setTimeout(() => {
+        this.dataService.getProgrammingByCode(this.searchScheduleInputValue).subscribe(obs => {
+          this.scheduleFound.push(obs)
+          this.searchingForSchedule = false;
+        })        
+      }, 6000);
+
+    }
   }
 }

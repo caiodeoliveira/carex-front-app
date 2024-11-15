@@ -44,6 +44,24 @@
             <p-skeleton id="rectangle-skeleton" *ngIf="displaySkeleton" animation="wave" shape="rectangle" width="24.5rem" height="3rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
         </div>
     </section>
+
+    <section class="search-schedule-container">
+        <h1 *ngIf="!searchingForSchedule" class="search-schedule-header">Tem consulta agendada e gostaria de lembrar o horário ou reagendar? Faça uma busca no campo abaixo</h1>
+        <p-inputMask
+            *ngIf="!searchingForSchedule"
+            id="search-schedule-input"
+            inputId="stringonly"
+            name="search-schedule"
+            mask="999999"
+            (ngModelChange)="checkSearchFieldValue()"
+            [(ngModel)]="searchScheduleInputValue"
+            minLength="14"
+            [required]="true"
+            placeholder="Exemplo: 13578219">
+        </p-inputMask>
+        <app-data-table *ngIf="scheduleFound.length > 0" [dataTableType]="'search-schedule-table'"/>
+    </section>
+
     <app-modal-component
         [type]="modalType"
         [terapyModalImage]="imageToShowOnModalOpen"

@@ -77,7 +77,7 @@ export class SchedulingComponent {
     //DONE  Alterar as opções de plano de saúde para as opções reais atendidas.
     //DONE  Transformar todos os dados estáticos, como por exemplo as opções de cidades no agendamento em ENUMS no Backend.
     //DONE  Adicionar verificação de duplicidade para ao buscar opções no Back dos campos dropdown, não duplicar a lista a cada request feito pelo onShow.
-    //TODO 4: Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
+    //DONE  Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
     //TODO 5: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
 
     this.pt = {

@@ -59,6 +59,10 @@ export class DataService {
     return this.httpClient.get(`http://localhost:8080/schedulling/allpaymentoptions`)
   }
 
+  getSchedullingFee(city: String | undefined) {
+    return this.httpClient.get(`http://localhost:8080/schedulling/getschedullingfee/${city}`)
+  }
+
   // Programming
 
   saveAllFormData(formData: any): Observable<any> {
@@ -72,8 +76,7 @@ export class DataService {
     return this.httpClient.get(`http://localhost:8080/programming/allprogrammings`)
   }
 
-  getSchedullingFee(city: String | undefined) {
-    return this.httpClient.get(`http://localhost:8080/schedulling/getschedullingfee/${city}`)
+  getProgrammingByCode(code: any): Observable<string> {
+    return this.httpClient.get<string>(`http://localhost:8080/programming`, {params: { code } })
   }
-
 }
