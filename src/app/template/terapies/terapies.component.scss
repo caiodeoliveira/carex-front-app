@@ -32,8 +32,6 @@
                 display: grid;
                 grid-template-columns: 1fr;
 
-                
-
                 .terapy-image {
                     border-radius: 11.9rem;
                     cursor: pointer;
@@ -41,13 +39,15 @@
                     &:hover {
                         border: 5px solid #69cf99;
                     }
-
                 }
             }
         }
     }
+
 }
- ::ng-deep .p-tooltip .p-tooltip-text {
+
+
+::ng-deep .p-tooltip .p-tooltip-text {
     width: 32rem;
     font-size: 2.2rem;
     color: #FFF;

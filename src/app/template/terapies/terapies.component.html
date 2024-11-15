@@ -3,8 +3,9 @@
 
     <section class="terapies-container">
         <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData$;">
-            <span *ngIf="terapy.alternative" class="terapies-grid-data">
+            <span *ngIf="terapy.alternative && !displaySkeleton" class="terapies-grid-data">
                 <img
+                    *ngIf="!displaySkeleton"
                     class="terapy-image"
                     (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)"
                     src="{{terapy.image}}"
@@ -14,8 +15,10 @@
                     pTooltip="Clique na imagem para mais detalhes e agendamento."
                     tooltipPosition="top"
                     placeholder="Right">
-                <h2>{{terapy.name}}</h2>
-            </span>
+                    <h2>{{terapy.name}}</h2>
+                </span>
+                <p-skeleton *ngIf="displaySkeleton" animation="wave" shape="circle" size="25rem" [style]="{'background-color': '#dbdada'}"></p-skeleton>
+                <p-skeleton id="rectangle-skeleton" *ngIf="displaySkeleton" animation="wave" shape="rectangle" width="24.5rem" height="3rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
         </div>
     </section>
 
@@ -24,7 +27,7 @@
     <section class="terapies-container">
         <div class="terapies-grid-container" *ngFor="let terapy of physioterapyTerapiesData$;">
 
-            <span *ngIf="!terapy.alternative" class="terapies-grid-data">
+            <span *ngIf="!terapy.alternative && !displaySkeleton" class="terapies-grid-data">
                 <img
                     class="terapy-image"
                     (click)="showModalAndGetImage(terapy.image, terapy.description, terapy.name)"
@@ -37,6 +40,8 @@
                     placeholder="Right">
                 <h2>{{terapy.name}}</h2>
             </span>
+            <p-skeleton *ngIf="displaySkeleton" animation="wave" shape="circle" size="25rem" [style]="{'background-color': '#dbdada'}"></p-skeleton>
+            <p-skeleton id="rectangle-skeleton" *ngIf="displaySkeleton" animation="wave" shape="rectangle" width="24.5rem" height="3rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
         </div>
     </section>
     <app-modal-component

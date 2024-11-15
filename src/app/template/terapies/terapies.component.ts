@@ -30,6 +30,8 @@ export class TerapiesComponent implements OnInit {
   alternativeTerapiesData$: any[] = [];
   physioterapyTerapiesData$: any[] = [];
 
+  displaySkeleton: boolean = true;
+
 
   ngOnInit(): void {
     this.getAllTerapiesData();
@@ -89,6 +91,9 @@ export class TerapiesComponent implements OnInit {
         
         if(obj.alternative) {
           this.alternativeTerapiesData$.push(obj);
+          setTimeout(() => {
+            this.displaySkeleton = false;
+          }, 600)
         }
         else {
           this.physioterapyTerapiesData$.push(obj);
