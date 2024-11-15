@@ -9,13 +9,4 @@ export class HomeComponent {
 
   @Output() onClickToScroll: EventEmitter<string> = new EventEmitter();
 
-
-  onClickGoToTerapies() {
-    this.onClickToScroll.emit('terapies');
-  }
-
-  onClickTalkToTeraphist() {
-    this.onClickToScroll.emit('about');
-  }
-
 }

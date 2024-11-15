@@ -2,72 +2,26 @@
     .home-container {
         width: 100vw;
         height: 70vh;
-        background-image: url('https://www.physioplace.com.br/wp-content/uploads/2018/02/physioplace-galeria-interior7.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+        background-color: #dbdada;
+        display: grid;
+        justify-items: center;
+        align-items: center;
 
-        .welcome-text {
-            color: #69cf99;
-            text-align: center;
-            font-size: 9.5rem;
-            width: 100vw;
-            margin-bottom: 1rem;
-        }
-        .benefits-container {
+        .presentation-container {
             display: grid;
-            grid-template-columns: 1fr;
-            background-color: black;
-            margin: 0 auto;
-            width: 143rem;
-            height: 29rem;
-            border-radius: 15px;
-            padding: 0 2rem;
+            justify-items: center;
+            align-items: center;
+            gap: 7rem;
 
-            .benefits-text {
-                color: #69cf99;
-                font-size: 4.5rem;
-                height: 3rem;
-                text-align: center;
+            .name-text {
+                color: #555454;
+                font-size: 13rem;
             }
-
-            .p-divider-horizontal {
-               height: 10px;
-            }
-
-            .benefits-card-container {
-                display: flex;
-                
-                justify-content: space-evenly;
-                align-items: center;
-
-                .benefit-card {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    justify-items: center;
-                    align-items: center;
-                    width: 33rem;
-                    height: 14rem;
-                    background-color: #69cf99;
-                    border-radius: 10px;
-                    
-                    img {
-                        width: 9rem;
-                    }
     
-                    .benefit-text {
-                        font-size: 2.5rem;
-                    }
-                }
-
+            .registry-text {
+                color: #555454;
+                font-size: 7rem;
             }
-
-            .home-actions-container {
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-            }
-            
         }
 
     }
