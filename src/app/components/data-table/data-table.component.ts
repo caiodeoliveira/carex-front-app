@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-data-table',
@@ -7,19 +9,45 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DataTableComponent implements OnInit {
 
+  constructor(private primengConfig: PrimeNGConfig, private dataService: DataService) {};
+
   @Input() tableData: any[];
   @Input() dataTableType: string = "";
 
   paginatorActivator: boolean;
+  
   isConfirmedSchedule: string = "";
+  
   isUndoButtonActive: boolean = false;
+  
   dataInCache: any;
+  
   lastAction: string = "";
 
+  isReschedullingFieldActive: boolean = false;
+
+  pt: any;
+
+  reschedullingDate: Date | undefined;
+
+  unavailableDates: any[] = [];
 
   ngOnInit(): void {
       this.paginatorActivator = true;
       this.filterRowsWhereStatusIsConfirmed();
+
+      this.pt = {
+        firstDayOfWeek: 0,
+        dayNames: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
+        dayNamesShort: ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"],
+        dayNamesMin: ["D", "S", "T", "Q", "Q", "S", "S"],
+        monthNames: [ "janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro" ],
+        monthNamesShort: [ "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez" ],
+        today: 'Hoje',
+        clear: 'Limpar'
+      };
+
+      this.primengConfig.setTranslation(this.pt);
     }
 
   confirmSchedule(tableDataConfirmed: any) {
@@ -82,4 +110,28 @@ export class DataTableComponent implements OnInit {
       dataObj.attendanceAddress ? dataObj.attendanceAddress : dataObj.attendanceCity = "Rua Djalma Farias, 251, Torreão, Recife - PE";
     })
   }
+
+  toggleReschedullingField() {
+    if(!this.isReschedullingFieldActive) {
+      
+      this.isReschedullingFieldActive = true;
+      this.getUnavailableDates();
+      }
+
+    else {
+      this.isReschedullingFieldActive = false;
+      this.reschedullingDate = undefined;
+    }
+    
+  }
+
+  getUnavailableDates() {
+    this.dataService.getAllUnavailableDates().subscribe(obs => {
+
+      obs.forEach((obj:any) => {
+        this.unavailableDates.push(new Date(obj.date))
+      })      
+    })
+  }
+
 }

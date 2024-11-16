@@ -21,7 +21,6 @@ import { ButtonComponentModule } from '../../components/button/button.module';
     ModalModule,
     InputTextModule,
     FormsModule,
-    CalendarModule,
     DropdownModule,
     DateTimeModule,
     CalendarModule,

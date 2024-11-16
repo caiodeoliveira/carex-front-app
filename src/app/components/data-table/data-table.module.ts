@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponentModule } from "../button/button.module";
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -17,7 +18,8 @@ import { ButtonComponentModule } from "../button/button.module";
     CardModule,
     FormsModule,
     FontAwesomeModule,
-    ButtonComponentModule
+    ButtonComponentModule,
+    CalendarModule,
 ],
   exports: [DataTableComponent]
 })

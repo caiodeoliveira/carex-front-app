@@ -30,9 +30,59 @@
         tr > td {
             text-align: center;
             letter-spacing: 0.1rem;
-            font-weight: bold;  
+            font-weight: bold;
+
+            ::ng-deep .p-calendar .p-inputtext{
+                width: 20rem;
+                height: 5rem;
+                border: 3px solid #69cf99;
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            ::ng-deep .p-calendar .p-datepicker-prev {
+                width: 3rem;
+                height: 3rem;
+
+                .p-datepicker-prev-icon {
+                    width: 5rem;
+                    height: 5rem;
+                }
+            }
+
+            ::ng-deep .p-calendar .p-datepicker-next {
+                width: 3rem;
+                height: 3rem;
+
+                .p-datepicker-next-icon {
+                    width: 5rem;
+                    height: 5rem;
+                }
+            }
+
+            ::ng-deep .p-calendar .p-datepicker-title {
+                width: 30rem;
+                display: flex;
+                justify-content: space-evenly;
+
+
+                button {
+                    font-size: 2rem;
+                
+                }
+            }
+
+            ::ng-deep .p-calendar .p-datepicker-calendar {
+                width: 35rem;
+                font-size: 1.9rem;
+                margin: 0 auto
+            }
         }
         
+        tr > .reschedulling-container-expanded {
+            height: 40rem;
+        }
+
         .confirmed {
             border-top: 2px solid greenyellow;
             border-bottom: 2px solid greenyellow;

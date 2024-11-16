@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {global} from '../../../global';
 import { PrimeNGConfig } from 'primeng/api';
-import { Hour, Gender, Payment, Location, Insurance, city, PaymentType } from 'src/app/models/form';
+import { Hour, Gender, Location, Insurance, city, PaymentType } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({

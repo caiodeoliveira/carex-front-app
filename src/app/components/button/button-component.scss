@@ -4,6 +4,21 @@
     display: grid;
     grid-template-columns: 1;
     justify-items: center;
+
+    .reschedulling-button {
+        font-size: 6rem;
+        color: darkblue;
+    }
+
+    .deactivate-reschedulling-button {
+        font-size: 6rem;
+        color: tomato;
+    }
+
+    .confirm-reschedulling-button {
+        font-size: 6rem;
+        color: green;
+    }
 }
 
 

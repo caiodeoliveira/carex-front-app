@@ -32,7 +32,7 @@ export class TerapiesComponent implements OnInit {
 
   displaySkeleton: boolean = true;
 
-  searchScheduleInputValue: string = "";
+  searchScheduleInputValue: string = "426515";
   searchingForSchedule: boolean = false;
   searchScheduleEvent: any;  
 
@@ -40,6 +40,7 @@ export class TerapiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllTerapiesData();
+    this.checkSearchFieldValue();
   }
 
   showModalAndGetImage(imageToShow: string, description: string, name: string) {
@@ -108,18 +109,22 @@ export class TerapiesComponent implements OnInit {
   }
 
   checkSearchFieldValue() {
-    clearInterval(this.searchScheduleEvent);
+    if(this.searchScheduleEvent) {
+      clearInterval(this.searchScheduleEvent);
+    }
 
     if(this.searchScheduleInputValue != "") {
 
       this.searchingForSchedule = true;
+
+      this.scheduleFound = [];
 
       this.searchScheduleEvent = setTimeout(() => {
         this.dataService.getProgrammingByCode(this.searchScheduleInputValue).subscribe(obs => {
           this.scheduleFound.push(obs)
           this.searchingForSchedule = false;
         })        
-      }, 6000);
+      }, 1000);
 
     }
   }

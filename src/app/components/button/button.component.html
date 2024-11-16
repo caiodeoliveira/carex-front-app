@@ -58,6 +58,18 @@
     <p-button type="submit" [disabled]="isSubmitButtonDisabled" styleClass="p-button-confirm-modal" [label]="buttonLabel"></p-button>
 </div>
 
+<span *ngIf="buttonType == 'reschedulling-button'" class="button-container">
+    <fa-icon [icon]="reschedullingIcon" class="reschedulling-button"></fa-icon>
+</span>
+
+<span *ngIf="buttonType == 'deactivate-reschedulling-button'" class="button-container">
+    <fa-icon [icon]="cancelReschedullingIcon" class="deactivate-reschedulling-button"></fa-icon>
+</span>
+
+<span *ngIf="buttonType == 'confirm-reschedulling-button'" class="button-container">
+    <fa-icon [icon]="confirmReschedullingIcon" class="confirm-reschedulling-button"></fa-icon>
+</span>
+
 <!-- <span *ngIf="buttonType == 'previousButton'" class="button-container">
     <fa-icon [icon]="backIcon" class="previous-button"></fa-icon>
 </span>

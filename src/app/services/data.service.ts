@@ -77,6 +77,6 @@ export class DataService {
   }
 
   getProgrammingByCode(code: any): Observable<string> {
-    return this.httpClient.get<string>(`http://localhost:8080/programming`, {params: { code } })
+    return this.httpClient.get<string>(`http://localhost:8080/programming/programmingbycode`, {params: { code } })
   }
 }
