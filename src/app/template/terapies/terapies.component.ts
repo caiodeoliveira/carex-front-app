@@ -32,11 +32,15 @@ export class TerapiesComponent implements OnInit {
 
   displaySkeleton: boolean = true;
 
-  searchScheduleInputValue: string = "426515";
+  searchProgrammingInputValue: string = "";
   searchingForSchedule: boolean = false;
   searchScheduleEvent: any;  
 
-  scheduleFound: any[] = [];
+  programmingFound: any[] = [];
+
+  programmingFoundSkeletonDisplay: boolean = false;
+
+  programmingNotFoundMessage: string = ""
 
   ngOnInit(): void {
     this.getAllTerapiesData();
@@ -113,19 +117,34 @@ export class TerapiesComponent implements OnInit {
       clearInterval(this.searchScheduleEvent);
     }
 
-    if(this.searchScheduleInputValue != "") {
+    if(this.searchProgrammingInputValue != "") {
 
       this.searchingForSchedule = true;
 
-      this.scheduleFound = [];
+      this.programmingFound = [];
+
+      this.programmingFoundSkeletonDisplay = true;
 
       this.searchScheduleEvent = setTimeout(() => {
-        this.dataService.getProgrammingByCode(this.searchScheduleInputValue).subscribe(obs => {
-          this.scheduleFound.push(obs)
-          this.searchingForSchedule = false;
+        this.dataService.getProgrammingByCode(this.searchProgrammingInputValue).subscribe(obs => {
+          this.programmingFoundSkeletonDisplay = false;
+          if(obs) {
+            this.programmingNotFoundMessage = "";
+            this.programmingFound.push(obs)
+          }
+          else if(!obs) {
+            this.programmingNotFoundMessage = "Nenhuma programação encontrada com o código digitado";
+          }
         })        
-      }, 1000);
-
+      }, 850);
     }
+    else {
+      this.programmingFoundSkeletonDisplay = false
+      this.programmingNotFoundMessage = "";
+    }
+  }
+
+  setProgrammingFoundSkeletonDisplay(rescheduleProgrammingEvent: boolean) {
+    this.programmingFoundSkeletonDisplay = rescheduleProgrammingEvent;
   }
 }

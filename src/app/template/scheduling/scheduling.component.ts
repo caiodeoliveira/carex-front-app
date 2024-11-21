@@ -120,7 +120,7 @@ export class SchedulingComponent {
   }
 
   getAndSetAvailableHoursOptions() {
-    this.dataService.getUnavailableHoursByDate(this.attendanceDate).subscribe(obs => {
+    this.dataService.getAllAvailableHoursByDate(this.attendanceDate).subscribe(obs => {
 
       obs.forEach((obj: any) => {
       const hasDuplicatedHour = this.availableHours.some((hourObj) => hourObj.value ==  obj.hour)
