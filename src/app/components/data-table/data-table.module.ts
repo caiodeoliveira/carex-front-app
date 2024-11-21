@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonComponentModule } from "../button/button.module";
 import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 
@@ -20,6 +21,7 @@ import { CalendarModule } from 'primeng/calendar';
     FontAwesomeModule,
     ButtonComponentModule,
     CalendarModule,
+    DropdownModule,
 ],
   exports: [DataTableComponent]
 })

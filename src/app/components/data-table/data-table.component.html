@@ -52,9 +52,11 @@
                 <th class="location-header">Local</th>
                 <th class="location-header">Cidade</th>
                 <th *ngIf="data.attendanceAddress" class="location-header">Endereço</th>
-                <th class="confirm-attendance-header">Reagendar Consulta</th>
+                <th *ngIf="!isReschedullingFieldActive" class="confirm-attendance-header">Reagendar Consulta</th>
+                <th *ngIf="isReschedullingFieldActive" class="confirm-attendance-header">Data de Reagendamento</th>
+                <th *ngIf="isReschedullingFieldActive && reschedullingDate" class="confirm-attendance-header">Horário de Reagendamento</th>
                 <th *ngIf="isReschedullingFieldActive" class="confirm-attendance-header">Cancelar Reagendamento</th>
-                <th *ngIf="isReschedullingFieldActive && reschedullingDate" class="confirm-attendance-header">Confirmar Reagendamento</th>
+                <th *ngIf="isReschedullingFieldActive && reschedullingDate && selectedHour" class="confirm-attendance-header">Confirmar Reagendamento</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
@@ -78,14 +80,28 @@
                         [locale]="pt"
                         placeholder="Escolha uma Data"
                         (ngModelChange)="getUnavailableDates()"
+                        (onSelect)="activateAttendanceHourField()"
                         [(ngModel)]="reschedullingDate">
                     </p-calendar>
                 </td>
+                <td *ngIf="isReschedullingFieldActive && reschedullingDate" class="{{isReschedullingFieldActive ? 'reschedulling-container-expanded' : ''}}" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <p-dropdown
+                        id="hour-dropdown"
+                        name="hour"
+                        [options]="availableHours"
+                        optionLabel="value"
+                        (onShow)="getAndSetAvailableHoursOptions()"
+                        [(ngModel)]="selectedHour"
+                        [disabled]="!attendanceIsChosen"
+                        placeholder="Escolha uma opção">    
+                </p-dropdown>
+                </td>
+
                 <td *ngIf="isReschedullingFieldActive" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
                     <app-button-component *ngIf="isReschedullingFieldActive" (click)="toggleReschedullingField()" buttonType="deactivate-reschedulling-button"/>
                 </td>
                 <td *ngIf="isReschedullingFieldActive && reschedullingDate" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
-                    <app-button-component *ngIf="isReschedullingFieldActive && reschedullingDate" (click)="toggleReschedullingField()" buttonType="confirm-reschedulling-button"/>
+                    <app-button-component *ngIf="isReschedullingFieldActive && selectedHour" (click)="doRescheduleProgramming()" buttonType="confirm-reschedulling-button"/>
                 </td>
             </tr>
         </ng-template>

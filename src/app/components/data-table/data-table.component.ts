@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import { Hour } from 'src/app/models/form';
+import { RescheduleProgrammingDTO } from 'src/app/models/programmings';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -13,6 +15,8 @@ export class DataTableComponent implements OnInit {
 
   @Input() tableData: any[];
   @Input() dataTableType: string = "";
+
+  @Output() onRescheduleProgramming: EventEmitter<boolean> = new EventEmitter();
 
   paginatorActivator: boolean;
   
@@ -31,9 +35,17 @@ export class DataTableComponent implements OnInit {
   reschedullingDate: Date | undefined;
 
   unavailableDates: any[] = [];
+  
+  availableHours: Hour[] = [];
+  selectedHour: Hour | undefined;
+
+  attendanceIsChosen: boolean = false;
+
+  rescheduleProgrammingId: number;
+  rescheduleProgramming: RescheduleProgrammingDTO;
 
   ngOnInit(): void {
-      this.paginatorActivator = true;
+      this.paginatorActivator = false;
       this.filterRowsWhereStatusIsConfirmed();
 
       this.pt = {
@@ -121,6 +133,7 @@ export class DataTableComponent implements OnInit {
     else {
       this.isReschedullingFieldActive = false;
       this.reschedullingDate = undefined;
+      this.selectedHour = undefined;
     }
     
   }
@@ -132,6 +145,51 @@ export class DataTableComponent implements OnInit {
         this.unavailableDates.push(new Date(obj.date))
       })      
     })
+  }
+
+  getAndSetAvailableHoursOptions() {
+    this.dataService.getAllAvailableHoursByDate(this.reschedullingDate).subscribe(obs => {
+
+      obs.forEach((obj: any) => {
+      const hasDuplicatedHour = this.availableHours.some((hourObj) => hourObj.value ==  obj.hour)
+        
+        if(!hasDuplicatedHour) {
+          this.availableHours.push({value: obj.hour});
+          this.availableHours.sort((hourA, hourB) => {
+            return hourA.value.localeCompare(hourB.value);
+          })
+        }
+      })
+
+    })
+  }
+
+activateAttendanceHourField() {
+    this.attendanceIsChosen = true;
+  }
+
+  doRescheduleProgramming() {
+    this.tableData.forEach((programming) => {
+      this.rescheduleProgrammingId = programming.id;
+
+       this.rescheduleProgramming = {
+        newAttendanceDate: this.reschedullingDate,
+        newAttendanceHour: this.selectedHour?.value,
+        attendanceCode: programming.attendanceCode
+      }
+      
+    })
+    
+    this.onRescheduleProgramming.emit(true);
+    this.tableData = [];
+    setTimeout(() => {
+      this.dataService.rescheduleProgramming(this.rescheduleProgrammingId ,this.rescheduleProgramming).subscribe(obs => {
+        this.tableData.push(obs)
+      });
+      this.onRescheduleProgramming.emit(false);
+    }, 1000);
+
+    this.toggleReschedullingField();
   }
 
 }
