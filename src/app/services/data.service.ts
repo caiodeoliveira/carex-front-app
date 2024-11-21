@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RescheduleProgrammingDTO } from '../models/programmings';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class DataService {
     return this.httpClient.get(`http://localhost:8080/professionalschedule/date`)
   }
 
-  getUnavailableHoursByDate(date: Date): Observable<any> {
+  getAllAvailableHoursByDate(date: Date | undefined): Observable<any> {
     return this.httpClient.get(`http://localhost:8080/professionalschedule/hour/${date}`)
   }
 
@@ -78,5 +79,9 @@ export class DataService {
 
   getProgrammingByCode(code: any): Observable<string> {
     return this.httpClient.get<string>(`http://localhost:8080/programming/programmingbycode`, {params: { code } })
+  }
+
+  rescheduleProgramming(programmingId: number , dataObj: RescheduleProgrammingDTO): Observable<any> {
+    return this.httpClient.patch<any>(`http://localhost:8080/programming/reschedule/${programmingId}`, dataObj);
   }
 }
