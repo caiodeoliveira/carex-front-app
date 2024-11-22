@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { Hour } from 'src/app/models/form';
-import { RescheduleProgrammingDTO } from 'src/app/models/programmings';
-import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-data-table',
@@ -11,14 +8,14 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class DataTableComponent implements OnInit {
 
-  constructor(private primengConfig: PrimeNGConfig, private dataService: DataService) {};
+  constructor(private primengConfig: PrimeNGConfig) {};
 
   @Input() tableData: any[];
   @Input() dataTableType: string = "";
 
   @Output() onRescheduleProgramming: EventEmitter<boolean> = new EventEmitter();
 
-  paginatorActivator: boolean;
+  paginatorActivator: boolean = true;
   
   isConfirmedSchedule: string = "";
   
@@ -28,21 +25,7 @@ export class DataTableComponent implements OnInit {
   
   lastAction: string = "";
 
-  isReschedullingFieldActive: boolean = false;
-
   pt: any;
-
-  reschedullingDate: Date | undefined;
-
-  unavailableDates: any[] = [];
-  
-  availableHours: Hour[] = [];
-  selectedHour: Hour | undefined;
-
-  attendanceIsChosen: boolean = false;
-
-  rescheduleProgrammingId: number;
-  rescheduleProgramming: RescheduleProgrammingDTO;
 
   ngOnInit(): void {
       this.paginatorActivator = false;
@@ -121,77 +104,6 @@ export class DataTableComponent implements OnInit {
       dataObj.attendanceCity ? dataObj.attendanceCity : dataObj.attendanceCity = "Recife";
       dataObj.attendanceAddress ? dataObj.attendanceAddress : dataObj.attendanceCity = "Rua Djalma Farias, 251, Torreão, Recife - PE";
     })
-  }
-
-  toggleReschedullingField() {
-    if(!this.isReschedullingFieldActive) {
-      
-      this.isReschedullingFieldActive = true;
-      this.getUnavailableDates();
-      }
-
-    else {
-      this.isReschedullingFieldActive = false;
-      this.reschedullingDate = undefined;
-      this.selectedHour = undefined;
-    }
-    
-  }
-
-  getUnavailableDates() {
-    this.dataService.getAllUnavailableDates().subscribe(obs => {
-
-      obs.forEach((obj:any) => {
-        this.unavailableDates.push(new Date(obj.date))
-      })      
-    })
-  }
-
-  getAndSetAvailableHoursOptions() {
-    this.availableHours = [];
-
-    this.dataService.getAllAvailableHoursByDate(this.reschedullingDate).subscribe(obs => {
-
-      obs.forEach((obj: any) => {
-      const hasDuplicatedHour = this.availableHours.some((hourObj) => hourObj.value ==  obj.hour)
-        
-        if(!hasDuplicatedHour) {
-          this.availableHours.push({value: obj.hour});
-          this.availableHours.sort((hourA, hourB) => {
-            return hourA.value.localeCompare(hourB.value);
-          })
-        }
-      })
-
-    })
-  }
-
-activateAttendanceHourField() {
-    this.attendanceIsChosen = true;
-  }
-
-  doRescheduleProgramming() {
-    this.tableData.forEach((programming) => {
-      this.rescheduleProgrammingId = programming.id;
-
-       this.rescheduleProgramming = {
-        newAttendanceDate: this.reschedullingDate,
-        newAttendanceHour: this.selectedHour?.value,
-        attendanceCode: programming.attendanceCode
-      }
-    })
-    
-    this.unavailableDates = [];
-    this.onRescheduleProgramming.emit(true);
-    this.tableData = [];
-    setTimeout(() => {
-      this.dataService.rescheduleProgramming(this.rescheduleProgrammingId ,this.rescheduleProgramming).subscribe(obs => {
-        this.tableData.push(obs)
-      });
-      this.onRescheduleProgramming.emit(false);
-    }, 1000);
-
-    this.toggleReschedullingField();
   }
 
 }

@@ -31,82 +31,10 @@
             text-align: center;
             letter-spacing: 0.1rem;
             font-weight: bold;
-
-            ::ng-deep #schedule-date-input .p-calendar .p-inputtext {
-                width: 20rem;
-                height: 5rem;
-                border: 3px solid #69cf99;
-                font-size: 2rem;
-                text-align: center;
-
-                &:focus {
-                    margin-bottom: 27rem;
-                }
-            }
-
-            ::ng-deep .p-calendar .p-datepicker-prev {
-                width: 3rem;
-                height: 3rem;
-
-                .p-datepicker-prev-icon {
-                    width: 5rem;
-                    height: 5rem;
-                }
-            }
-
-            ::ng-deep .p-calendar .p-datepicker-next {
-                width: 3rem;
-                height: 3rem;
-
-                .p-datepicker-next-icon {
-                    width: 5rem;
-                    height: 5rem;
-                }
-            }
-
-            ::ng-deep .p-calendar .p-datepicker-title {
-                width: 30rem;
-                display: flex;
-                justify-content: space-evenly;
-
-
-                button {
-                    font-size: 2rem;
-                }
-            }
-
-            ::ng-deep .p-calendar .p-datepicker-calendar {
-                width: 37rem;
-                font-size: 1.9rem;
-                margin: 0 auto
-            }
-
-            ::ng-deep .p-dropdown {
-                width: 25rem;
-                height: 5rem;
-                border: 4px solid #69cf99;
-                
-                ::ng-deep .p-dropdown-label {
-                    font-size: 2rem;
-                    text-align: center;
-                }
-
-                .p-dropdown-trigger {
-                 width: 3rem;
-                 height: 3rem;
-                 margin: 1rem 0.5rem 0 0;
-
-                .p-dropdown-trigger-icon {
-                    width: 3rem;
-                    height: 3rem;
-                    }
-                 }
-
-                  .p-dropdown-item {
-                    font-size: 2rem;
-                    text-align: center;
-                }
-            }
+        }
+        
+        tr > .reschedulling-container-expanded {
+            height: 40rem;
         }
 
         .confirmed {
