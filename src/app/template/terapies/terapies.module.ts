@@ -6,7 +6,7 @@ import { ModalModule } from 'src/app/components/modal/modal.module';
 import { SkeletonModule } from 'primeng/skeleton';
 import { InputMaskModule } from 'primeng/inputmask';
 import { FormsModule } from '@angular/forms';
-import { DataTableModule } from "../../components/data-table/data-table.module";
+import { ExistingProgrammingManagementModule } from 'src/app/components/existing-programming-management/existing-programming-management.module';
 
 @NgModule({
   declarations: [TerapiesComponent],
@@ -17,7 +17,7 @@ import { DataTableModule } from "../../components/data-table/data-table.module";
     SkeletonModule,
     InputMaskModule,
     FormsModule,
-    DataTableModule,
+    ExistingProgrammingManagementModule,
 ],
   exports: [TerapiesComponent]
 })

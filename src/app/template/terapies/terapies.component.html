@@ -60,7 +60,7 @@
             placeholder="Exemplo: 13578219">
         </p-inputMask>
         <h1 *ngIf="programmingNotFoundMessage" class="not-found-message">{{programmingNotFoundMessage}}</h1>
-        <app-data-table *ngIf="programmingFound.length > 0" [dataTableType]="'search-schedule-table'" [tableData]="programmingFound" (onRescheduleProgramming)="setProgrammingFoundSkeletonDisplay($event)" />
+        <app-existing-programming-management *ngIf="programmingFound.length > 0" [tableData]="programmingFound" (onRescheduleProgramming)="setProgrammingFoundSkeletonDisplay($event)" />
         <p-skeleton id="rectangle-skeleton" *ngIf="programmingFoundSkeletonDisplay" animation="wave" shape="rectangle" width="273rem" height="17rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
     </section>
 
