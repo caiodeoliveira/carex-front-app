@@ -148,6 +148,8 @@ export class DataTableComponent implements OnInit {
   }
 
   getAndSetAvailableHoursOptions() {
+    this.availableHours = [];
+
     this.dataService.getAllAvailableHoursByDate(this.reschedullingDate).subscribe(obs => {
 
       obs.forEach((obj: any) => {
@@ -177,9 +179,9 @@ activateAttendanceHourField() {
         newAttendanceHour: this.selectedHour?.value,
         attendanceCode: programming.attendanceCode
       }
-      
     })
     
+    this.unavailableDates = [];
     this.onRescheduleProgramming.emit(true);
     this.tableData = [];
     setTimeout(() => {
