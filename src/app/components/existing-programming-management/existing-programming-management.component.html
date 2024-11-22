@@ -1,0 +1,68 @@
+<section *ngIf="!isReschedullingFieldActive">
+    <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+        <ng-template pTemplate="header">
+            <tr *ngFor="let data of tableData">
+                <th class="delete-schedule-header">Status</th>
+                <th class="name-header">Nome</th>
+                <th class="date-hour-header">Data / Hora</th>
+                <th class="phone-header">Cel</th>
+                <th class="model-header">Modelo</th>
+                <th class="location-header">Local</th>
+                <th class="location-header">Cidade</th>
+                <th *ngIf="data.attendanceAddress" class="location-header">Endereço</th>
+                <th class="confirm-attendance-header">Reagendar Consulta</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr ngClass="table-row-body">
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.status }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.name }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.patientPhoneNumber }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.paymentType }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceCity }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceLocation }}</td>
+                <td *ngIf="data.attendanceAddress" [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceAddress }}</td>
+                <td class="{{isReschedullingFieldActive ? 'reschedulling-container-expanded' : ''}}" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+                    <app-button-component *ngIf="!isReschedullingFieldActive" (click)="toggleReschedullingField()" buttonType="reschedulling-button"/>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
+
+<div *ngIf="isReschedullingFieldActive" class="rescheduleContainer">
+
+    <h1 class="reschedule-title">Reagendamento</h1>
+
+    <div class="date-time-container">
+        <p-calendar
+            *ngIf="isReschedullingFieldActive"
+            id="schedule-date-input"
+            inputId="schedule-date-input"
+            dateFormat="dd/mm/yy"
+            [disabledDates]="unavailableDates"
+            [locale]="pt"
+            placeholder="Escolha uma Data"
+            (ngModelChange)="getUnavailableDates()"
+            (onSelect)="activateAttendanceHourField()"
+            [(ngModel)]="reschedullingDate">
+        </p-calendar>
+    
+        <p-dropdown
+            id="hour-dropdown"
+            name="hour"
+            [options]="availableHours"
+            optionLabel="value"
+            (onShow)="getAndSetAvailableHoursOptions()"
+            [(ngModel)]="selectedHour"
+            [disabled]="!attendanceIsChosen"
+            placeholder="Escolha uma opção">    
+        </p-dropdown>
+    </div>
+
+    <div class="action-container">
+        <app-button-component *ngIf="isReschedullingFieldActive" (click)="toggleReschedullingField()" buttonType="deactivate-reschedulling-button"/>
+        <app-button-component *ngIf="isReschedullingFieldActive && selectedHour" (click)="doRescheduleProgramming()" buttonType="confirm-reschedulling-button"/>
+    </div>
+</div>
