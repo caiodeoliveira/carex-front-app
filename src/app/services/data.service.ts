@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RescheduleProgrammingDTO } from '../models/programmings';
+import { RescheduleProgrammingDTO } from '../models/dto/dtos';
 
 @Injectable({
   providedIn: 'root'
@@ -83,5 +83,12 @@ export class DataService {
 
   rescheduleProgramming(programmingId: number , dataObj: RescheduleProgrammingDTO): Observable<any> {
     return this.httpClient.patch<any>(`http://localhost:8080/programming/reschedule/${programmingId}`, dataObj);
+  }
+
+  sendEmailMessage(emailObj: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.httpClient.post<any>('http://localhost:8080/email/send', emailObj, { headers });
   }
 }
