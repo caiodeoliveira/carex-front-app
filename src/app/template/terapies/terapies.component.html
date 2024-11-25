@@ -57,7 +57,7 @@
             (ngModelChange)="checkSearchFieldValue()"
             minLength="14"
             [required]="true"
-            placeholder="Exemplo: 13578219">
+            placeholder="Exemplo: 135782">
         </p-inputMask>
         <h1 *ngIf="programmingNotFoundMessage" class="not-found-message">{{programmingNotFoundMessage}}</h1>
         <app-existing-programming-management *ngIf="programmingFound.length > 0" [tableData]="programmingFound" (onRescheduleProgramming)="setProgrammingFoundSkeletonDisplay($event)" />
