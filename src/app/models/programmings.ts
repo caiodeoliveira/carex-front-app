@@ -6,9 +6,3 @@ export interface Programmings {
     paymentType: string,
     location: string
   }
-
-export interface RescheduleProgrammingDTO {
-  newAttendanceDate: Date | undefined,
-  newAttendanceHour: String | undefined,
-  attendanceCode: String;
-}
