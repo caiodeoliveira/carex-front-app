@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { Hour } from 'src/app/models/form';
-import { RescheduleProgrammingDTO } from 'src/app/models/programmings';
+import { EmailDTO, RescheduleProgrammingDTO } from 'src/app/models/dto/dtos';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -34,6 +34,8 @@ export class ExistingProgrammingManagementComponent implements OnInit {
 
   rescheduleProgrammingId: number;
   rescheduleProgramming: RescheduleProgrammingDTO;
+
+  emailObject: EmailDTO;
 
   ngOnInit(): void {
       this.paginatorActivator = false;
@@ -115,7 +117,20 @@ activateAttendanceHourField() {
         newAttendanceHour: this.selectedHour?.value,
         attendanceCode: programming.attendanceCode
       }
+
+      const year = this.reschedullingDate?.getFullYear();
+      const month = Number(this.reschedullingDate?.getUTCMonth()) + 1;
+      const day = this.reschedullingDate?.getDate();
+      const reschedullingDateFormatted = `${day}/${month}/${year}`;
+
+      this.emailObject = {
+        to: "dCaioCesar98@gmail.com",
+        subject: "Programação Reagendada",
+        text: `A consulta de ${programming.name} que seria às ${programming.attendanceHour} foi reagendada. o novo horário é: ${reschedullingDateFormatted} às ${this.selectedHour?.value}. Código da consulta: ${programming.attendanceCode}`
+      }
+
     })
+    this.dataService.sendEmailMessage(this.emailObject).subscribe();
     
     this.unavailableDates = [];
     this.onRescheduleProgramming.emit(true);
