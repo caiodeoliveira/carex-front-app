@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import {global} from '../../../global';
 import { DataService } from 'src/app/services/data.service';
 @Component({
@@ -126,6 +126,12 @@ export class TerapiesComponent implements OnInit {
       this.programmingFoundSkeletonDisplay = true;
 
       this.searchScheduleEvent = setTimeout(() => {
+        if(this.searchProgrammingInputValue.length > 5) {
+
+        const searchProgrammingInput = document.getElementById("stringonly");
+        searchProgrammingInput?.blur();
+        }
+
         this.dataService.getProgrammingByCode(this.searchProgrammingInputValue).subscribe(obs => {
           this.programmingFoundSkeletonDisplay = false;
           if(obs) {
