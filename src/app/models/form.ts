@@ -25,3 +25,18 @@ export interface Insurance {
 export interface city {
         city: string;
 }
+
+export interface FormSchedullingData {
+        status: string,
+        name: string,
+        attendanceDate: string,
+        attendanceHour: string,
+        patientGender: string,
+        patientPhoneNumber:string,
+        paymentType:string,
+        attendanceLocation:string,
+        healthInsurance:string,
+        attendanceCity:string,
+        attendanceAddress:string,
+        attendanceCode:string
+}
