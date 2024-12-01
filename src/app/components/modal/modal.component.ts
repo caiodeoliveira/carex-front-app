@@ -147,7 +147,6 @@ export class ModalComponent implements OnInit, OnChanges {
 
   matchCitySelectedWithSchedullingFee(citySelected: string | undefined) {
         this.dataService.getSchedullingFee(citySelected).subscribe((obs: any) => {
-          // TODO: Corrigir bug referente ao if abaixo. A cidade escolhida está vindo do componente schedulling como null ao escolher o Convênio.
           if(obs != null) {
             this.advanceModalSchedullingFee = `R$ ${obs}`;
           }
