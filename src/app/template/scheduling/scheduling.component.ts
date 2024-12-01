@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import {global} from '../../../global';
 import { PrimeNGConfig } from 'primeng/api';
-import { Hour, Gender, Location, Insurance, city, PaymentType } from 'src/app/models/form';
+import { Hour, Gender, Location, Insurance, city, PaymentType, FormSchedullingData } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -28,7 +28,7 @@ export class SchedulingComponent {
   phoneInputValue: string;
   addressInputValue: string;
 
-  attendanceDate: Date;
+  attendanceDate: Date|undefined;
 
   unavailableDates: any[] = [];
 
@@ -45,10 +45,10 @@ export class SchedulingComponent {
   attendanceLocationSelected: Location | undefined;
 
   insuranceList: Insurance[] = [];
-  InsuranceSelected: Insurance | undefined;
+  insuranceSelected: Insurance | undefined;
 
   attendanceCityList: city[] = [];
-  attendanceCitySelected: city | undefined;
+  attendanceCitySelected: city;
   
   displayAdvanceModal: boolean = false;
   displaySuccessScheduleModal: boolean = false;
@@ -65,21 +65,9 @@ export class SchedulingComponent {
 
   attendanceIsChosen: boolean = false;
 
-  formData: {} = {};
-
-  scheduleCode: string ="";
+  formData: FormSchedullingData;
 
   ngOnInit() {
-
-    //DONE  Criar método get no service e implementar no back o endpoint para buscar os dados que vão preencher os arrays abaixo somente no onShow ou algo assim dos componentes.
-    //DONE  Implementar ordenação de valores do array availableHours.
-    //DONE  Manter dropdown "escolha um horário enquanto não tiver data selecionada".
-    //DONE  Alterar as opções de plano de saúde para as opções reais atendidas.
-    //DONE  Transformar todos os dados estáticos, como por exemplo as opções de cidades no agendamento em ENUMS no Backend.
-    //DONE  Adicionar verificação de duplicidade para ao buscar opções no Back dos campos dropdown, não duplicar a lista a cada request feito pelo onShow.
-    //DONE  Editar a home, remover tudo e colocar um background cinza com o nome ana beatriz e talvez alguns dados a mais.
-    //TODO 5: Criar página onde o usuário vai poder buscar pela sua marcação/ seu agendamento através do código de agendamento e realizar ações (cancelamento, adiamento por exemplo).
-
     this.pt = {
       firstDayOfWeek: 0,
       dayNames: ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"],
@@ -97,7 +85,7 @@ export class SchedulingComponent {
       this.getUnavailableDates();
     }, 200)
 
-
+    this.attendanceCitySelected = {city: "Recife"};
   }
 
   getProfessionalData() {
@@ -189,6 +177,10 @@ export class SchedulingComponent {
     this.displayAdvanceModal = false;
   }
 
+  closeAdvanceModal() {
+    this.displayAdvanceModal = false
+  }
+
   goToSchedullingLastStep(formGroup: any) {
 
     this.validateForm(formGroup);
@@ -196,7 +188,6 @@ export class SchedulingComponent {
     if(formGroup.form.value.city) {
       this.attendanceCitySelected = {city: formGroup.form.value.city.city};
     }
-
       this.displayAdvanceModal = true;
 
   }
@@ -211,12 +202,12 @@ export class SchedulingComponent {
       this.isInsuranceAsPayment = true;
       this.attendanceLocationSelected = undefined;
       this.addressInputValue = '';
-      this.attendanceCitySelected = undefined;
+      this.attendanceCitySelected.city = "";
       this.isMyLocationSelected = false;
       this.attendanceCitySelected = {city: "nenhuma"};
     }
     if(this.paymentTypeSelected.value == 'Particular') {
-      this.InsuranceSelected = undefined;
+      this.insuranceSelected = undefined;
       this.attendanceLocationSelected = undefined;
       this.isInsuranceAsPayment = false;
       this.attendanceCitySelected = {city: "Recife"};
@@ -241,7 +232,7 @@ export class SchedulingComponent {
     }
   }
 
-  validateForm(formGroup: any): boolean {
+  validateForm(formGroup: any) {
     let cityValueToPreventUndefined = "";
     let insuranceValueToPreventUndefined = "";
     
@@ -251,7 +242,6 @@ export class SchedulingComponent {
       }
       else {
         cityValueToPreventUndefined = "Recife";
-        console.log(this.attendanceCitySelected?.city);
       }
     }
     else {
@@ -264,22 +254,27 @@ export class SchedulingComponent {
         name: formGroup.form.value.name,
         attendanceDate: formGroup.form.value.date,
         attendanceHour: formGroup.form.value.hour.value,
-        patientGender: formGroup.form.value.gender.value,
+        patientGender: this.selectedGender.value,
         patientPhoneNumber: formGroup.form.value.phone,
-        paymentType: formGroup.form.value.paymentType.value,
+        paymentType: this.paymentTypeSelected.value,
         attendanceLocation: formGroup.form.value.location.location,
         healthInsurance: insuranceValueToPreventUndefined,
         attendanceCity: cityValueToPreventUndefined,
         attendanceAddress: formGroup.form.value.address,
-        attendanceCode: Math.floor(Math.random() * 1000000).toString(),
+        attendanceCode: "",
       }
 
-      return true;
+      this.displayAdvanceModal = true;
+      this.resetFormFieldsValue();
   }
 
   changeAttendanceLocation() {
-    if(this.attendanceLocationSelected?.location == 'No endereço de minha preferência')
-    this.isMyLocationSelected = true;
+    if(this.attendanceLocationSelected?.location == 'No endereço de minha preferência') {
+      this.isMyLocationSelected = true;
+    }
+    else {
+      this.isMyLocationSelected = false;
+    }
   }
 
   closeSucessModalAndBackHome(event: string) {
@@ -303,4 +298,14 @@ export class SchedulingComponent {
       })
     })
   }
+
+  resetFormFieldsValue() {
+    this.nameInputValue = "";
+    this.attendanceDate = undefined;
+    this.selectedHour.value = "";
+    this.selectedGender.value = "";
+    this.phoneInputValue = "";
+    this.paymentTypeSelected.value = "";
+  }
+
 }

@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output, OnInit, OnChanges } from '@angular/core';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { Payment } from 'src/app/models/form';
+import { EmailDTO } from 'src/app/models/dto/dtos';
+import { city, Payment } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -20,12 +21,11 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() terapyModalImage: string;
   @Input() modalTerapyName: string;
   @Input() modalTerapyDescription: string;
-  @Input() chosenSchedullingCity: string | undefined;
+  @Input() chosenSchedullingCity: city;
   @Input() advanceModalSchedullingFee: string = "";
   @Input() schedullingPaymentType: Payment;
-  @Input() formDataToSave: {};
-  @Input() scheduleCode: string;
-
+  @Input() formDataToSave: any;
+  
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishTerapy: EventEmitter<boolean> = new EventEmitter();
@@ -51,6 +51,10 @@ export class ModalComponent implements OnInit, OnChanges {
 
   checked: boolean = false;
   
+  emailObject: EmailDTO;
+  
+  scheduleCode: string = Math.floor(Math.random() * 1000000).toString();
+
   ngOnInit(): void {
     this.schedullingPaymentType = {value: "PIX"};
 
@@ -60,7 +64,7 @@ export class ModalComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     if(this.advanceModaldisplay) {
-      this.matchCitySelectedWithSchedullingFee(this.chosenSchedullingCity);
+      this.matchCitySelectedWithSchedullingFee(this.chosenSchedullingCity.city);
     }
   }
 
@@ -80,7 +84,7 @@ export class ModalComponent implements OnInit, OnChanges {
 
   closeAdvanceModal() {
     this.advanceModaldisplay = false;
-    this.onCloseAdvanceModal.emit(false);
+    this.onCloseAdvanceModal.emit();
   }
 
   closeSuccessSchedullingModal() {
@@ -127,7 +131,8 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   setAdvanceModalDescription() {
-    switch(this.schedullingPaymentType.value) {
+    console.log(this.formDataToSave.paymentType);
+    switch(this.formDataToSave.paymentType) {
       case 'Particular':
         this.advanceModalHeader = 'Adiantamento'
         this.advanceDescription = 'Para reservar o horário de atendimento, solicitamos o pagamento da seguinte taxa:';
@@ -142,7 +147,8 @@ export class ModalComponent implements OnInit, OnChanges {
 
   matchCitySelectedWithSchedullingFee(citySelected: string | undefined) {
         this.dataService.getSchedullingFee(citySelected).subscribe((obs: any) => {
-          if(obs) {
+          // TODO: Corrigir bug referente ao if abaixo. A cidade escolhida está vindo do componente schedulling como null ao escolher o Convênio.
+          if(obs != null) {
             this.advanceModalSchedullingFee = `R$ ${obs}`;
           }
           else {
@@ -153,16 +159,27 @@ export class ModalComponent implements OnInit, OnChanges {
     }
 
   validateForm(formGroup: any) {
-    console.log(formGroup.form);
+    
     if(formGroup.form.status == 'VALID') {
+      this.emailObject = {
+        to: "dCaioCesar98@gmail.com",
+        subject: "Nova Programação Agendada",
+        text: `Uma nova consulta foi agendada. O código da consulta é: ${this.formDataToSave.attendanceCode}`
+      }
+      
+      this.setScheduleCodeToShowAndSaveInFormData();
+      this.dataService.sendEmailMessage(this.emailObject).subscribe();
       this.saveFormData();
+      }
+
     }
-  }
+  
 
   saveFormData() {
     this.dataService.saveAllFormData(this.formDataToSave).subscribe({
       next: (response) => {
         console.log('POST Successfull ', response);
+        this.onConfirmAdvanceModal.emit(true);
       },
 
       error: (error) => {
@@ -173,6 +190,12 @@ export class ModalComponent implements OnInit, OnChanges {
         console.log('Request complete');
       },
     })
+  }
+
+  setScheduleCodeToShowAndSaveInFormData() {
+    const scheduleCodeGenerated = Math.floor(Math.random() * 1000000).toString();
+    this.scheduleCode = scheduleCodeGenerated;
+    this.formDataToSave.attendanceCode = scheduleCodeGenerated;
   }
 
 }
