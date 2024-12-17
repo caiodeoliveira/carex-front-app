@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,9 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 })
 export class AppComponent{
 
-  constructor(private responsive: BreakpointObserver) {};
+  constructor(private responsive:BreakpointObserver) {}
 
-  breakpointActive: string = ""; 
+  currentBreakPoint: string = ""; 
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
@@ -37,51 +37,47 @@ export class AppComponent{
 
 		document.onkeydown = keyboardEvent;
 
-    this.responsive.observe(Breakpoints.XSmall).subscribe(result => {
+    this.getCurrentBreakPoint();
+  }
+  
+  getCurrentBreakPoint() {
+    this.responsive.observe(Breakpoints.HandsetPortrait).subscribe((result: any) => {
       if(result.matches) {
-         this.breakpointActive = 'isPhonePortrait';
+        this.currentBreakPoint = 'mobile';
       }
     })
 
-    this.responsive.observe(Breakpoints.Large).subscribe(result => {
-      if(result.matches) {
-        this.breakpointActive = 'isLargeDevice';
-      }
-    }) 
+    // this.responsive.observe(Breakpoints.HandsetLandscape).subscribe(result => {
+    //   if(result.matches) {
+    //     this.currentBreakPoint = 'mobile';
+    //   }
+    // }) 
 
-    this.responsive.observe(Breakpoints.XLarge).subscribe(result => {
+    this.responsive.observe(Breakpoints.TabletPortrait).subscribe(result => {
       if(result.matches) {
-        this.breakpointActive = "isXLarge"
+        this.currentBreakPoint = "tablet";
       }
     })
 
-  }
-  
-   getBreakpoints(): string {
-    switch(this.breakpointActive) {
-      case "isPhonePortrait":
-        return "phone-portrait";
-      case "isLargeDevice":
-          return "large-device";
-          case "isXLarge":
-            return "x-large";
-            default: return "is-large-device";
-    }
+    // this.responsive.observe(Breakpoints.TabletLandscape).subscribe(result => {
+    //   if(result.matches) {
+    //     this.currentBreakPoint = "tablet";
+    //   }
+    // })
+
+    this.responsive.observe(Breakpoints.WebPortrait).subscribe(result => {
+      if(result.matches) {
+        this.currentBreakPoint = "web-portrait";
+      }
+    })
+    
+    this.responsive.observe(Breakpoints.WebLandscape).subscribe(result => {
+      if(result.matches) {
+        this.currentBreakPoint = "web-landscape";
+      }
+    })
   }
 
-  getProfileImageByScreenSize(): string {
-    if(this.breakpointActive == "isPhonePortrait") {
-     return "../assets/imgs/profile_photo_small.jpg";
-    }
-    else if(this.breakpointActive == "isLargeDevice") {
-      return "../assets/imgs/profile_photo_average.jpg"
-    }
-      else if (this.breakpointActive == "isXLarge") {
-        return "../assets/imgs/profile_photo_xlarge.jpg";
-      }
-      return "null";
-  }
-  
   showSchedullingPage($event: boolean) {
     this.displaySchedullingPage = $event;
     this.scrollToPage('schedulling');

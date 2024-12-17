@@ -275,3 +275,22 @@
     border-radius: 1rem;
     filter: brightness(95%);
 }
+
+::ng-deep .p-button-confirm-modal {
+    background-color: white;
+    color: black;
+    font-size: 2rem;
+    height: 4rem;
+    padding: 1rem 9rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+}
+
+::ng-deep .p-button-confirm-modal:enabled:hover {
+    background-color: rgb(229, 229, 229);
+    color: black;
+    font-size: 2rem;
+    border: 4px solid #69cf99;
+    border-radius: 1rem;
+    filter: brightness(95%);
+}

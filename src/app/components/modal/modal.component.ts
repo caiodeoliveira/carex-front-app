@@ -131,7 +131,6 @@ export class ModalComponent implements OnInit, OnChanges {
   }
 
   setAdvanceModalDescription() {
-    console.log(this.formDataToSave.paymentType);
     switch(this.formDataToSave.paymentType) {
       case 'Particular':
         this.advanceModalHeader = 'Adiantamento'

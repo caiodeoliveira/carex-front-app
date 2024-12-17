@@ -1,17 +1,20 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {global} from '../../../global';
 import { DataService } from 'src/app/services/data.service';
+
 @Component({
   selector: 'app-terapies',
   templateUrl: './terapies.component.html',
   styleUrls: ['./terapies.component.scss']
 })
-export class TerapiesComponent implements OnInit {
+export class TerapiesComponent implements OnInit, OnChanges {
 
   constructor(private dataService: DataService) {}
 
   @Output() onTerapyConfirmed: EventEmitter<boolean> = new EventEmitter();
   @Output() onSetTerapyType: EventEmitter<string> = new EventEmitter();
+
+  @Input() breakpointActive: string;
 
   headerOne: string = global.terapies.headers.alternativeTerapies;
   headerTwo: string = global.terapies.headers.physioteraphyTerapies;
@@ -28,11 +31,13 @@ export class TerapiesComponent implements OnInit {
   terapyDescription: string;
 
   alternativeTerapiesData$: any[] = [];
+  alternativeTerapyImages: any[] = [];
   physioterapyTerapiesData$: any[] = [];
+  physioterapyTerapyImages: any[] = [];
 
   displaySkeleton: boolean = true;
 
-  searchProgrammingInputValue: string = "";
+  searchProgrammingInputValue: string = "426515";
   searchingForSchedule: boolean = false;
   searchScheduleEvent: any;  
 
@@ -42,9 +47,18 @@ export class TerapiesComponent implements OnInit {
 
   programmingNotFoundMessage: string = ""
 
+  terapyImagesSize: string = "";
+
   ngOnInit(): void {
+    this.setTerapyImagesSize();
     this.getAllTerapiesData();
     this.checkSearchFieldValue();
+  }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('BreakPoint Active -> ', this.breakpointActive);
+    this.setTerapyImagesSize();
+    this.getAllTerapiesData();
   }
 
   showModalAndGetImage(imageToShow: string, description: string, name: string) {
@@ -94,20 +108,26 @@ export class TerapiesComponent implements OnInit {
   }
 
   getAllTerapiesData() {
-    this.dataService.getAllTerapies().subscribe(response => {
-
+    /* Ver uma maneira de inserir os dados das terapias ao carregar página inserindo as imagens
+    corretas com o tamanho correto seguindo a lógica do backend.
+    */
+    this.dataService.getAllTerapiesWithImagesBySize(this.terapyImagesSize).subscribe(response => {
       
+      this.alternativeTerapiesData$ = [];
+      this.physioterapyTerapiesData$ = [];
       response.forEach((obj: any) => {
-        
-        if(obj.alternative) {
+
+        if(obj) {
           this.alternativeTerapiesData$.push(obj);
-          setTimeout(() => {
-            this.displaySkeleton = false;
-          }, 600)
         }
-        else {
-          this.physioterapyTerapiesData$.push(obj);
-        }
+  
+            setTimeout(() => {
+              this.displaySkeleton = false;
+            }, 600)
+        
+
+            this.physioterapyTerapiesData$.push(obj);
+
       })
     });
   }
@@ -152,5 +172,17 @@ export class TerapiesComponent implements OnInit {
 
   setProgrammingFoundSkeletonDisplay(rescheduleProgrammingEvent: boolean) {
     this.programmingFoundSkeletonDisplay = rescheduleProgrammingEvent;
+  }
+
+  setTerapyImagesSize() {
+    if(this.breakpointActive.includes('mobile')) {
+      this.terapyImagesSize = "small"
+    }
+    if(this.breakpointActive.includes('tablet')) {
+      this.terapyImagesSize = "regular"
+    }
+    if(this.breakpointActive.includes('web')) {
+      this.terapyImagesSize = "big"
+    }
   }
 }
