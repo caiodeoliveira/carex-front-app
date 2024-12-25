@@ -1,4 +1,4 @@
-<section *ngIf="!isReschedullingFieldActive">
+<section *ngIf="!isReschedullingFieldActive && breakpointActive == 'web-landscape'">
     <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
         <ng-template pTemplate="header">
             <tr *ngFor="let data of tableData">
@@ -30,6 +30,54 @@
         </ng-template>
     </p-table>
 </section>
+
+<section *ngIf="!isReschedullingFieldActive && breakpointActive != 'web-landscape'">
+    <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+        <ng-template pTemplate="header">
+            <tr *ngFor="let data of tableData">
+                <th [ngClass]="'delete-schedule-header ' + breakpointActive">Status</th>
+                <th [ngClass]="'name-header ' + breakpointActive">Nome</th>
+                <th [ngClass]="'date-hour-header ' + breakpointActive">Data / Hora</th>
+                <th [ngClass]="'phone-header ' + breakpointActive">Cel</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr [ngClass]="'table-row-body ' + breakpointActive">
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.status }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.name }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.patientPhoneNumber }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
+
+<section *ngIf="!isReschedullingFieldActive && breakpointActive != 'web-landscape'">
+    <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+        <ng-template pTemplate="header">
+            <tr *ngFor="let data of tableData">
+                <th [ngClass]="'model-header ' + breakpointActive">Modelo</th>
+                <th [ngClass]="'location-header ' + breakpointActive">Local</th>
+                <th [ngClass]="'location-header ' + breakpointActive">Cidade</th>
+                <th *ngIf="data.attendanceAddress" [ngClass]="'location-header ' + breakpointActive">Endereço</th>
+                <th [ngClass]="'confirm-attendance-header ' + breakpointActive">Reagendar Consulta</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr [ngClass]="'table-row-body ' + breakpointActive">
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.paymentType }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceCity }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceLocation }}</td>
+                <td *ngIf="data.attendanceAddress" [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceAddress }}</td>
+                <td class="{{isReschedullingFieldActive ? 'reschedulling-container-expanded' : ''}}" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive}}">
+                    <app-button-component *ngIf="!isReschedullingFieldActive" (click)="toggleReschedullingField()" buttonType="reschedulling-button"/>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
+
+
 
 <div *ngIf="isReschedullingFieldActive" [ngClass]="'rescheduleContainer ' + breakpointActive">
     <!-- TODO: Definir responsividade desse componente -->
