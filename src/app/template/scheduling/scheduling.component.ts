@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {global} from '../../../global';
 import { PrimeNGConfig } from 'primeng/api';
 import { Hour, Gender, Location, Insurance, city, PaymentType, FormSchedullingData } from 'src/app/models/form';
@@ -16,6 +16,8 @@ export class SchedulingComponent {
   @Output() onClickBack: EventEmitter<boolean> = new EventEmitter();
   @Output() onFinishSchedule: EventEmitter<boolean> = new EventEmitter();
   @Output() onCloseAndBackHome: EventEmitter<string> = new EventEmitter();
+  
+  @Input() breakpoint: string;
   
 
   headerOne: string = global.terapies.headers.alternativeTerapies;
