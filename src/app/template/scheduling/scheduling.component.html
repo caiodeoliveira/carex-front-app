@@ -2,7 +2,7 @@
     <h1 [ngClass]="'schedulling-title ' + breakpoint">Estamos quase lá, precisamos apenas de alguns dados...</h1>
 
     <form #scheduleForm="ngForm" class="form-container" (ngSubmit)="goToSchedullingLastStep(scheduleForm)">
-        <div class="client-data-container">
+        <div [ngClass]="'client-data-container ' + breakpoint">
 
             <span class="client-data-field-container">
 

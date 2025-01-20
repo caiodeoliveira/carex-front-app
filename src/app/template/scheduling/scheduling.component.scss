@@ -43,10 +43,18 @@
         justify-items: center;
         
         .client-data-container {
-            width: 90%;
+            width: 107%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
             justify-items: center;
+
+            &.mobile {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            &.tablet, .web-portrait {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
                 
             span {
                 display: grid;
