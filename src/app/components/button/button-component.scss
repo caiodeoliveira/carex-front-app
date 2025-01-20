@@ -58,43 +58,135 @@
 }
 
 ::ng-deep .p-button-confirm-default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
-    color: black;
-    font-size: 2rem;
-    height: 4rem;
-    padding: 1rem 9rem;
     border: 4px solid #69cf99;
+    color: black;
+    height: 5rem;
+    padding: 1rem 9rem;
     border-radius: 1rem;
     white-space: nowrap;
+
+    &.mobile {
+        width: 29rem;
+        font-size: 1.6rem;
+    }
+
+    &.tablet {
+        width: 32rem;
+        font-size: 1.8rem;
+    }
+
+    &.web-portrait {
+        width: 36rem;
+        font-size: 2rem;
+    }
+    
+    &.web-landscape {
+        font-size: 2.2rem;
+        width: 39rem;
+    }
 }
 
 ::ng-deep .p-button-confirm-default:enabled:hover {
-    background-color: rgb(229, 229, 229);
-    color: black;
-    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
     border: 4px solid #69cf99;
+    color: black;
+    height: 5rem;
+    padding: 1rem 9rem;
     border-radius: 1rem;
     filter: brightness(95%);
+
+    &.mobile {
+        width: 29rem;
+        font-size: 1.6rem;
+    }
+
+    &.tablet {
+        width: 32rem;
+        font-size: 1.8rem;
+    }
+
+    &.web-portrait {
+        width: 36rem;
+        font-size: 2rem;
+    }
+    
+    &.web-landscape {
+        font-size: 2.2rem;
+        width: 39rem;
+    }
 }
 
 ::ng-deep .p-button-back-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
-    color: black;
-    font-size: 2rem;
-    height: 4rem;
-    padding: 1rem 9rem;
     border: 4px solid #69cf99;
+    color: black;
+    height: 5rem;
+    padding: 1rem 9rem;
     border-radius: 1rem;
     white-space: nowrap;
+
+    &.mobile {
+        width: 25rem;
+        font-size: 1.6rem;
+    }
+
+    &.tablet {
+        width: 27rem;
+        font-size: 1.8rem;
+    }
+
+    &.web-portrait {
+        width: 29rem;
+        font-size: 2rem;
+    }
+    
+    &.web-landscape {
+        font-size: 2.2rem;
+        width: 32rem;
+    }
 }
 
 ::ng-deep .p-button-back-modal:enabled:hover {
-    background-color: rgb(229, 229, 229);
-    color: black;
-    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
     border: 4px solid #69cf99;
+    color: black;
+    height: 5rem;
+    padding: 1rem 9rem;
     border-radius: 1rem;
     filter: brightness(95%);
+
+    &.mobile {
+        width: 25rem;
+        font-size: 1.6rem;
+    }
+
+    &.tablet {
+        width: 27rem;
+        font-size: 1.8rem;
+    }
+
+    &.web-portrait {
+        width: 29rem;
+        font-size: 2rem;
+    }
+    
+    &.web-landscape {
+        font-size: 2.2rem;
+        width: 32rem;
+    }
 }
 
 ::ng-deep .p-button-confirm-advance-modal {

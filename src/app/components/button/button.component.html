@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="buttonType == 'backButton-modal'" class="button-container">
-    <p-button styleClass="p-button-back-modal" [label]="buttonLabel"></p-button>
+    <p-button [styleClass]="'p-button-back-modal ' + breakpoint" [label]="buttonLabel"></p-button>
 </div>
 
 <div *ngIf="buttonType == 'confirmButton-modal'" class="button-container">
@@ -19,7 +19,7 @@
 </div>
 
 <div *ngIf="buttonType == 'submitButton'" class="button-container">
-    <p-button type="submit" [disabled]="isSubmitButtonDisabled" styleClass="p-button-confirm-default" [label]="buttonLabel"></p-button>
+    <p-button type="submit" [disabled]="isSubmitButtonDisabled" [styleClass]="'p-button-confirm-default ' + breakpoint" [label]="buttonLabel"></p-button>
 </div>
 
 <div *ngIf="buttonType == 'back-to-initial-page-button'" class="button-container">

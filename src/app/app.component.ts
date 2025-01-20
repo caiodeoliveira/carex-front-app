@@ -14,7 +14,7 @@ export class AppComponent{
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
-  displaySchedullingPage: boolean = false;
+  displaySchedullingPage: boolean = true;
 
   displayProgrammingsPage: boolean = false;
   
