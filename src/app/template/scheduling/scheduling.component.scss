@@ -6,11 +6,28 @@
     justify-items: center;
     background-color: #E5E5E5;
     
-    h1 {
-        font-size: 5.5rem;
+    .schedulling-title {
         color: #555454;
         text-align: center;
-        margin-top: 15rem;
+
+        &.mobile {
+            font-size: 3.5rem;
+            margin-top: 15rem;
+        }
+        &.tablet {
+            font-size: 4.5rem;
+            margin-top: 15rem;
+        }
+ 
+        &.web-portrait {
+            font-size: 5.5rem;
+            margin-top: 15rem;
+        }
+        
+        &.web-landscape {
+            font-size: 6rem;
+            margin-top: 15rem;
+        }
     }
 
     h2 {
@@ -28,7 +45,7 @@
         .client-data-container {
             width: 90%;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             justify-items: center;
                 
             span {
@@ -40,16 +57,49 @@
             }
 
                 .field-label {
-                    font-size: 3rem;
                     color: #69cf99;
+
+                    &.mobile {
+                        font-size: 1.8rem;
+                    }
+
+                    &.tablet {
+                        font-size: 2.4rem;
+                    }
+             
+                    &.web-portrait {
+                        font-size: 2.8rem;
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 3rem;
+                    }
                 }
 
-                #name-input {
-                    width: 30rem;
+                .name-input {
                     height: 5rem;
                     border: 4px solid #69cf99;
-                    font-size: 2rem;
                     text-align: center;
+
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+                    }
 
                     &::placeholder {
                         color: rgb(164, 160, 160);
@@ -68,13 +118,59 @@
                             color: rgb(164, 160, 160);
                             }
                         }                        
-
-                    ::ng-deep .p-calendar .p-inputtext{
-                        width: 30rem;
+                    
+                    ::ng-deep .p-calendar {
                         height: 5rem;
                         border: 4px solid #69cf99;
-                        font-size: 2rem;
                         text-align: center;
+
+                        input {
+                            &.mobile {
+                                width: 24rem;
+                                font-size: 1.8rem;
+                            }
+                        }
+                        
+                        input {
+                            &.tablet {
+                                width: 26rem;
+                                font-size: 2rem;
+                            }
+                        }
+                        
+                        input {
+                            &.web-portrait {
+                                width: 28rem;
+                                font-size: 2.2rem;
+                            }
+                        }
+
+                        input {
+                            &.web-landscape {
+                                width: 30rem;
+                                font-size: 2.4rem;
+                            }
+                        }
+    
+                        &::placeholder {
+                            color: rgb(164, 160, 160);
+
+                            &.mobile {
+                                font-size: 1.8rem;
+                            }
+        
+                            &.tablet {
+                                font-size: 2.2rem;
+                            }
+                     
+                            &.web-portrait {
+                                font-size: 2.4rem;
+                            }
+                            
+                            &.web-landscape {
+                                font-size: 2rem;
+                            }
+                                }
                     }
 
                     ::ng-deep .p-calendar .p-datepicker-prev {
@@ -140,66 +236,347 @@
                         letter-spacing: 0.5rem;
                     }
                 }
-
-                ::ng-deep #location-attendance-dropdown {
-                    ::ng-deep .p-dropdown-label {
-                        letter-spacing: 0;
-                    }
-
-                    .p-dropdown-item {
-                        font-size: 2rem;
-                        text-align: center;
-                        letter-spacing: 0;
-                    }
-                }
-
-                ::ng-deep #gender-dropdown {
-                    .p-dropdown-label {
-                        letter-spacing: 0;
-                    }
-                }
-
-                ::ng-deep #payment-type-dropdown {
-                    .p-dropdown-label {
-                        letter-spacing: 0;
-                    }
-                }
-
-                ::ng-deep #hour-dropdown {
+                
+                ::ng-deep .hour-dropdown {
                     .p-dropdown-label {
                         letter-spacing: 0.5rem;
+                        font-size: 1.6rem;
+                    }
+                    
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.4rem;
+                            font-size: 1.8rem;
+                        }
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 2.2rem;
+                        }
                     }
                 }
 
-                #phone-input ::ng-deep .p-inputtext {
+                ::ng-deep .gender-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0.5rem;
+                        font-size: 1.6rem;
+                    }
+                    
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.4rem;
+                            font-size: 1.8rem;
+                        }
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
                         width: 30rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 2.2rem;
+                        }
+                    }
+                }
+
+                ::ng-deep .payment-type-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0.5rem;
+                        font-size: 1.6rem;
+                    }
+                    
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.4rem;
+                            font-size: 1.8rem;
+                        }
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 2.2rem;
+                        }
+                    }
+                }
+
+                ::ng-deep .insurance-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0.5rem;
+                        font-size: 1.6rem;
+                    }
+                    
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.4rem;
+                            font-size: 1.8rem;
+                        }
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 2.2rem;
+                        }
+                    }
+                }
+
+                ::ng-deep .location-attendance-dropdown {
+                    .p-dropdown-label {
+                        letter-spacing: 0.5rem;
+                        font-size: 1.6rem;
+                    }
+                    
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.4rem;
+                            font-size: 1.8rem;
+                        }
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 2.2rem;
+                        }
+                    }
+                }
+
+                ::ng-deep .attendance-city-dropdown {
+                    
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+                        
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 1.6rem;
+                        }
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.4rem;
+                            font-size: 1.8rem;
+                        }
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.6rem;
+                            font-size: 2rem;
+                        }
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+
+                        .p-dropdown-label {
+                            letter-spacing: 0.2rem;
+                            font-size: 2.2rem;
+                        }
+                    }
+                }
+
+                .phone-input {
+                    height: 5rem;
+                    border: 4px solid #69cf99;
+                    text-align: center;
+
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+                    }
+
+                    &::placeholder {
+                        color: rgb(164, 160, 160);
+                        font-size: 1.8rem;
+                            }
+                    
+                        }
+
+                    #address-input {
                         height: 5rem;
                         border: 4px solid #69cf99;
-                        font-size: 2rem;
                         text-align: center;
 
-                        &::placeholder {
-                            color: rgb(164, 160, 160);
+                    &.mobile {
+                        width: 24rem;
+                        font-size: 1.8rem;
+                    }
+
+                    &.tablet {
+                        width: 26rem;
+                        font-size: 2.2rem;
+                    }
+             
+                    &.web-portrait {
+                        width: 28rem;
+                        font-size: 2.4rem;
+                    }
+                    
+                    &.web-landscape {
+                        font-size: 2rem;
+                        width: 30rem;
+                    }
+
+                    &::placeholder {
+                        color: rgb(164, 160, 160);
+                        font-size: 1.8rem;
                             }
-                        }
-
-                        ::ng-deep #insurance-dropdown {
-                            .p-dropdown-label {
-                                letter-spacing: 0;
-                            }
-                        }
-
-                        #address-input {
-                            width: 30rem;
-                            height: 5rem;
-                            border: 4px solid #69cf99;
-                            font-size: 2rem;
-                            text-align: center;
-
-                            &::placeholder {
-                                color: rgb(164, 160, 160);
-                                font-size: 1.3rem;
-                                }
+                    
                         }
 
                     }

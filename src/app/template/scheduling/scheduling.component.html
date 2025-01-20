@@ -1,14 +1,14 @@
 <div class="scheduling-page">
-    <h1>Estamos quase lá, precisamos apenas de alguns dados...</h1>
+    <h1 [ngClass]="'schedulling-title ' + breakpoint">Estamos quase lá, precisamos apenas de alguns dados...</h1>
 
     <form #scheduleForm="ngForm" class="form-container" (ngSubmit)="goToSchedullingLastStep(scheduleForm)">
         <div class="client-data-container">
 
             <span class="client-data-field-container">
 
-                <label class="field-label" for="name-input">Informe seu Nome</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="name-input">Informe seu Nome</label>
                 <input
-                    id="name-input"
+                    [ngClass]="'name-input ' + breakpoint"
                     type="text"
                     name="name"
                     pInputText
@@ -35,11 +35,10 @@
             </span> -->
 
             <span>
-
-                <label class="field-label" for="schedule-date-input">Escolha uma Data</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="schedule-date-input">Escolha uma Data</label>
                 <p-calendar
-                    id="schedule-date-input"
                     inputId="schedule-date-input"
+                    [inputStyleClass]="'date-input ' + breakpoint"
                     name="date"
                     dateFormat="dd/mm/yy"
                     [disabledDates]="unavailableDates"
@@ -57,9 +56,10 @@
                 [pTooltip]="!attendanceIsChosen ? 'Campo desabilitado. <b>Escolha uma data</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="hour-dropdown">Escolha um Horário</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="hour-dropdown">Escolha um Horário</label>
                 <p-dropdown
                     id="hour-dropdown"
+                    [styleClass]="'hour-dropdown ' + breakpoint"
                     name="hour"
                     [options]="availableHours"
                     optionLabel="value"
@@ -73,9 +73,10 @@
 
             <span>
         
-                <label class="field-label" for="gender-dropdown">Informe seu Gênero</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="gender-dropdown">Informe seu Gênero</label>
                 <p-dropdown
                     id="gender-dropdown"
+                    [styleClass]="'gender-dropdown ' + breakpoint"
                     name="gender"
                     [options]="genderList"
                     optionLabel="value"
@@ -88,24 +89,24 @@
 
             <span class="with-margin">
 
-                <label class="field-label" for="integeronly">Telephone</label>
-                <p-inputMask
-                    id="phone-input"
-                    inputId="integeronly"
+                <label [ngClass]="'field-label ' + breakpoint" for="integeronly">Telephone</label>
+                <input
+                    id="integeronly"
+                    [ngClass]="'phone-input ' + breakpoint"
                     name="phone"
                     mask="(99)99999-9999"
                     [(ngModel)]="phoneInputValue"
                     minLength="14"
                     [required]="true"
-                    placeholder="(81)98593-4271">
-                </p-inputMask>              
+                    placeholder="(81)98593-4271"/>              
             </span>
 
-            <span class="with-margin">
+          <span class="with-margin">
 
-                <label class="field-label" for="payment-type-dropdown">Forma de Pagamento</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="payment-type-dropdown">Forma de Pagamento</label>
                 <p-dropdown
                     id="payment-type-dropdown"
+                    [styleClass]="'payment-type-dropdown ' + breakpoint"
                     name="paymentType"
                     (onShow)="getAndSetPaymentTypeOptions()"
                     (onChange)="onChangePaymentType($event)"
@@ -123,9 +124,10 @@
                 [pTooltip]="!isInsuranceAsPayment ? 'Campo desabilitado. Escolha o modelo de agendamento <b>Convênio</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="insurance-dropdown">Plano de Saúde</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="insurance-dropdown">Plano de Saúde</label>
                 <p-dropdown
                     id="insurance-dropdown"
+                    [styleClass]="'insurance-dropdown ' + breakpoint"
                     name="insurance"
                     [options]="insuranceList"
                     optionLabel="insurance"
@@ -141,9 +143,10 @@
                 [escape]="false"
                 [pTooltip]="attendanceLocationList.length == 0 ? 'Campo desabilitado. <b>Escolha um modelo de agendamento</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
-                <label class="field-label" for="location-attendance-dropdown">Local de Atendimento</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="location-attendance-dropdown">Local de Atendimento</label>
                 <p-dropdown
                     id="location-attendance-dropdown"
+                    [styleClass]="'location-attendance-dropdown ' + breakpoint"
                     name="location"
                     [options]="attendanceLocationList"
                     optionLabel="location"
@@ -161,9 +164,10 @@
                 [pTooltip]="!isMyLocationSelected ? 'Campo desabilitado. Escolha o local de atendimento <b>no endereço de minha preferência</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="name-input">Cidade do atendimento</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="attendance-city-dropdown">Cidade do atendimento</label>
                 <p-dropdown
-                    id="location-attendance-dropdown"
+                    id="attendance-city-dropdown"
+                    [styleClass]="'attendance-city-dropdown ' + breakpoint"
                     name="city"
                     [options]="attendanceCityList"
                     optionLabel="city"
@@ -181,17 +185,18 @@
                 [pTooltip]="!isMyLocationSelected ? 'Campo desabilitado. Escolha o local de atendimento <b>no endereço de minha preferência</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
-                <label class="field-label" for="address-input">Endereço</label>
+                <label [ngClass]="'field-label ' + breakpoint" for="address-input">Endereço</label>
                 <input
-                id="address-input"
-                name="address"
-                type="text"
-                pInputText
-                placeholder="Ex: Rua João Inácio, número 500. Pina, Recife."
-                [(ngModel)]="addressInputValue"
-                [disabled]="!isMyLocationSelected"
-                minlength="15"
-                [required]="attendanceLocationSelected?.location == 'No endereço de minha preferência' ? true : false">
+                    id="address-input"
+                    class="{{breakpoint}}"
+                    name="address"
+                    type="text"
+                    pInputText
+                    placeholder="Ex: Rua João Inácio, número 500. Pina, Recife."
+                    [(ngModel)]="addressInputValue"
+                    [disabled]="!isMyLocationSelected"
+                    minlength="15"
+                    [required]="attendanceLocationSelected?.location == 'No endereço de minha preferência' ? true : false">
             </span>
 
         </div>
