@@ -223,8 +223,8 @@
                 [escape]="false"
                 [pTooltip]="scheduleForm.form.status == 'INVALID' ? 'Botão desabilitado. Preencha <b>todos os campos habilitados.</b>' : '' "
                 [tooltipPosition]="'top'">
-                <app-button-component (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
-                <app-button-component [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
+                <app-button-component [breakpoint]="breakpoint" (click)="onClickBackButton()" buttonType="backButton-modal" buttonLabel="Voltar para a tela de Terapias"/>
+                <app-button-component [breakpoint]="breakpoint" [isSubmitButtonDisabled]="scheduleForm.form.status == 'INVALID'" buttonType="submitButton" buttonLabel="Ir para Finalização de Agendamento"/>
             </footer>
         </form>
 
