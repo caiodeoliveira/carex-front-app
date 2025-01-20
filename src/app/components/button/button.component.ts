@@ -12,7 +12,7 @@ export class ButtonComponent {
 @Input() buttonLabel: string;
 @Input() undoActionButtonActive: boolean;
 @Input() isSubmitButtonDisabled: boolean = false;
-
+@Input() breakpoint: string;
 
 backIcon = faChevronLeft;
 nextIcon = faChevronRight
