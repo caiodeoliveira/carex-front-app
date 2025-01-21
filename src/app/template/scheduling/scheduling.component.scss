@@ -100,13 +100,13 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
                     }
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
                     }
 
                     &::placeholder {
@@ -148,15 +148,16 @@
                         
                         input {
                             &.web-portrait {
-                                width: 28rem;
+                                width: 25rem;
                                 font-size: 2.2rem;
                             }
                         }
 
                         input {
                             &.web-landscape {
-                                width: 30rem;
+                                width: 35rem;
                                 font-size: 2.4rem;
+                                text-align: center;
                             }
                         }
     
@@ -222,9 +223,7 @@
                     border: 4px solid #69cf99;
                     
                     ::ng-deep .p-dropdown-label {
-                        font-size: 2.5rem;
                         text-align: center;
-                        letter-spacing: 0.5rem;                        
                     }
 
                     .p-dropdown-trigger {
@@ -272,7 +271,7 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
 
                         .p-dropdown-label {
@@ -283,7 +282,7 @@
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
 
                         .p-dropdown-label {
                             letter-spacing: 0.2rem;
@@ -319,7 +318,7 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
 
                         .p-dropdown-label {
@@ -330,7 +329,7 @@
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
 
                         .p-dropdown-label {
                             letter-spacing: 0.2rem;
@@ -366,7 +365,7 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
 
                         .p-dropdown-label {
@@ -377,7 +376,7 @@
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
 
                         .p-dropdown-label {
                             letter-spacing: 0.2rem;
@@ -413,7 +412,7 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
 
                         .p-dropdown-label {
@@ -424,7 +423,7 @@
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
 
                         .p-dropdown-label {
                             letter-spacing: 0.2rem;
@@ -460,7 +459,7 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
 
                         .p-dropdown-label {
@@ -471,7 +470,7 @@
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
 
                         .p-dropdown-label {
                             letter-spacing: 0.2rem;
@@ -503,7 +502,7 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
 
                         .p-dropdown-label {
@@ -514,7 +513,7 @@
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
 
                         .p-dropdown-label {
                             letter-spacing: 0.2rem;
@@ -539,13 +538,13 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
                     }
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
                     }
 
                     &::placeholder {
@@ -571,13 +570,13 @@
                     }
              
                     &.web-portrait {
-                        width: 28rem;
+                        width: 25rem;
                         font-size: 2.4rem;
                     }
                     
                     &.web-landscape {
                         font-size: 2rem;
-                        width: 30rem;
+                        width: 35rem;
                     }
 
                     &::placeholder {

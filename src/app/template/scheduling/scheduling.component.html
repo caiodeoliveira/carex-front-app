@@ -121,7 +121,7 @@
             <span
                 class="with-margin"
                 [escape]="false"
-                [pTooltip]="!isInsuranceAsPayment ? 'Campo desabilitado. Escolha o modelo de agendamento <b>Convênio</b> para habilitá-lo.' : '' "
+                [pTooltip]="!isInsuranceAsPayment ? 'Campo desabilitado. Escolha a forma de pagamento <b>Convênio</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
 
                 <label [ngClass]="'field-label ' + breakpoint" for="insurance-dropdown">Plano de Saúde</label>
@@ -141,7 +141,7 @@
             <span
                 class="with-margin"
                 [escape]="false"
-                [pTooltip]="attendanceLocationList.length == 0 ? 'Campo desabilitado. <b>Escolha um modelo de agendamento</b> para habilitá-lo.' : '' "
+                [pTooltip]="attendanceLocationList.length == 0 ? 'Campo desabilitado. <b>Escolha uma forma de pagamento</b> para habilitá-lo.' : '' "
                 [tooltipPosition]="'top'">
                 <label [ngClass]="'field-label ' + breakpoint" for="location-attendance-dropdown">Local de Atendimento</label>
                 <p-dropdown
