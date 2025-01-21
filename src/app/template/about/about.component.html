@@ -8,8 +8,8 @@
     </div>
 
     <div class="right-side">
-        <h1 class="description-title">Olá</h1>
-        <p class="description-text">
+        <h1 [ngClass]="'description-title ' + breakpoint">Olá</h1>
+        <p [ngClass]="'description-text ' + breakpoint">
             {{description}}
         </p>
     </div>

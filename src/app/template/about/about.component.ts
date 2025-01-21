@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { global } from 'src/global';
 
 @Component({
@@ -7,6 +7,9 @@ import { global } from 'src/global';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit{
+
+  @Input() breakpoint: string;
+  
 
   value: number;
   description: string = global.about.professionalDescription;
