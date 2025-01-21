@@ -25,6 +25,9 @@ export class ModalComponent implements OnInit, OnChanges {
   @Input() advanceModalSchedullingFee: string = "";
   @Input() schedullingPaymentType: Payment;
   @Input() formDataToSave: any;
+  @Input() breakpoint: string;
+  
+
   
   @Output() onClose: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() onConfirmTerapy: EventEmitter<boolean> = new EventEmitter();

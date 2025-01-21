@@ -70,7 +70,7 @@
     white-space: nowrap;
 
     &.mobile {
-        width: 29rem;
+        width: 25rem;
         font-size: 1.6rem;
     }
 
@@ -103,7 +103,7 @@
     filter: brightness(95%);
 
     &.mobile {
-        width: 29rem;
+        width: 25rem;
         font-size: 1.6rem;
     }
 
@@ -146,12 +146,12 @@
     }
 
     &.web-portrait {
-        width: 29rem;
+        width: 25rem;
         font-size: 2rem;
     }
     
     &.web-landscape {
-        font-size: 2.2rem;
+        font-size: 2rem;
         width: 32rem;
     }
 }
@@ -167,6 +167,7 @@
     padding: 1rem 9rem;
     border-radius: 1rem;
     filter: brightness(95%);
+    
 
     &.mobile {
         width: 25rem;
@@ -179,12 +180,12 @@
     }
 
     &.web-portrait {
-        width: 29rem;
+        width: 25rem;
         font-size: 2rem;
     }
     
     &.web-landscape {
-        font-size: 2.2rem;
+        font-size: 2rem;
         width: 32rem;
     }
 }
