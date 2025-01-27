@@ -145,12 +145,25 @@
         }
 
        &.advance-payment-modal-with-insurance {
-           width: 120rem;
            height: 70rem;
            border: 4px solid #3cc97d;
 
+            
+            &.mobile {
+                width: 48rem;
+            }
+            &.tablet {
+                width: 65rem;
+            }
+            &.web-portrait {
+                width: 83rem;
+            }
+            &.web-landscape {
+                width: 95rem;
+            }
+
            .p-dialog-title {
-            font-size: 7.5rem;
+                font-size: 7.5rem;
             }
         }
 
@@ -224,6 +237,7 @@
             display: flex;
             justify-content: space-around;
             align-items: initial;
+            overflow-x: hidden;
 
             .image-container {
                 margin: auto 0;
@@ -242,6 +256,19 @@
                 display: flex;
                 justify-content: space-between;
                 margin-top: 2rem;
+
+                &.mobile {
+                    width: 45rem;
+                }
+                &.tablet {
+                    width: 63rem;
+                }
+                &.web-portrait {
+                    width: 80rem;
+                }
+                &.web-landscape {
+                    width: 92rem;
+                }
 
                 .consent-checkbox {
                     width: 8rem;
@@ -466,6 +493,21 @@
 
                 .advance-description-with-insurance {
                     font-size: 5rem;
+
+                    
+                &.mobile {
+                    font-size: 3rem;
+                    width: 36rem;
+                }
+                &.tablet {
+                    font-size: 5.1rem;
+                }
+                &.web-portrait {
+                    font-size: 4.7rem;
+                }
+                &.web-landscape {
+                    font-size: 5.39rem;
+                }
                 }
 
                 .payment-key {
@@ -484,6 +526,20 @@
                     color: red;
                     font-size: 4rem;
                     margin-top: 1rem;
+                    
+                &.mobile {
+                    font-size: 2.79rem;
+                    width: 45rem;
+                }
+                &.tablet {
+                    font-size: 3.79rem;
+                }
+                &.web-portrait {
+                    font-size: 4.2rem;
+                }
+                &.web-landscape {
+                    font-size: 4rem;
+                }
                 }
 
                 .buttons-container {

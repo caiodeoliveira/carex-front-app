@@ -30,7 +30,7 @@
 </p-dialog>
 
 <p-dialog 
-    [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal' : 'advance-payment-modal-with-insurance' "
+    [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal ' + breakpoint : 'advance-payment-modal-with-insurance ' + breakpoint"
     [header]="advanceModalHeader"
     [(visible)]="advanceModaldisplay"
     (onHide)="closeAdvanceModal()">
@@ -40,7 +40,7 @@
         (ngSubmit)="validateForm(advanceContainerForm)"
         [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-payment-text-container' : 'advance-payment-text-container-with-insurance' ">
         
-        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-description' : 'advance-description-with-insurance' ">{{advanceDescription}} <b>{{advanceModalSchedullingFee}}</b></p>
+        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-description ' + breakpoint : 'advance-description-with-insurance ' + breakpoint ">{{advanceDescription}} <b>{{advanceModalSchedullingFee}}</b></p>
        
         <div class="payment-container">
 
@@ -73,16 +73,16 @@
             *ngIf="schedullingPaymentType.value == 'Particular' ">
             Clique em "Concluir" abaixo. Assim que validarmos o pagamento vamos entrar em contato pelo Whatsapp e após sua confirmação, confirmaremos a consulta no sistema.
         </p>
-        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-warn' : 'advance-warn-with-insurance' ">Em caso de cancelamento ou adiamento de consulta com menos de 24 horas de atecedência sem comprovação de justificativa, resultará na retenção de 50% do valor de agendamento.</p>
+        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-warn ' + breakpoint : 'advance-warn-with-insurance ' + breakpoint ">Em caso de cancelamento ou adiamento de consulta com menos de 24 horas de atecedência sem comprovação de justificativa, resultará na retenção de 50% do valor de agendamento.</p>
         
         <div class="consent-container">
             <input required [(ngModel)]="checked" class="consent-checkbox" type="checkbox" name="consent">
-            <p class="consent-text">Para finalizar o agendamento, você precisa concordar com nossos termos de serviço. Seus dados serão processados apenas para fins de agendamento e autenticação.</p>
+            <p [ngClass]="'consent-text ' + breakpoint">Para finalizar o agendamento, você precisa concordar com nossos termos de serviço. Seus dados serão processados apenas para fins de agendamento e autenticação.</p>
         </div>
 
         <footer class="buttons-container">
-            <app-button-component (click)="closeAdvanceModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
-            <app-button-component [isSubmitButtonDisabled]="advanceContainerForm.form.status == 'INVALID'" buttonType="confirmButton-advanceModal" buttonLabel="Concluir"/>
+            <app-button-component [breakpoint]="breakpoint" (click)="closeAdvanceModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
+            <app-button-component [breakpoint]="breakpoint" [isSubmitButtonDisabled]="advanceContainerForm.form.status == 'INVALID'" buttonType="confirmButton-advanceModal" buttonLabel="Concluir"/>
         </footer>
     </form>
     
