@@ -1,26 +1,27 @@
-<!-- <app-home id="home" (onClickToScroll)="scrollToPage($event)"/> -->
+<app-home id="home" (onClickToScroll)="scrollToPage($event)" [breakpoint]="currentBreakPoint"/>
 
 <app-terapies id="terapies" (onTerapyConfirmed)="showSchedullingPage($event)" [breakpointActive]="currentBreakPoint" />
 
-<!-- <app-about id="about"/> -->
+<app-about id="about" [breakpoint]="currentBreakPoint"/>
 
-<!-- <app-scheduling
+<app-scheduling
 id="schedulling"
 (onClickBack)="hideSchedullingPage($event)"
 (onFinishSchedule)="hideSchedullingPage($event)"
 (onCloseAndBackHome)="scrollToPage($event)"
+[breakpoint]="currentBreakPoint"
 *ngIf="displaySchedullingPage"
-/> -->
+/>
 
-<!-- <app-programmings
+<app-programmings
 id="programmings"
 *ngIf="displayProgrammingsPage"
-/> -->
+/>
 
-<!-- <app-modal-component
+<app-modal-component
 [type]="'login'"
 [loginModalDisplay]="displayLoginModal"
 (onClose)="hideModal()"
 (onSignIn)="doSignIn($event)"
 *ngIf="modalDisplayRule"
-/> -->
+/>

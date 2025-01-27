@@ -14,7 +14,7 @@ export class AppComponent{
   inputTextValue: string = "empty";
   imagesBasePath: string = "../assets/imgs";
 
-  displaySchedullingPage: boolean = true;
+  displaySchedullingPage: boolean = false;
 
   displayProgrammingsPage: boolean = false;
   
@@ -47,23 +47,11 @@ export class AppComponent{
       }
     })
 
-    // this.responsive.observe(Breakpoints.HandsetLandscape).subscribe(result => {
-    //   if(result.matches) {
-    //     this.currentBreakPoint = 'mobile';
-    //   }
-    // }) 
-
     this.responsive.observe(Breakpoints.TabletPortrait).subscribe(result => {
       if(result.matches) {
         this.currentBreakPoint = "tablet";
       }
     })
-
-    // this.responsive.observe(Breakpoints.TabletLandscape).subscribe(result => {
-    //   if(result.matches) {
-    //     this.currentBreakPoint = "tablet";
-    //   }
-    // })
 
     this.responsive.observe(Breakpoints.WebPortrait).subscribe(result => {
       if(result.matches) {
