@@ -55,7 +55,7 @@
 </div>
 
 <div *ngIf="buttonType == 'confirmButton-advanceModal'" class="button-container">
-    <p-button type="submit" [disabled]="isSubmitButtonDisabled" styleClass="p-button-confirm-advance-modal" [label]="buttonLabel"></p-button>
+    <p-button type="submit" [disabled]="isSubmitButtonDisabled" [styleClass]="'p-button-confirm-advance-modal ' + breakpoint" [label]="buttonLabel"></p-button>
 </div>
 
 <span *ngIf="buttonType == 'reschedulling-button'" class="button-container">
