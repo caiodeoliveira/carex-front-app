@@ -1,29 +1,29 @@
-<section *ngIf="!isReschedullingFieldActive">
+<section *ngIf="!isReschedullingFieldActive && breakpointActive == 'web-landscape'">
     <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
         <ng-template pTemplate="header">
             <tr *ngFor="let data of tableData">
-                <th class="delete-schedule-header">Status</th>
-                <th class="name-header">Nome</th>
-                <th class="date-hour-header">Data / Hora</th>
-                <th class="phone-header">Cel</th>
-                <th class="model-header">Modelo</th>
-                <th class="location-header">Local</th>
-                <th class="location-header">Cidade</th>
-                <th *ngIf="data.attendanceAddress" class="location-header">Endereço</th>
-                <th class="confirm-attendance-header">Reagendar Consulta</th>
+                <th [ngClass]="'delete-schedule-header ' + breakpointActive">Status</th>
+                <th [ngClass]="'name-header ' + breakpointActive">Nome</th>
+                <th [ngClass]="'date-hour-header ' + breakpointActive">Data / Hora</th>
+                <th [ngClass]="'phone-header ' + breakpointActive">Cel</th>
+                <th [ngClass]="'model-header ' + breakpointActive">Modelo</th>
+                <th [ngClass]="'location-header ' + breakpointActive">Local</th>
+                <th [ngClass]="'location-header ' + breakpointActive">Cidade</th>
+                <th *ngIf="data.attendanceAddress" [ngClass]="'location-header ' + breakpointActive">Endereço</th>
+                <th [ngClass]="'confirm-attendance-header ' + breakpointActive">Reagendar Consulta</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-data>
-            <tr ngClass="table-row-body">
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.status }}</td>
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.name }}</td>
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap' : 'nowrap'">{{ data.patientPhoneNumber }}</td>
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.paymentType }}</td>
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceCity }}</td>
-                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceLocation }}</td>
-                <td *ngIf="data.attendanceAddress" [ngClass]="data.status == 'Confirmado' ? 'confirmed' : ''">{{ data.attendanceAddress }}</td>
-                <td class="{{isReschedullingFieldActive ? 'reschedulling-container-expanded' : ''}}" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed' : ''}}">
+            <tr [ngClass]="'table-row-body ' + breakpointActive">
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.status }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.name }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.patientPhoneNumber }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.paymentType }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceCity }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceLocation }}</td>
+                <td *ngIf="data.attendanceAddress" [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceAddress }}</td>
+                <td class="{{isReschedullingFieldActive ? 'reschedulling-container-expanded' : ''}}" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive}}">
                     <app-button-component *ngIf="!isReschedullingFieldActive" (click)="toggleReschedullingField()" buttonType="reschedulling-button"/>
                 </td>
             </tr>
@@ -31,15 +31,61 @@
     </p-table>
 </section>
 
-<div *ngIf="isReschedullingFieldActive" class="rescheduleContainer">
+<section *ngIf="!isReschedullingFieldActive && breakpointActive != 'web-landscape'">
+    <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+        <ng-template pTemplate="header">
+            <tr *ngFor="let data of tableData">
+                <th [ngClass]="'delete-schedule-header ' + breakpointActive">Status</th>
+                <th [ngClass]="'name-header ' + breakpointActive">Nome</th>
+                <th [ngClass]="'date-hour-header ' + breakpointActive">Data / Hora</th>
+                <th [ngClass]="'phone-header ' + breakpointActive">Cel</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr [ngClass]="'table-row-body ' + breakpointActive">
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.status }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.name }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.attendanceDate | date: 'dd/MM/yy' }} <b>/</b> {{data.attendanceHour}}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed-nowrap ' + breakpointActive : 'nowrap ' + breakpointActive">{{ data.patientPhoneNumber }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
 
-    <h1 class="reschedule-title">Reagendamento</h1>
+<section *ngIf="!isReschedullingFieldActive && breakpointActive != 'web-landscape'">
+    <p-table [value]="tableData" [rows]="2" [paginator]="paginatorActivator" [rowsPerPageOptions]="[2, 5, 10, 25]">
+        <ng-template pTemplate="header">
+            <tr *ngFor="let data of tableData">
+                <th [ngClass]="'model-header ' + breakpointActive">Modelo</th>
+                <th [ngClass]="'location-header ' + breakpointActive">Local</th>
+                <th [ngClass]="'location-header ' + breakpointActive">Cidade</th>
+                <th *ngIf="data.attendanceAddress" [ngClass]="'location-header ' + breakpointActive">Endereço</th>
+                <th [ngClass]="'confirm-attendance-header ' + breakpointActive">Reagendar Consulta</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr [ngClass]="'table-row-body ' + breakpointActive">
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.paymentType }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceCity }}</td>
+                <td [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceLocation }}</td>
+                <td *ngIf="data.attendanceAddress" [ngClass]="data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive">{{ data.attendanceAddress }}</td>
+                <td class="{{isReschedullingFieldActive ? 'reschedulling-container-expanded' : ''}}" ngClass="table-confirm-button-container {{data.status == 'Confirmado' ? 'confirmed ' + breakpointActive : ' ' + breakpointActive}}">
+                    <app-button-component *ngIf="!isReschedullingFieldActive" (click)="toggleReschedullingField()" buttonType="reschedulling-button"/>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>
+
+
+
+<div *ngIf="isReschedullingFieldActive" [ngClass]="'rescheduleContainer ' + breakpointActive">
+    <h1 [ngClass]="'reschedule-title ' + breakpointActive">Reagendamento</h1>
 
     <div class="date-time-container">
         <p-calendar
             *ngIf="isReschedullingFieldActive"
-            id="schedule-date-input"
-            inputId="schedule-date-input"
+            [ngClass]="'schedule-date-input ' + breakpointActive"
             dateFormat="dd/mm/yy"
             [disabledDates]="unavailableDates"
             [locale]="pt"

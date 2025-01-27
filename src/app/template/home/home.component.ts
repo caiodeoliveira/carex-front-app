@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +7,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class HomeComponent {
 
+  @Input() breakpoint: string;
+  
   @Output() onClickToScroll: EventEmitter<string> = new EventEmitter();
 
 }

@@ -15,12 +15,38 @@
 
             .name-text {
                 color: #555454;
-                font-size: 13rem;
+
+                &.mobile {
+                    font-size: 8.8rem;
+                }
+                &.tablet {
+                    font-size: 10rem;
+                }
+                &.web-portrait {
+                    font-size: 11rem;
+                }
+                &.web-landscape {
+                    font-size: 13rem;
+                }
             }
     
             .registry-text {
                 color: #555454;
                 font-size: 7rem;
+
+                
+                &.mobile {
+                    font-size: 5rem;
+                }
+                &.tablet {
+                    font-size: 6rem;
+                }
+                &.web-portrait {
+                    font-size: 7rem;
+                }
+                &.web-landscape {
+                    font-size: 8rem;
+                }
             }
         }
 

@@ -1,33 +1,36 @@
-<p-dialog [styleClass]="'terapy-choose-modal'" *ngIf="type == 'terapy-choose'" header="{{modalTerapyName}}" [(visible)]="terapyModalDisplay" (onHide)="closeTerapyModal()">
-    <span class="image-container">
-        <img class="terapy-image" src="{{terapyModalImage}}" alt="teste">
-    </span>
+<p-dialog [styleClass]="'terapy-choose-modal ' + breakpoint" *ngIf="type == 'terapy-choose'" header="{{modalTerapyName}}" [(visible)]="terapyModalDisplay" (onHide)="closeTerapyModal()">
 
-    <div class="terapy-text-container">
-        <p class="terapy-description">{{modalTerapyDescription}}</p>
-        
-        <span class="terapy-alert-container">
-            <h1 class="terapy-alert-header">Como funciona?</h1>
-
-            <div class="terapy-alert-body-container">
-                <p class="terapy-alert-text-body">A seção tem valor único e abrange todas as terapias alternativas (no fluxo de alternativas) listadas nesta página. No início da seção será avaliada a necessidade do paciente e decidido quais terapias poderão ser utilizadas de acordo com a necessidade poderão ser combinadas mais de uma terapia.</p>
-            </div>
-
+    <div [ngClass]="'dialog-content ' + breakpoint">
+        <span class="image-container">
+            <img class="terapy-image" src="{{terapyModalImage}}" alt="teste">
         </span>
-
-        <p class="terapy-question">
-            Deseja confirmar e prosseguir para a tela de agendamento?
-        </p>
+    
+        <div class="terapy-text-container">
+            <p [ngClass]="'terapy-description ' + breakpoint">{{modalTerapyDescription}}</p>
+            
+            <span class="terapy-alert-container">
+                <h1 class="terapy-alert-header">Como funciona?</h1>
+    
+                <div class="terapy-alert-body-container">
+                    <p class="terapy-alert-text-body {{breakpoint}}">A seção tem valor único e abrange todas as terapias alternativas (no fluxo de alternativas) listadas nesta página. No início da seção será avaliada a necessidade do paciente e decidido quais terapias poderão ser utilizadas de acordo com a necessidade poderão ser combinadas mais de uma terapia.</p>
+                </div>
+    
+            </span>
+    
+            <p class="terapy-question">
+                Deseja confirmar e prosseguir para a tela de agendamento?
+            </p>
+        </div>
     </div>
     
     <ng-template pTemplate="footer">
-        <app-button-component (click)="closeTerapyModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
+        <app-button-component (click)="closeTerapyModal()" buttonType="backButton-modal" buttonLabel="Voltar" [breakpoint]="breakpoint"/>
         <app-button-component (click)="confirmTerapy()" buttonType="confirmButton-modal" buttonLabel="Confirmar"/>
     </ng-template>
 </p-dialog>
 
 <p-dialog 
-    [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal' : 'advance-payment-modal-with-insurance' "
+    [styleClass]="type == 'advance-payment' && schedullingPaymentType.value == 'Particular' ? 'advance-payment-modal ' + breakpoint : 'advance-payment-modal-with-insurance ' + breakpoint"
     [header]="advanceModalHeader"
     [(visible)]="advanceModaldisplay"
     (onHide)="closeAdvanceModal()">
@@ -37,7 +40,7 @@
         (ngSubmit)="validateForm(advanceContainerForm)"
         [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-payment-text-container' : 'advance-payment-text-container-with-insurance' ">
         
-        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-description' : 'advance-description-with-insurance' ">{{advanceDescription}} <b>{{advanceModalSchedullingFee}}</b></p>
+        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-description ' + breakpoint : 'advance-description-with-insurance ' + breakpoint ">{{advanceDescription}} <b>{{advanceModalSchedullingFee}}</b></p>
        
         <div class="payment-container">
 
@@ -70,16 +73,16 @@
             *ngIf="schedullingPaymentType.value == 'Particular' ">
             Clique em "Concluir" abaixo. Assim que validarmos o pagamento vamos entrar em contato pelo Whatsapp e após sua confirmação, confirmaremos a consulta no sistema.
         </p>
-        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-warn' : 'advance-warn-with-insurance' ">Em caso de cancelamento ou adiamento de consulta com menos de 24 horas de atecedência sem comprovação de justificativa, resultará na retenção de 50% do valor de agendamento.</p>
+        <p [ngClass]="schedullingPaymentType.value == 'Particular' ? 'advance-warn ' + breakpoint : 'advance-warn-with-insurance ' + breakpoint ">Em caso de cancelamento ou adiamento de consulta com menos de 24 horas de atecedência sem comprovação de justificativa, resultará na retenção de 50% do valor de agendamento.</p>
         
         <div class="consent-container">
             <input required [(ngModel)]="checked" class="consent-checkbox" type="checkbox" name="consent">
-            <p class="consent-text">Para finalizar o agendamento, você precisa concordar com nossos termos de serviço. Seus dados serão processados apenas para fins de agendamento e autenticação.</p>
+            <p [ngClass]="'consent-text ' + breakpoint">Para finalizar o agendamento, você precisa concordar com nossos termos de serviço. Seus dados serão processados apenas para fins de agendamento e autenticação.</p>
         </div>
 
         <footer class="buttons-container">
-            <app-button-component (click)="closeAdvanceModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
-            <app-button-component [isSubmitButtonDisabled]="advanceContainerForm.form.status == 'INVALID'" buttonType="confirmButton-advanceModal" buttonLabel="Concluir"/>
+            <app-button-component [breakpoint]="breakpoint" (click)="closeAdvanceModal()" buttonType="backButton-modal" buttonLabel="Voltar"/>
+            <app-button-component [breakpoint]="breakpoint" [isSubmitButtonDisabled]="advanceContainerForm.form.status == 'INVALID'" buttonType="confirmButton-advanceModal" buttonLabel="Concluir"/>
         </footer>
     </form>
     

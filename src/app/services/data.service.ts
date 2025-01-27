@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RescheduleProgrammingDTO } from '../models/dto/dtos';
@@ -10,9 +10,16 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
+  // TODO: Apontar o Host das URLs para o Render.
+
   getAllTerapies(): Observable<any> {
-    return this.httpClient.get('http://localhost:8080/terapy/allTerapies')
+    return this.httpClient.get(`http://localhost:8080/terapy/allTerapies`)
   }
+
+  getAllTerapiesWithImagesBySize(size: string): Observable<any> {
+    return this.httpClient.get(`http://localhost:8080/terapy/allterapiesdata/${size}`)
+  }
+
 
   getAllTerapyNames(): Observable<any> {
     return this.httpClient.get('http://localhost:8080/terapy/names')

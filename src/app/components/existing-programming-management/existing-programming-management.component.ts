@@ -14,6 +14,7 @@ export class ExistingProgrammingManagementComponent implements OnInit {
   constructor(private primengConfig: PrimeNGConfig, private dataService: DataService) {};
 
   @Input() tableData: any[];
+  @Input() breakpointActive: string;
 
   @Output() onRescheduleProgramming: EventEmitter<boolean> = new EventEmitter();
 

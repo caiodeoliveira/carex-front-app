@@ -1,8 +1,8 @@
 <div class="terapies-page">
-    <h1 class="first-header">{{headerOne}}</h1>
+    <h1 [ngClass]="'first-header ' + breakpointActive">{{headerOne}}</h1>
 
     <section class="terapies-container">
-        <div class="terapies-grid-container" *ngFor="let terapy of alternativeTerapiesData$;">
+        <ng-container *ngFor="let terapy of alternativeTerapiesData$;">
             <span *ngIf="terapy.alternative && !displaySkeleton" class="terapies-grid-data">
                 <img
                     *ngIf="!displaySkeleton"
@@ -15,18 +15,17 @@
                     pTooltip="Clique na imagem para mais detalhes e agendamento."
                     tooltipPosition="top"
                     placeholder="Right">
-                    <h2>{{terapy.name}}</h2>
+                    <h2 [ngClass]="'terapy-name ' + breakpointActive">{{terapy.name}}</h2>
                 </span>
                 <p-skeleton *ngIf="displaySkeleton" animation="wave" shape="circle" size="25rem" [style]="{'background-color': '#dbdada'}"></p-skeleton>
                 <p-skeleton id="rectangle-skeleton" *ngIf="displaySkeleton" animation="wave" shape="rectangle" width="24.5rem" height="3rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
-        </div>
+        </ng-container>
     </section>
 
-    <h1 class="second-header">{{headerTwo}}</h1>
+    <h1 [ngClass]="'second-header ' + breakpointActive ">{{headerTwo}}</h1>
 
-    <section class="terapies-container">
-        <div class="terapies-grid-container" *ngFor="let terapy of physioterapyTerapiesData$;">
-
+     <section class="terapies-container">
+        <ng-container *ngFor="let terapy of physioterapyTerapiesData$;">
             <span *ngIf="!terapy.alternative && !displaySkeleton" class="terapies-grid-data">
                 <img
                     class="terapy-image"
@@ -38,17 +37,17 @@
                     pTooltip="Clique na imagem para mais detalhes e agendamento."
                     tooltipPosition="top"
                     placeholder="Right">
-                <h2>{{terapy.name}}</h2>
+                <h2 [ngClass]="'terapy-name ' + breakpointActive">{{terapy.name}}</h2>
             </span>
             <p-skeleton *ngIf="displaySkeleton" animation="wave" shape="circle" size="25rem" [style]="{'background-color': '#dbdada'}"></p-skeleton>
             <p-skeleton id="rectangle-skeleton" *ngIf="displaySkeleton" animation="wave" shape="rectangle" width="24.5rem" height="3rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
-        </div>
+        </ng-container>
     </section>
 
     <section class="search-schedule-container">
-        <h1 class="search-schedule-header">Tem consulta agendada e gostaria de lembrar o horário ou reagendar? Faça uma busca no campo abaixo</h1>
-        <p-inputMask
-            id="search-schedule-input"
+        <h1 [ngClass]="'search-schedule-header ' + breakpointActive">Tem consulta agendada e gostaria de lembrar o horário ou reagendar? Faça uma busca no campo abaixo</h1>
+         <p-inputMask
+            [ngClass]="'search-schedule-input ' + breakpointActive"
             inputId="stringonly"
             name="search-schedule"
             mask="999999"
@@ -57,11 +56,13 @@
             (ngModelChange)="checkSearchFieldValue()"
             minLength="14"
             [required]="true"
-            placeholder="Exemplo: 135782">
+            placeholder="Digite um código de consulta">
         </p-inputMask>
-        <h1 *ngIf="programmingNotFoundMessage" class="not-found-message">{{programmingNotFoundMessage}}</h1>
-        <app-existing-programming-management *ngIf="programmingFound.length > 0" [tableData]="programmingFound" (onRescheduleProgramming)="setProgrammingFoundSkeletonDisplay($event)" />
-        <p-skeleton id="rectangle-skeleton" *ngIf="programmingFoundSkeletonDisplay" animation="wave" shape="rectangle" width="273rem" height="17rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
+        <h1 *ngIf="programmingNotFoundMessage" [ngClass]="'not-found-message ' + breakpointActive">{{programmingNotFoundMessage}}</h1>
+        <app-existing-programming-management *ngIf="programmingFound.length > 0" [breakpointActive]="breakpointActive" [tableData]="programmingFound" (onRescheduleProgramming)="setProgrammingFoundSkeletonDisplay($event)" />
+        <p-skeleton id="rectangle-skeleton" *ngIf="programmingFoundSkeletonDisplay && terapyImagesSize == 'big' " animation="wave" shape="rectangle" width="135rem" height="17rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
+        <p-skeleton id="rectangle-skeleton" *ngIf="programmingFoundSkeletonDisplay && terapyImagesSize == 'regular' " animation="wave" shape="rectangle" width="80rem" height="17rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
+        <p-skeleton id="rectangle-skeleton" *ngIf="terapyImagesSize == 'small' " animation="wave" shape="rectangle" width="55rem" height="17rem" [style]="{'background-color': '#dbdada', 'margin-top': '1rem'}"></p-skeleton>
     </section>
 
     <app-modal-component
@@ -71,5 +72,6 @@
         [modalTerapyName]="terapyName"
         [modalTerapyDescription]="terapyDescription"
         (onClose)="hideModal()"
-        (onConfirmTerapy)="setModalConfirmationData($event)"/>
+        (onConfirmTerapy)="setModalConfirmationData($event)"
+        [breakpoint]="breakpointActive"/>
 </div>
