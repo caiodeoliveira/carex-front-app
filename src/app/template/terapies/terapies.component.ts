@@ -56,7 +56,6 @@ export class TerapiesComponent implements OnInit, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('BreakPoint Active -> ', this.breakpointActive);
     this.setTerapyImagesSize();
     this.getAllTerapiesData();
   }
