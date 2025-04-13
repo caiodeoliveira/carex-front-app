@@ -31,6 +31,30 @@
     height: 7rem;
     border: none;
     border-radius: 1.5rem;
+    margin-bottom: 2rem;
+
+    &.mobile {
+        width: 25rem;
+        height: 4rem;
+        font-size: 1.59rem;
+    }
+
+    &.tablet {
+        width: 32rem;
+        height: 7rem;
+        font-size: 2rem;
+    }
+
+    &.web-portrait {
+        width: 36rem;
+        font-size: 2rem;
+    }
+    
+    &.web-landscape {
+        font-size: 2.2rem;
+        width: 39rem;
+    }
+
 }
 
 ::ng-deep .p-button-contact:enabled:hover {

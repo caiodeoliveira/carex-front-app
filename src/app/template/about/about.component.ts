@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { global } from 'src/global';
 
 @Component({
@@ -6,16 +6,21 @@ import { global } from 'src/global';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements OnInit{
+export class AboutComponent implements OnInit, OnChanges{
 
   @Input() breakpoint: string;
   
-
   value: number;
   description: string = global.about.professionalDescription;
 
+  professionalImageSize: string = "";
+
   ngOnInit(): void {
     this.value = 1;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.setProfessionalImageSize();
   }
 
   incrementValue(): void {
@@ -27,5 +32,17 @@ export class AboutComponent implements OnInit{
     const message = 'Olá, gostaria de mais informações.';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
+  }
+
+  setProfessionalImageSize() {
+    if(this.breakpoint.includes('mobile')) {
+      this.professionalImageSize = "small"
+    }
+    if(this.breakpoint.includes('tablet')) {
+      this.professionalImageSize = "regular"
+    }
+    if(this.breakpoint.includes('web')) {
+      this.professionalImageSize = "big"
+    }
   }
 }

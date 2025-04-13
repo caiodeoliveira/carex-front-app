@@ -1,8 +1,8 @@
 <div class="about-container">
     <div class="left-side">
-        <span class="photo-container"><img class="profile-photo" src="../../../assets/dra-ana.jpg" alt="imagem da Doutora Ana Beatriz">
+        <span class="photo-container"><img class="profile-photo" src="../../../assets/img/{{professionalImageSize}}/dr-profile-{{professionalImageSize}}.png" alt="imagem da Doutora Ana Beatriz">
             <h3 class="profile-registry">CREFITO: 356998</h3>
-            <app-button-component (click)="openWhatsApp()" buttonType="medicalContactButton" buttonLabel="FALE COM A FISIOTERAPEUTA"/>
+            <app-button-component (click)="openWhatsApp()" buttonType="medicalContactButton" buttonLabel="FALE COM A FISIOTERAPEUTA" [breakpoint]="breakpoint"/>
         </span>
         
     </div>

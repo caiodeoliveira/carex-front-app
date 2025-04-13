@@ -1,5 +1,5 @@
 <div *ngIf="buttonType == 'medicalContactButton'" class="button-container">
-    <p-button styleClass="p-button-contact" [label]="buttonLabel"></p-button>
+    <p-button [styleClass]="'p-button-contact ' + breakpoint" [label]="buttonLabel"></p-button>
 </div>
 
 <div *ngIf="buttonType == 'backButton-modal'" class="button-container">
