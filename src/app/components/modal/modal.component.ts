@@ -3,6 +3,8 @@ import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { EmailDTO } from 'src/app/models/dto/dtos';
 import { city, Payment } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
+import {faGoogle} from '@fortawesome/free-brands-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-modal-component',
@@ -57,6 +59,8 @@ export class ModalComponent implements OnInit, OnChanges {
   emailObject: EmailDTO;
   
   scheduleCode: string = Math.floor(Math.random() * 1000000).toString();
+
+  googleIcon: IconProp = faGoogle;
 
   ngOnInit(): void {
     this.schedullingPaymentType = {value: "PIX"};

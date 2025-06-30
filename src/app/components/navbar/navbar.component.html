@@ -1,0 +1,17 @@
+<nav *ngIf="!isUserLogged" class="navbar">
+    <div class="logo">Logo</div>
+    <ul class="nav-link">
+        <li><a *ngIf="!isUserLogged" href="#" (click)="logIn()">Entrar</a></li>
+    </ul>
+</nav>
+
+<nav *ngIf="isUserLogged" class="navbar">
+    <div class="logo">Logo</div>
+    <ul class="nav-links">
+        <li *ngIf="isUserLogged"><a href="#">Histórico de Consultas</a></li>
+        <li *ngIf="isUserLogged"><a href="#">Comprovantes</a></li>
+        <li *ngIf="isUserLogged"><a href="#" (click)="logOff()">Sair</a></li>
+    </ul>
+</nav>
+
+<app-modal-component [loginModalDisplay]="showLoginModal" type="login" />

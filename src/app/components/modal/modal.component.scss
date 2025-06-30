@@ -191,7 +191,7 @@
                     color: #69cf99;
                 }
 
-                #login-input {
+                .login-username-input, .login-password-input {
                     width: 50rem;
                     height: 5rem;
                     border: 4px solid #69cf99;
@@ -216,6 +216,26 @@
                     &::placeholder {
                         color: rgb(164, 160, 160);
                         font-size: 1.8rem;
+                        }
+                    }
+
+                    .social-login-container {
+                        display: flex;
+                        justify-content: space-around;
+
+                        .google-button-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 5rem;
+                            height: 4rem;
+                            border: 1px solid rgb(44, 44, 156);
+                            border-radius: 10px;
+
+                            a {
+                                width: 15px;
+                                height: 15px;
+                            }
                         }
                     }
         }        

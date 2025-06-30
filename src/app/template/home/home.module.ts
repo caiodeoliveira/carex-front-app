@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { DividerModule } from 'primeng/divider';
 import { ButtonComponentModule } from 'src/app/components/button/button.module';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { ButtonComponentModule } from 'src/app/components/button/button.module';
     CommonModule,
     DividerModule,
     ButtonComponentModule,
+    NavbarComponent,
   ],
   exports: [HomeComponent]
 })

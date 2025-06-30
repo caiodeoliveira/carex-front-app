@@ -107,10 +107,24 @@
 
     <main class="login-field-container">
         <span class="with-margin">
-            <label class="field-label" for="login-input">Senha</label>
-            <input id="login-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: Bneves552233@"/>
+
+            <label class="field-label" for="username-input">Usuário</label>
+            <input id="username-input" class="login-username-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: dCristian08 ou cristian.92@gmail.com"/>
+            <label class="field-label" for="password-input">Senha</label>
+            <input id="password-input" class="login-password-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: Bneves552233@"/>
             <label class="field-label" htmlFor="recovery-password-input" *ngIf="displayRecoveryPasswordInput">Código</label>
             <input id="recovery-password-input" type="text" pInputText [(ngModel)]="recoveryFieldCodeValue" placeholder="Ex: Digite o código de 4 dígitos" *ngIf="displayRecoveryPasswordInput"/>
+
+            <div class="social-login-container">
+                <span class="google-button-container">
+                    <a href="">
+                        <fa-icon [icon]="googleIcon" class="fa-3x"></fa-icon>
+                    </a>
+                </span>
+                <span>
+                    <a href=""></a>
+                </span>
+            </div>
         </span> 
     </main>
     

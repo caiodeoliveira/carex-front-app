@@ -155,13 +155,14 @@ export class TerapiesComponent implements OnInit, OnChanges {
           this.programmingFoundSkeletonDisplay = false;
           if(obs) {
             this.programmingNotFoundMessage = "";
+            this.programmingFound = [];
             this.programmingFound.push(obs)
           }
           else if(!obs) {
             this.programmingNotFoundMessage = "Nenhuma programação encontrada com o código digitado";
           }
         })        
-      }, 850);
+      }, 1000);
     }
     else {
       this.programmingFoundSkeletonDisplay = false

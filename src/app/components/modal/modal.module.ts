@@ -18,6 +18,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     DropdownModule,
     FontAwesomeModule,
     CheckboxModule,
+    FontAwesomeModule,
   ],
   exports: [
     ModalComponent,
