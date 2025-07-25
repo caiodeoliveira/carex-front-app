@@ -16,7 +16,7 @@ import { ModalModule } from './components/modal/modal.module';
 import { DataTableModule } from './components/data-table/data-table.module';
 import { ProgrammingsModule } from './template/programmings/programmings.module';
 import { HomeModule } from './template/home/home.module';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     DataTableModule,
     HomeModule,
     HttpClientModule,
-    NavbarComponent,
+    HeaderComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
