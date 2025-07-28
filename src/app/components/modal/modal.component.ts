@@ -44,6 +44,7 @@ export class ModalComponent implements OnInit, OnChanges {
   paymentOptionSelected: Payment = {value: ""};
 
   loginInputFieldValue: string;
+  passwordInputFieldValue: string;
   recoveryFieldCodeValue: string;
 
   displayRecoveryPasswordInput: boolean = false;

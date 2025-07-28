@@ -109,9 +109,9 @@
         <span class="with-margin">
 
             <label class="field-label" for="username-input">Usuário</label>
-            <input id="username-input" class="login-username-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: dCristian08 ou cristian.92@gmail.com"/>
+            <input id="username-input" class="login-username-input" type="text" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: dCristian08 ou cristian.92@gmail.com"/>
             <label class="field-label" for="password-input">Senha</label>
-            <input id="password-input" class="login-password-input" type="password" pInputText [(ngModel)]="loginInputFieldValue" placeholder="Ex: Bneves552233@"/>
+            <input id="password-input" class="login-password-input" type="password" pInputText [(ngModel)]="passwordInputFieldValue" placeholder="Ex: Bneves552233@"/>
             <label class="field-label" htmlFor="recovery-password-input" *ngIf="displayRecoveryPasswordInput">Código</label>
             <input id="recovery-password-input" type="text" pInputText [(ngModel)]="recoveryFieldCodeValue" placeholder="Ex: Digite o código de 4 dígitos" *ngIf="displayRecoveryPasswordInput"/>
 
