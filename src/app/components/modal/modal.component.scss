@@ -175,7 +175,7 @@
                 font-size: 3rem;
             }
 
-            span {
+            form {
                 display: grid;
                 grid-template-columns: 1fr;
                 justify-content: center;
@@ -222,20 +222,33 @@
                     .social-login-container {
                         display: flex;
                         justify-content: space-around;
+                        align-items: center;
+                        height: 7rem;
+                        cursor: pointer;
 
                         .google-button-container {
                             display: flex;
                             justify-content: center;
                             align-items: center;
-                            width: 5rem;
-                            height: 4rem;
-                            border: 1px solid rgb(44, 44, 156);
+                            width: 7rem;
+                            height: 6rem;
+                            border: 1px solid rgb(234, 67, 53);
                             border-radius: 10px;
+                        }
 
-                            a {
-                                width: 15px;
-                                height: 15px;
-                            }
+                        .github-button-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 7rem;
+                            height: 6rem;
+                            border: 1px solid black;
+                            border-radius: 10px;
+                        }
+
+                        :hover {
+                            background-color: rgb(233, 232, 232);
+                            transition: 300ms;
                         }
                     }
         }        

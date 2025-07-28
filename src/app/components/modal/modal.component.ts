@@ -3,8 +3,8 @@ import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { EmailDTO } from 'src/app/models/dto/dtos';
 import { city, Payment } from 'src/app/models/form';
 import { DataService } from 'src/app/services/data.service';
-import {faGoogle} from '@fortawesome/free-brands-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import {faGoogle, faGithub} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-modal-component',
@@ -62,6 +62,7 @@ export class ModalComponent implements OnInit, OnChanges {
   scheduleCode: string = Math.floor(Math.random() * 1000000).toString();
 
   googleIcon: IconProp = faGoogle;
+  githubIcon: IconProp = faGithub;
 
   ngOnInit(): void {
     this.schedullingPaymentType = {value: "PIX"};
@@ -202,6 +203,18 @@ export class ModalComponent implements OnInit, OnChanges {
     const scheduleCodeGenerated = Math.floor(Math.random() * 1000000).toString();
     this.scheduleCode = scheduleCodeGenerated;
     this.formDataToSave.attendanceCode = scheduleCodeGenerated;
+  }
+
+  signWithGoogle() {
+    alert('Sign in with Google');
+    this.loginModalDisplay = false;
+    this.onSignIn.emit(true);
+  }
+
+  signWithGithub() {
+    alert('Sign in with Google');
+    this.loginModalDisplay = false;
+    this.onSignIn.emit(true);
   }
 
 }
