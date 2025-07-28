@@ -11,7 +11,7 @@ import { ModalModule } from '../modal/modal.module';
 })
 export class HeaderComponent {
 
-isUserLogged: boolean = true;
+isUserLogged: boolean = false;
 
 showLoginModal: boolean = false; // Reativar para ajustar botões de login social
 
@@ -22,5 +22,6 @@ logIn() {
 
 logOff() {
   this.isUserLogged = false;
+  this.showLoginModal = false;
   }
 }

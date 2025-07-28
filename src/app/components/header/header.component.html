@@ -10,7 +10,7 @@
     <ul class="header-links">
         <li *ngIf="isUserLogged"><a href="#">Histórico de Consultas</a></li>
         <li *ngIf="isUserLogged"><a href="#">Comprovantes</a></li>
-        <li *ngIf="isUserLogged"><a href="#" (click)="logOff()">Sair</a></li>
+        <li *ngIf="isUserLogged"><a (click)="logOff()">Sair</a></li>
     </ul>
 </nav>
 
