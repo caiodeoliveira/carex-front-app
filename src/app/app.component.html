@@ -1,4 +1,4 @@
-<app-header/>
+<app-header [isUserLogged]="userLogged"/>
 
 <app-home id="home" (onClickToScroll)="scrollToPage($event)" [breakpoint]="currentBreakPoint"/>
 

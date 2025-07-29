@@ -21,7 +21,8 @@ export class AppComponent{
   modalDisplayRule = true;
   displayLoginModal: boolean = false;
   
-  
+  userLogged: boolean = false;
+
   ngOnInit() {
 
     const keyboardEvent = (event: any) => {
@@ -87,6 +88,7 @@ export class AppComponent{
     this.displayProgrammingsPage = $event;
     this.displayLoginModal = false;
     this.modalDisplayRule = false;
+    this.userLogged = true;
 
     setTimeout(() => {
       const element = document.getElementById('programmings');
