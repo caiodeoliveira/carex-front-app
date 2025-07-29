@@ -1,12 +1,16 @@
 <nav *ngIf="!isUserLogged" class="header">
-    <div class="logo">Logo</div>
+    <span class="logo">
+        <fa-icon [icon]="snakeIcon" [styles]="{'font-size': '40px', 'color': '#39d17d'}"></fa-icon>
+    </span>
     <ul class="header-link">
         <li><a *ngIf="!isUserLogged" href="#" (click)="logIn()">Entrar</a></li>
     </ul>
 </nav>
 
 <nav *ngIf="isUserLogged" class="header">
-    <div class="logo">Logo</div>
+    <span class="logo">
+        <fa-icon [icon]="snakeIcon" [styles]="{'font-size': '40px', 'color': '#39d17d'}"></fa-icon>
+    </span>
     <ul class="header-links">
         <li *ngIf="isUserLogged"><a href="#">Histórico de Consultas</a></li>
         <li *ngIf="isUserLogged"><a href="#">Comprovantes</a></li>
