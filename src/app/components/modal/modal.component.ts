@@ -6,6 +6,7 @@ import { DataService } from 'src/app/services/data.service';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import {faGoogle, faGithub} from '@fortawesome/free-brands-svg-icons';
 
+
 @Component({
   selector: 'app-modal-component',
   templateUrl: './modal.component.html',
@@ -137,6 +138,7 @@ export class ModalComponent implements OnInit, OnChanges {
   signIn() {
     this.loginModalDisplay = false;
     this.onSignIn.emit(true);
+    window.localStorage.setItem('userLogged', 'true'); // Descobrir porque o evento onSignIn não está mudando o header ao final do fluxo.
   }
 
   setAdvanceModalDescription() {
