@@ -1,22 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalModule } from '../modal/modal.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faStaffSnake } from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   standalone: true,
-  imports: [CommonModule, ModalModule],
+  imports: [CommonModule, ModalModule, FontAwesomeModule],
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent{
 
-isUserLogged: boolean = false;
+@Input() isUserLogged: boolean = false;
 
 showLoginModal: boolean = false; // Reativar para ajustar botões de login social
 
+snakeIcon: IconProp = faStaffSnake;
+
 logIn() {
-  this.isUserLogged = true;
   this.showLoginModal = true;
   }
 
