@@ -14,7 +14,7 @@ export class ModalComponent implements OnInit, OnChanges {
   constructor(private dataService: DataService) {}
 
   @Input() terapyModalDisplay: boolean = false;
-  @Input() advanceModaldisplay: boolean = false;
+  @Input() advanceModaldisplay: boolean = true;
   @Input() successScheduleModalDisplay: boolean = false;
   @Input() loginModalDisplay: boolean;
   @Input() type: string;

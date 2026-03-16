@@ -7,6 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CheckboxModule } from 'primeng/checkbox';
+import { CheckoutModule } from '../checkout/checkout.module';
 
 @NgModule({
   declarations: [ModalComponent],
@@ -18,6 +19,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     DropdownModule,
     FontAwesomeModule,
     CheckboxModule,
+    CheckoutModule,
   ],
   exports: [
     ModalComponent,

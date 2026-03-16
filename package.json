@@ -12,7 +12,7 @@
   "dependencies": {
     "@angular/animations": "^15.2.0",
     "@angular/cdk": "^15.2.9",
-    "@angular/cli": "^15.2.10",
+    "@angular/cli": "^15.2.0",
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
     "@angular/compiler-cli": "15.2.0",
@@ -25,6 +25,8 @@
     "@fortawesome/angular-fontawesome": "^0.12.1",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@stripe/stripe-js": "^3.5.0",
+    "ngx-stripe": "^15.8.1",
     "npm": "^9.6.7",
     "primeicons": "^6.0.1",
     "primeng": "^15.4.1",
